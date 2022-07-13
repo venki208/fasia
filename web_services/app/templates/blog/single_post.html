@@ -1,0 +1,219 @@
+{% extends 'home/login.html' %}
+{% block custome_css %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/blog.css')}}">
+    <style  type="text/css">
+    .fb_iframe_widget{
+        display: flex;
+        position: relative;
+    }
+    .comment-list{
+        list-style: none;
+    }
+</style>
+{% endblock %}
+{% block sm_sticky %}
+{% endblock %}
+{% block main_content %}
+    <section class="fasia-blog-single-page">
+        <div class="container">
+        <div class="row"> <!--blog header-->
+        <div class="col-xs-12 single-page-back-btn">
+            <p class="page-header pull-left">
+                <ul class="breadcrumb">
+                    {% if current_user.is_authenticated %}
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    {% else %}
+                    <li><a href="/home">Home</a></li>
+                    {% endif %}
+                    <li class="active"><a href="/blog">Blogs</a>
+                    <li><span>{{post.title.rendered if post else ''}}</span></li>
+                </ul>
+            </p>
+        </div>
+        {% if post %}
+            <div class="col-xs-12 single-page-blog">
+                <h2 class="page-header pull-left">
+                    {{post.title.rendered}}<small> by <a href="#">{{post.author_name}}</a></small>
+                </h2>
+                <p class="pull-right"><i class="fa fa-clock-o"></i> Posted on: {{ post.date }}</p>
+            </div>
+            <div class="col-xs-12">
+                <div class='rateit' id="rating" data-rateit-resetable="false"></div>
+                <div class="bloggroups">
+                    {% if post.better_featured_image.source_url %}
+                        <a>
+                            <img class="img-responsive img-blog" src="{{post.better_featured_image.source_url}}" width="100%" width="100%"/>
+                        </a>
+                    {% else %}
+                        <a href="/blog/{{post.ID}}/post/">
+                            <img src="{{ url_for('static', filename='images/blog/blog_header_img.png')}}" class="img-responsive" alt="">
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="post-content">
+                    <p class="wordwrap">{{ post.content.rendered | striptags }}</p>
+                </div>
+                {% if user.is_authenticated %}
+                    <div class="blogs-links">
+                        <ul>
+                            <li>
+                                <input id="fb_link_url"
+                                    type="hidden"
+                                    class ="fb_iframe_widget"
+                                    value="{{post.link}}"/>
+                                <div id="fb-btn"
+                                    class="fb-like"
+                                    data-href="{{post.link}}"
+                                    data-layout="button_count"
+                                    data-action="like"
+                                    data-show-faces="true"
+                                    data-share="true">
+                                </div>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/share"
+                                    class="twitter-share-button"
+                                    data-hashtags="NorthFacing"
+                                    data-count="horizontal">
+                                    Tweet
+                                </a>
+                            </li>
+                            <li>
+                                <script type="IN/Share"
+                                    data-url="{{post.link}}"
+                                    data-counter="right">
+                                </script>
+                            </li>
+                            <li>
+                                <div class="g-plusone"
+                                    data-size="medium"
+                                    data-annotation="inline"
+                                    data-width="300"
+                                    data-height="30"
+                                    data-action="share"
+                                    data-href="{{post.link}}"
+                                    data-callback="trackgoogle" >
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% block comments %}
+            <h1 class="comments_title"> {{ comments|count }} Comments </h1>
+            <div id="comments">
+                {% if user.is_registered %}
+                    <div id="respond">
+                        <h4 class="respond-title">Post a comment</h4>
+                    </div>
+                    <form method="post" accept-charset="utf-8" id="blog_add_comment" role="form" name="blog_add_comment" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group control-group">
+                                    <div class="control comment-box">
+                                        <input type="text" autocomplete="off" name="comment" id="comment" class="form-control input" placeholder="Comment" tabindex="4">
+                                    </div>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <button type="button" class="btn blog-btn" onClick="postComment();">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                {% endif %}
+                <div class="row">
+                    <div id="comment_box_clearfix"></div>
+                    {% if comments %}
+                        <ul class="comment-list">
+                        {% for comment in comments %}
+                            {% if comment.status == "approved" %}
+                            <li>
+                                <div class="comment-box clearfix">
+                                    <div class="user">
+                                        <a href="#">
+                                        {% if comment.author.avatar %}
+                                            <img src="{{ comment.author.avatar }}" class="img-circle" alt="{{comment.author_name}}">
+                                        {% else %}
+                                            <img src="{{ url_for('static', filename='images/blog/avatar.png')}}" class="img-circle" alt="{{comment.author_name}}">
+                                        {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="comment-content">
+                                        <h4 class="comment-by">{{ comment.author_name }}</h4>
+                                        <p class="wordwrap">{{ comment.content.rendered | striptags }}</p>
+                                        <br/>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <h4 class="comment-box" id="no_comment"><p>No comments.</p></h4>
+                    {% endif %}
+                    <div class="comment-content" id="comment-content" style="display:none;">
+                        <div id="display_comments" name="display_comments" >
+                            <h4 class="comment-by" id="comment-by"> </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </section>
+{% endblock %}
+{% block scripts %}
+    {{super()}}
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+    <script type="text/javascript">
+        var post_id = {{path}};
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6&appId=738135046316916";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script type="text/javascript">
+        !function(d,s,id) {
+            var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+            if(!d.getElementById(id)) {
+                js=d.createElement(s);
+                js.id=id;
+                js.src=p+'://platform.twitter.com/widgets.js';
+                fjs.parentNode.insertBefore(js,fjs);}
+        }(document, 'script', 'twitter-wjs');
+    </script>
+    <script type="text/javascript">
+        function postComment() {
+            var comment = document.getElementById("comment").value;
+            if(!comment){
+                alert("Please Enter Some Text To Comment");
+            }else {
+                var comment_box_clearfix = document.getElementById("comment_box_clearfix");
+                comment_box_clearfix.name = "comment_box1_clearfix";
+                comment_box_clearfix.setAttribute("class", "comment_box_clearfix");
+                $.ajax({
+                    type: "POST",
+                    url: "/blog/post-comment",
+                    beforeSend: setHeader,
+                    data : {
+                        'post_id' : post_id,
+                        'comment' : comment,
+                    },
+                    success:function(response){
+                        location.reload();
+                    }
+                });
+            }
+        }
+        $("#blog_add_comment").submit(function() {
+            postComment();
+            return false;
+        });
+    </script>
+{% endblock %}

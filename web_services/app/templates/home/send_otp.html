@@ -1,0 +1,147 @@
+<style>
+    .resend_otp_btn {
+        border: none;
+        background-color: #e89924;
+        color: #FFF !important;
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+    }
+</style>
+<div class="modal fade fasiamodal" id="sms_otp_modal" tabindex="-1" role="dialog" aria-labelledby="otpModalLabel" aria-hidden="true">
+    <div class="modal-dialog fasia-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4 class="fasiamodal-title" id="otpModalLabel">
+                    Enter OTP
+                </h4>
+                <div class="row">
+                    <div class="alert alert-success" role="alert" id="otp_success_alert" style="display: none;">
+                    </div>
+                    <div class="col-md-12">
+                        {% if otp_mobile %}
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Mobile OTP" name="mobile_otp" id="mobile_otp" required='true'>
+                                <span class="input-group-addon btn resend_otp_btn" id="basic-addon2" otp-type="mobile">Resend OTP</span>
+                            </div>
+                            <span class="help-block" id="help_mobile_otp"></span>
+                        </div>
+                        {% endif %}
+                        {% if otp_email %}
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Email OTP" name="email_otp" id="email_otp" required='true'>
+                                <span class="input-group-addon btn resend_otp_btn" id="basic-addon2" otp-type="email">Resend OTP</span>
+                            </div>
+                            <span class="help-block" id="help_email_otp"></span>
+                        </div>
+                        {% endif %}
+                        <input type="hidden" value="{{otp_type}}" name="otp_type">
+                        <div class="text-center">
+                            <button type="button" id="sms_validate_btn" class="btn sub-btn">Submit</button>
+                            <button type="button" data-dismiss="modal" class="btn sub-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<script>
+    // validating otp
+    function validate_otps(data) {
+        var data_obj;
+        if (data){
+            data_obj = data;
+        }else{
+            data_obj = {
+                'mobile_otp': $("#mobile_otp").val(),
+                'email_otp': $("#email_otp").val(),
+                'verify': true
+            }
+        }
+        $.ajax({
+            method: 'POST',
+            url: '/validate_registration_otp',
+            beforeSend: setHeader,
+            data: data_obj,
+            success: function (response) {
+                if (!response.mob_otp_status) {
+                    $("#help_mobile_otp").html('Please Enter Valid Mobile OTP');
+                }
+                if (!response.email_otp_status) {
+                    $("#help_email_otp").html('Please Enter Valid Email OTP');
+                }
+                if (response.mob_otp_status && response.email_otp_status) {
+                    if(data_obj['verify']){
+                        validate_otps(data={
+                            'mobile_otp': $("#mobile_otp").val(),
+                            'email_otp': $("#email_otp").val(),
+                        });
+                    }
+                    show_alert('success',
+                        "sms_otp_modal",
+                        '<p class="text-center">' +
+                        'You have completed the Registration successfully. Your login credentials has been sent to your email ID.</p>',
+                        'href:/'
+                    );
+                    $("#common_modal").find('.close').hide();
+                }
+            },
+            error: function (response) {
+                show_alert('error',
+                    "sms_otp_modal",
+                    '<p class="text-center">' +
+                    'Unable to validate OTP Please try again after some time.</p>'
+                );
+                $("#common_modal").find('.close').show();
+            }
+        });
+    }
+
+    // validating the OTP
+    $("#sms_validate_btn").on('click', function (e) {
+        var is_email_otp = validate_field_onkeypress('email_otp', 'help_email_otp', 'Email OTP');
+        var is_mobile_otp = validate_field_onkeypress('mobile_otp', 'help_mobile_otp', 'Mobile OTP');
+        if (is_mobile_otp == 0 && is_email_otp == 0) {
+            validate_otps();
+        }
+    });
+
+    // Resending the OTP
+    $(".resend_otp_btn").on('click', function(e){
+        var type_of_otp = $(this).attr('otp-type');
+        $.ajax({
+            type: 'POST',
+            beforeSend: setHeader,
+            url: '/resend_otp',
+            data:{
+                'type_of_otp': type_of_otp,
+                'email': username,
+            },
+            success: function(response){
+                if(response.status == 'success'){
+                    var msg_otp_type;
+                    if(type_of_otp == 'email'){
+                        msg_otp_type = 'Email Id';
+                    }else{
+                        msg_otp_type = 'Mobile Number';
+                    }
+                    $("#otp_success_alert").html('OTP sent Successfully to your '+msg_otp_type);
+                    $("#otp_success_alert").fadeTo(2000, 500).slideUp(500, function(){
+                        $("#otp_success_alert").slideUp(500);
+                    });
+                }
+            },
+            error: function(response){
+                if(type_of_otp == 'email'){
+                    $("#help_email_otp").html('Unable to send otp to email');
+                }else{
+                    $("#help_mobile_otp").html('Unable to send otp to mobile');
+                }
+            }
+        });
+    });
+</script>

@@ -1,0 +1,150 @@
+<style media="screen">
+    .imageBox {
+        position: relative;
+        height: 400px;
+        /*width: 400px;*/
+        border: 1px solid #aaa;
+        background: #fff;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        cursor: move;
+    }
+    .action {
+        width: 100%;
+        height: 30px;
+        margin: 10px 0;
+    }
+    .imageBox .thumbBox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 200px;
+        margin-top: -100px;
+        margin-left: -100px;
+        box-sizing: border-box;
+        border: 1px solid rgb(102, 102, 102);
+        box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+        background: none repeat scroll 0% 0% transparent;
+    }
+    .user-profile-photo-crop .cropped{
+        padding-bottom: 15px;
+    }
+    .cropped{
+        margin-bottom: 10px;
+    }
+    .edit_image_box{
+        margin-bottom: 40px;
+    }
+</style>
+<div class="modal fade fasiamodal" id="imageModal" tabindex="-1" data-toggle="modal" role="dialog" aria-hidden="true" aria-labelledby="imageModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;</button>
+                <h4 class="fasiamodal-title" id="loginModalLabel">Upload Profile Pic</h4>
+                <div class="row">
+                    <div class="col-sm-8 edit_image_box none">
+                        <div class="imageBox">
+                            <div class="thumbBox none"></div>
+                            <div class="spinner" style="display: none">Loading...</div>
+                        </div>
+                        <div class="action">
+                            <label id="paper_clip1" class="col-sm-12 col-md-6 fileinput fileinput-new " data-provides="fileinput">
+                                <input type="file" name="file" id="file" accept="image/jpeg, image/png" style="float:left; width: 100%;" autocomplete="off">
+                                <span class="help-block" id="help_image"></span>
+                            </label>
+                            <div class="col-sm-12 col-md-6">
+                                <input type="button" id="btnCrop" class="btn img-upload-btn hide" value="Crop" >
+                                <button type="button" id="btnZoomIn" class="btn img-upload-btn hide"><i class="fa fa-search-plus"></i></button>
+                                <button type="button" id="btnZoomOut" class="btn img-upload-btn hide"><i class="fa fa-search-minus" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <form id="upload-file" method="post" enctype="multipart/form-data">
+                            <div class="cropped">
+                            </div>
+                            <button type="button" name="upload_pic" id="upload_pic" class="btn img-upload-btn" style="display:none;" onclick="UploadDocuments();" autocomplete="off"> Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var final_crop_image = ''
+    $(document).ready(function(){
+        var options = {
+            imageBox: '.imageBox',
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: 'avatar.png'
+        }
+        var cropper;
+        document.querySelector('#file').addEventListener('change', function(event){
+            try{
+                $("#help_image").html('');
+                var img_file_name = $(this).val();
+                var img_regex = /(\.jpg|\.jpeg|\.png|\.JPG|\.JPEG|\.PNG)$/;
+                if(img_regex.test(img_file_name)){
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        options.imgSrc = e.target.result;
+                        cropper = new cropbox(options);
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                    $("#btnCrop").removeClass('hide');
+                    $('#btnZoomIn').removeClass('hide');
+                    $('#btnZoomOut').removeClass('hide');
+                }else{
+                    $("#btnCrop").addClass('hide');
+                    $('#btnZoomIn').addClass('hide');
+                    $('#btnZoomOut').addClass('hide');
+                    $("#help_image").html('Please select only image');
+                }
+            }catch(err){
+                $("#help_image").html('Please select only image');
+            }
+        });
+        document.querySelector('#btnCrop').addEventListener('click', function(){
+            try {
+                final_crop_image = cropper.getDataURL()
+                document.querySelector('.cropped').innerHTML = '<img src="'+final_crop_image+'" class="img-responsive">';
+                $("#upload_pic")
+                    .css("display", "inline-block")
+                    .parent().addClass('text-center');
+            }catch(err){
+                $("#help_image").html('Please select only image');
+            }
+        });
+        document.querySelector('#btnZoomIn').addEventListener('click', function(){
+            cropper.zoomIn();
+        });
+        document.querySelector('#btnZoomOut').addEventListener('click', function(){
+            cropper.zoomOut();
+        });
+    });
+    function UploadDocuments() {
+        $.ajax({
+            type: 'POST',
+            beforeSend: setHeader,
+            url: '/upload_profile_pic',
+            data: {
+                'profile_pic': final_crop_image,
+            },
+            success: function(data) {
+                $("#id_image_tag").attr('src', final_crop_image);
+                $("#imageModal").modal('hide');
+                $("#desk_prof_pic").html('<img src="'+final_crop_image+'" class="img-responsive n-user-img header-profile" alt="Profile pic">');
+                $("#mob_prof_pic").html('<img src="' + final_crop_image +'" class="img-responsive n-user-img header-profile" alt="Profile pic">');
+                $(".header-profile").attr('src', final_crop_image);
+            },
+            error: function(response){
+                alert('Unable to Upload Image \n Please Try Again Later.');
+            },
+        });
+    }
+</script>

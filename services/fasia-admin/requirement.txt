@@ -1,0 +1,6 @@
+Flask==0.12.2
+Flask-Login==0.4.1
+flask-mongoengine==0.9.3
+ipython==5.5.0
+Flask-Admin==1.5.0
+uszipcode==0.1.3

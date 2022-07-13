@@ -1,0 +1,132 @@
+.organisation-strucure .orenge-color{
+        color: #fdcb41;
+    }
+    .organisation-strucure h2{
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 40px;
+        margin-top: 0px;
+    }
+    .organisation-strucure h4{
+        font-size: 18px;
+        font-weight: 700;
+    }
+    .organisation-strucure img{
+
+    }
+    .bg-light-blue{
+        background: #f7f7fc;
+    }
+    .organisation-strucure .founding-member{
+        margin-top: 50px;
+    }
+    .organisation-strucure .founding-member .left-content p, .organisation-strucure .founding-member .right-content p{
+        font-size: 14px;
+        text-align: left;
+        margin-bottom: 0px;
+    }
+    .organisation-strucure .founding-member .left-content p{
+        margin-top: 50px;
+    }
+    .organisation-strucure .founding-member .left-content img{
+        width: 100%;
+    }
+    .organisation-strucure .founding-member .right-content p{
+        margin-top: 30px;
+    }
+    .organisation-strucure .hierarchy-at-every-level p{
+        font-size: 12px;
+        margin-top: 10px;
+    }
+    .organisation-strucure .national-international{
+        position: relative;
+        border-right: 1px #000 solid;
+
+    }
+    .organisation-strucure .national-international:last-child{
+        border-right: 0px;
+        padding-left: 20px;
+    }
+    .organisation-strucure .national-international img{
+        position: absolute;
+        left: 20px;
+        top: 0px;
+    }
+    .organisation-strucure .national-international .national-international-content{
+        padding-left: 180px;
+    }
+    .organisation-strucure .national-international .national-international-content ul{
+        margin-top: 40px;
+    }
+    .organisation-strucure .national-international .national-international-content ul.ul-left li{
+        font-size: 16px;
+        font-weight: 700;
+        word-wrap: break-word;
+    }
+    .organisation-strucure .national-international .national-international-content ul.ul-right li{
+        font-size: 12px;
+        line-height: 20px;
+    }
+    .organisation-strucure .national-international .national-international-content p{
+    
+        margin: 5px 0px 5px 50px;
+    }
+    .organisation-strucure-img{
+        width: 80%;
+        margin: auto;
+    }
+    .organisation-strucure-img img{
+        width: 100%;
+    }
+    .organisation-m-governors{
+        display: none;
+    }
+    @media screen and (max-width:850px) {
+        .organisation-strucure .national-international img{
+            position: absolute;
+            left: 50%;
+            top: 100px;
+            transform: translate(-50%, -50%);
+        }
+        .organisation-strucure .national-international .national-international-content{
+            padding-left: 0px;
+            margin-top:240px;
+            margin-bottom: 50px;
+        }
+        .organisation-strucure-img{
+            width: 95%;
+            margin: auto;
+        }
+    }
+     @media screen and (max-width:730px) and (min-width:550px) {
+         .hierarchy-at-every-level .hierarchy-img{
+             width: 100%;
+         }
+     }
+      @media screen and (max-width:730px){
+        .organisation-governors{
+            display: none;
+        }
+        .organisation-m-governors{
+            display: block;
+        }
+        .organisation-strucure h2{
+            width: 90%;
+            margin: auto;
+        }
+     }
+     
+      @media screen and (max-width:550px) {
+          .organisation-strucure-100{
+              width: 100%;
+          }
+          .organisation-strucure .national-international{
+              border-right: 0px;
+          }
+          .organisation-strucure .founding-member {
+              margin-top: 20px;
+         }
+         .founding-member .founding-member-b-10{
+             padding-bottom: 15px;
+         }
+      }

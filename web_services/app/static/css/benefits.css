@@ -1,0 +1,70 @@
+.benefits{
+    color: #f5c74c;
+    font-weight: 700 !important;
+    text-align: center;
+    margin-top: 0px;
+}
+.benefits-fasia-div h3{
+    margin: 0px;
+    padding: 30px 0px;
+    font-weight: 600;
+}
+.benefits-fasia-div .center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+.benefits-fasia-div h4{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 25px;
+    margin-top: 30px;
+    color: #fff;
+}
+.benefits-fasia-div p{
+    margin-top: 20px;
+}
+.benefits-fasia-flex{
+    display: flex;
+    margin: 50px 0px;
+}
+.benefits-fasia-flex .benefits-fasia-one{
+    background: #f1b83c;
+    margin: 0px 5px;
+    padding: 50px 15px;
+    color:#fff;
+}
+.benefits-fasia-flex .benefits-fasia-two {
+    background: #f05c5c;
+    margin: 0px 5px;
+    padding: 50px 15px;
+    color:#fff;
+}
+.benefits-fasia-flex .benefits-fasia-three {
+    background: #7dd3b0;
+    margin: 0px 5px;
+    padding: 50px 15px;
+    color:#fff;
+}
+.advisor-cycle-div-color h4{
+    color: #000;
+}
+.advisor-cycle-div-color ul{
+    padding-left: 20px;
+}
+
+@media screen and (max-width:750px){
+    .benefits-fasia-benifites img{
+        width: 90%;
+    }
+    .benefits-fasia-flex {
+        display: table;
+    }
+    .benefits-fasia-flex .benefits-fasia-one,
+    .benefits-fasia-flex .benefits-fasia-two,
+    .benefits-fasia-flex .benefits-fasia-three {
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+}

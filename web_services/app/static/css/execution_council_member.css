@@ -1,0 +1,27 @@
+.execution_council_members h1 {
+    color: #f5c74c;
+    font-weight: 700 !important;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 50px;
+}
+.execution_council_members h3{
+    font-size: 18px;
+    color: #000;
+}
+.executeive-member-list{
+    display: flex;
+}
+.execution_council_members-one{
+    min-height: 260px;
+}
+@media screen and (max-width:768px){
+    .execution_council_members-one{
+        width:50%;
+    }
+}
+@media screen and (max-width:450px) {
+    .execution_council_members-one {
+        width: 100%;
+    }
+}

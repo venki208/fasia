@@ -1,0 +1,16 @@
+.panel-heading {
+    background-color: #f4941e !important;
+}
+.panel-title { 
+    color:white;
+}
+@media (min-width: 768px) {
+    .login-panel {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+    }
+
+}

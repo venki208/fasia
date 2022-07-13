@@ -1,0 +1,33 @@
+{% extends 'home/login.html' %} 
+{% block custome_css %} 
+    {{super()}}
+    <link href="{{url_for('static', filename='css/slide.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/how-to-become-member.css')}}" rel="stylesheet">
+{% endblock %} 
+{% block sm_sticky %} 
+{% endblock %} 
+{% block main_content %}
+    <div class="container journey-container-div">
+        <div class="row text-center">
+            <h2>HOW TO BECOME A FASIA MEMBER</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 how-to-become-member-div text-center">
+                <img class="center how-to-become-member-img" src="{{ url_for('static', filename='images/how-to-become-a-fasia-member-infographic-full.png')}}" />
+                <img class="center how-to-become-mobile-img how-to-become-mobile" src="{{ url_for('static', filename='images/how-to-become-a-fasia-member-infographic1.png')}}" />
+                <img class="center how-to-become-mobile-img" src="{{ url_for('static', filename='images/how-to-become-a-fasia-member-infographic.png')}}" />
+            </div>
+        </div>
+    </div>
+{% endblock %} 
+{% block bootstrap_modal %} 
+{{super()}} 
+{% endblock %} 
+{% block scripts %}
+    {{super()}}
+    <script src="{{ url_for('static', filename='js/jquery.resize.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.waitforimages.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/modernizr.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.carousel-3d.js')}}"></script> 
+{% endblock %}

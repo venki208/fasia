@@ -1,0 +1,119 @@
+{% extends 'home/login.html' %}
+{% block custome_css %}
+    {{super()}}
+    <link href="{{ url_for('static', filename='css/eligible.css')}}" rel="stylesheet">
+{% endblock %}
+{% block sm_sticky %}
+{% endblock %}
+{% block main_content %}
+<section class="">
+    <div class="container">
+        <h1 class="eligible">MEMBERSHIP</h1>
+        <div class="row eligile-fasia-div">
+            <div class="eligile-fasia-div-img">
+                <img class="center" src="{{ url_for('static', filename='images/infographic3.png')}}" />
+            </div>
+            <div class="col-xs-12 eligile-fasia-div">
+                <h3>Classes of Members</h3>
+                <ol>
+                    <li>There shall be four classes of membership: Regular, Associate/ Affiliate, Student and International Affiliate. Except as
+                    otherwise provided in these Bylaws, eligible persons shall be admitted to membership immediately upon application and payment
+                    of required dues and fees. Applicants for membership shall be reviewed by the Chapters serving the area in which the applicant
+                    resides or maintains a place of business and may be rejected for cause by a two-thirds majority vote of the Chapter Board
+                    of Directors.</li>
+                    <li>No eligible person may be a member of a Chapter without being a member of National Body.</li>
+                    <li>No eligible person may be a member of National body without being a member of a Chapter except that an eligible person may
+                    apply for at-large membership under such terms and conditions as shall be determined by the Board of Directors.</li>
+                </ol>
+            </div>
+            <div class="col-xs-12">
+                <h3>Regular Membership for Advisory Professionals</h3>
+                <p>In an environment promoting professional development and ethical conduct we welcome as regular members qualified professionals
+                who hold one of the following credentials:</p>
+                <p>AEP®, CASL®, CEBS®, CFA, CFP®, ChFC®, CIMA, CLF®, CLU®, CPA, CPCU®, CTFA®, Enrolled Actuary, JD, MBA, MSFS, MSM, Masters/PhD
+                in Financial Services, REBC®, RHU®, RICP®.ChFC, PFS, or holder of FINRA Series 65, who is significantly engaged in financial advisory
+                and/or wealth management activities, and has significant contact with an individual financial and/or wealth advisory client. Membership
+                may be subject to the recommendation of the Membership Committee and vote of the Board of Directors. </p>
+            </div>
+            <div class="col-xs-12 eligile-fasia-div">
+                <h3>Persons Eligible for Regular Membership</h3>
+            </div>
+                <div class="eligible-card eligile-fasia-div">
+                <div class="col-xs-4 one">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">Regular membership may be conferred upon applicants under such terms as the Board of Directors shall determine from time
+                            to time. Regular members shall be entitled to the rights and responsibilities of membership, including the right to vote
+                            and to hold office.</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-xs-4 one">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">Special categories of regular membership such as emeritus, life and honorary, disabled, or retired may be conferred under
+                            such terms as the Board of Directors shall determine from time to time.</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-xs-4 one">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">Persons included in special categories of regular membership shall be entitled to the rights and responsibilities of membership, including the right to vote and to hold office.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 eligible-membership">
+                <h3>Affiliate Membership</h3>
+                <p>Any individual whose occupation is directly involved in financial planning and/or wealth management activities, or is an
+                employee of a financial services, tax, or legal firm, but who does not meet the requirements for Advisory Membership, shall
+                be eligible for Affiliate Membership, subject to the recommendation of the Membership Committee and vote of the Board of
+                Directors.</p>
+            </div>
+            <div class="col-xs-12 eligible-membership">
+                <h3>Persons Eligible for Affiliate / Associate Membership</h3>
+                <p>Affiliate / Associate membership may be conferred upon applicants under such terms as the Board of Directors shall determine
+                from time to time. Associate members may not vote or hold office, nor may they advertise their membership in the society.</p>
+            </div>
+            <div class="col-xs-12 eligible-membership">
+                <h3>Student Membership</h3>
+                <p>Student Membership is offered to full time students in an Undergraduate Business School or in a Master’s Degree program in
+                Business, Finance, Law, Tax, or Accounting. The Student Member’s annual dues are 50% of the Affiliate Member until completion
+                of his/her undergraduate and/or graduate degree.  At the end of completion of his/her undergraduate and/or graduate degree,
+                Student Members will be required to reapply as Advisory or Associate Members under those defined guidelines. Individuals
+                may become Student Members after completing the online application and subject to the recommendation of the Membership Committee
+                and vote of the Board of Directors. Student members may not vote or hold office, nor may they advertise their membership
+                in the Society.</p>
+            </div>
+            <div class="col-xs-12">
+                <h3>Institutional Membership</h3>
+                <p>Institutions and organisations can become a member and they will be represented by one person as a representative . Institution
+                membership will vary depending upon the levels at which they join as a member . National level member will be automatically
+                accessible across all levels of membership . A city level membership will be within the preview of the city .</p>
+                <p>Institutional members get the preferences of educating /conducting workshops about their product and services to the members
+                with a contribution to the chapters as per the chapter norms.</p>
+            </div>
+            <div class="col-xs-12 eligi-fasia-div">
+                <h3>International Affiliate Membership</h3>
+                <p>International affiliate membership may be conferred upon applicants under such terms as the Board of Directors shall determine from time to time. International affiliate members may not vote or hold office in the United States.</p>
+            </div>
+            <div class="col-xs-12">
+                <h3>Membership Sanctions</h3>
+                <p>The Board of Directors shall promulgate procedures for the removal of persons from membership. Sanctions may include reprimand
+                or censure and suspension or revocation of membership. Suspension or revocation of membership in the Society shall also constitute
+                suspension or revocation of Chapter membership. Membership shall be terminated for failure to pay dues.</p>
+                <p>Dues for membership in FSP and the conditions of payment shall be determined by the Board of Directors. No dues shall be
+                transferred to the account of another person or refunded to any member whose membership terminates for any reason, except
+                as otherwise provided under Article II of these Bylaws.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block bootstrap_modal %}
+    {{super()}}
+{% endblock %}

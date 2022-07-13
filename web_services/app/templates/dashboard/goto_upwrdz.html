@@ -1,0 +1,54 @@
+{% extends 'home/index.html' %} 
+{% block custome_css %} 
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/dashboard.css')}}">
+    <style type="text/css">
+        .goto_font{
+            font-size: 22px;
+        }
+    </style>
+{% endblock %}
+{% block main_content %}
+<section>
+    <div class="container fasia-dashboard">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h3 class="text-center goto_font">UPWRDZ a professional platform for all advisors to enhance their Reputation and Business</h3>
+                <div class="row dashboard-list">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="header">
+                            <img class="img-responsive" src="{{ url_for('static', filename='images/upwrdz-infographic.png')}}" alt="upwrdz-logo">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <p>
+                            <ul>
+                                <span class="goto_font">Helping Advisors to Achieve 5I's</span>
+                                <li>Identity - Your Identity defines you. UPWRDZ helps you to build Your Digital Identity.</li>
+                                <li>Independency - Be an independent Financial.</li>
+                                <li>Income - Build a multi source Revenue, clients beyond your geography. UPWRDZ paves the way for this.</li>
+                                <li>Influence - Be a thought leader, Influence your clients and impress other experts. UPWRDZ connects the access to this.</li>
+                                <li>Inspiration - Be a hero of the fraternity, Inspire those who aspire to be an Advisor.</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <button type="button" class="btn fasia-btn" onclick="launch_upwrdz_app();">Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- dynamic form for launch uplyf -->
+<div id="form_div" data-role="popup" class="ui-content" style="min-width:250px;">
+</div>
+{% endblock %} 
+{% block footer %}
+{% endblock %}
+{% block scripts %}
+    <script>
+        var url ="{{url}}";
+    </script>
+    <script src="{{ url_for('static', filename='js/goto_upwrdz.js') }}"></script>
+{% endblock %}

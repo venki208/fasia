@@ -1,0 +1,126 @@
+{% extends 'home/login.html' %}
+{% block custome_css %}
+    {{super()}}
+    <link href="{{ url_for('static', filename='css/chapter.css')}}" rel="stylesheet">
+{% endblock %} 
+{% block sm_sticky %} 
+{% endblock %} 
+{% block main_content %}
+<section class="chapter-main-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center chapter-img">
+
+                <h2 class="chapter">CHAPTER</h2>
+                <p class="chapter-head">Focus of Every Chapter Meeting - Growth</p>
+                <img class="center hidden-xs" src="{{ url_for('static', filename='images/chapter-infographic.png')}}" />
+                <div class="hidden-lg hidden-md hidden-sm mobile-chapter-responsive">
+                    <img class="center" src="{{ url_for('static', filename='images/chapter-infographic-mobile.png')}}" />
+                </div>
+                <p class="chapter-head">Chapters are the last mile connect, that connects the community and the fraternity</p>
+            </div>
+            <div class="col-xs-12">
+                <h3 class="chap-heading">Chapter Working Norms</h3>
+                <p></p>
+                <p>Every chapter will have 5 founding members, all founding members are appointed by the prior approval of the national body.</p>
+                <p>Every chapter founding principal ( the first member who initiates the formation of the chapter ) will always be the representative of that chapter at the state level. It's the founding principal who brings together other founding members and form the chapter. All founding members unanimously approve every member in that chapter.</p>
+                <p>The membership fee collected will be shared in the following way – 60% with the chapter,20% with the state,10% with the region and 10% with the national body. All membership fees will be paid online and will be shared back by the national body. The founding members have the independence to spend the membership fees collected at their chapters. All the other revenue collected by the chapter will be completely by their discrepancies. </p>
+                <ul>
+                    <li>Every chapter should achieve a 50 member enrolment in first 12 months from the date of formation.</li>
+                    <li>Chapters will meet once in a month or twice as per their norms, but it's 12 chapter meetings mandatory per annum.</li>
+                    <li>Chapters can conduct their own meetings and events as per their comfortable dates.</li>
+                    <li>Members will elect the chapter president and office bearers every year and its mandatory none of the member can hold the office for more than 2 years consistently.</li>
+                    <li>Every elected executive team ember is solely responsible in running the chapter  for the time of one year.</li>
+                    <li>Every chapter will have a finance committee of 3 members with one founding member as a head of the committee at any point
+                    of time this committee will be the sole responsible for handling and making all financial decision.</li>
+                    <li>Every chapter member is allowed to attend the other chapter meetings with prior approval from the respective chapters.</li>
+                </ul>              
+            </div>
+            <div class="col-xs-12">
+                <h3 class="chap-heading">State Working Norms</h3>
+                <p>Every state will have 10 founding members,all founding members are appointed by the prior approval of the national body. 5 founding members are the founding principal of every city chapters and the other 5 will be the paid founding members. Every state founding principal  ( the first member who initiate the formation of the state ) will always be the representative of that state at the regional level. It's the founding principal who brings together other founding members and form the
+                state.</p>
+                <p>All founding members unanimously approve every member in that city chapter formation, they also have the right to vote to merge the chapters which are unable to drive the membership consistently for 2 years and merge them with the nearest geography
+                chapter.</p>
+                <p>All the membership fee collected will be shared in the following way –</p>
+                <p>60% with the chapter,20% with the state,10% with the region and 10% with the national body. All membership fees will be paid online and it will be shared back by the national body. The founding member have the independence to spend the membership fees collected from their chapters in the state.</p>
+                <p>All the other revenue collected by the state will be completely by their discrepancies.</p>
+                <ul>
+                    <li>Every chapter should achieve a 50 member enrolment in first 12 months from the date of formation and the state will provide
+                    the,all necessary help by connecting them with the other chapters.</li>
+                    <li>State will meet once in a month but it's 12 state  meetings mandatory per annum. The state will also take the lead to conduct
+                    the yearly state convention .</li>
+                    <li>State can conduct their own meetings and events as per their comfortable dates .</li>
+                    <li>Members will elect the state president and office bearers every year and its mandatory none of the member can hold the office
+                    for more than 2 years consistently.</li>
+                    <li>Every elected executive team member is solely responsible in running the state for the time of one year.</li>
+                    <li>Every state  will have a finance committee of 3 members with one founding member as a head of the committee at any point
+                    of time this committee will be the sole responsible for handling and making all financial decision</li>
+                    <li>Every state member is allowed to attend the other chapter meeting with prior approval from the respective chapters.</li>
+                </ul>
+            </div>
+            <div class="col-xs-12">
+                <h3 class="chap-heading">Regional Working Norms</h3>
+                <p></p>
+                <p>Every regional will have 15 founding members and 10 states below them , all founding members are appointed by the prior approval of the national body.</p>
+                <p>10 founding members are the founding principal of every state chapters and the other 5 will be the paid founding members.</p>
+                <p>Every regional founding principal ( the first member who initiate the formation of the region ) will be always the representative
+                of that region at the national level . It's the founding principal who bring together other founding members and form the region. All founding members unanimously approve every member in that state chapter  formation , they also have the right to vote to dissolve or abandon the state chapters under any disciplinary action of the state chapter members .</p>
+                <p>The membership fee collected will be shared in the following way –</p>
+                <p>60% with the chapter,20% with the state,10% with the region and 10% with the national body. All membership fees will be paid online and it will be shared back by the national body. The founding member have the independence to spend the membership fees collected from their regions. All the other revenue collected by the region  will be completely by their discrepancies .</p>
+                <ul>
+                    <li>Every chapter should achieve a 50 member enrolment in first 12 months from from the date of formation and the state will
+                    provide the, all necessary help by connecting them with the other chapters . Regions will monitor them and ensure quality
+                    of the chapters and state are maintained at highest level</li>
+                    <li>Regions will meet once in a quarter  but it's 4 regional meetings mandatory per annum .</li>
+                    <li>The state will also take the lead to conduct the yearly state convention . Regions will conduct yearly regional event and
+                    the states will support this event . Regions can conduct their own meetings and events as per their comfortable dates.</li>
+                    <li>Members will elect the state president and office bearers every year and its mandatory none of the member can hold the office
+                    for more than 2 years consistently. </li>
+                    <li>Every elected executive team member is solely responsible in running the region,for the time of one year .</li>
+                    <li>Every region will have a finance committee of 3 members with one founding member as a head of the committee at any point of time this committee will be the sole responsible for handling and making all financial decision . </li>
+                    <li>Every regional member is allowed to attend all the national meets yearly and half yearly. </li>
+                </ul>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-xs-12 text-center chapter-img">
+            <h3 class="chap-heading text-center">Every Chapter receives / earns funds through –</h3>
+            <img class="center hidden-xs" src="{{ url_for('static', filename='images/chapter-infographic2.png')}}" />
+            <div class="hidden-lg hidden-md hidden-sm mobile-chapter-responsive">
+                <img class="center " src="{{ url_for('static', filename='images/chapter-infographic2-mobile1.png')}}" />
+                <img class="center " src="{{ url_for('static', filename='images/chapter-infographic2-mobile2.png')}}" />
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <p>Chapters are welcome to innovate various ways of generating revenue for their sustainability.</p>
+            <p>State, Regional, National Body Contribution from their Fund.</p>
+            <p>Even though FASIA is a non- profit, public benefit corporation/society for the cause and development, the focus remains at the self-sustainable and inclusive growth through participative mechanism.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="chap-heading">National FASIA Working Process</h3>
+        </div>
+        <div class="col-xs-12">
+            <p>Every state will have 25 founding members. 10 founding members are appointed by the founding sponsor,5 founding members will be the regional principal and the 10 founding members are paid members can be taken by individual or institution. Anyone seeking this role from India have to pay founders fee of 10,000 USD and the yearly renewal fee of 1000 USD. </p>
+            <p>Every regional founding principal  ( the first member who initiate the formation of the region ) will be always the representative of that region at the national level . It's the founding principal who bring together other founding members and form the region. All founding members unanimously approve every member in that region and state chapter formation , they also have
+            the right to vote to merge , dissolve any region , state , city chapters .</p>
+            <p>The membership fee collected will be shared in the following way – 60% with the chapter , 20% with the state , 10% with the region and 10% with the national body . All membership fees will be paid online and it will be shared back by the national body. The founding members have the independence to spend the membership fees collected from their members. All the other revenue collected by the state will be completely by their discrepancies .</p>
+            <ul>
+                <li>Every chapter should achieve a 50 member enrolment in first 12 months from from the date of formation and the state will provide the, all necessary help by connecting them with the other chapters . National body can increase or decrease or form additional chapters as per the need. </li>
+                <li>Yearly national convention will be hosted by the national body and all the chapters have to participate in this mandatory. </li>
+                <li>National  can conduct their own meetings and events as per their comfortable dates .</li>
+                <li>Founding Members will elect the state president and office bearers every year and its mandatory none of the member can hold the office for more than 2 years consistently . The executive body may or may not be the members they can be professionals who will be managing the day to day operations of the society.</li>
+                <li>Every elected executive team member is solely responsible in running the national body for the time of one year. </li>
+                <li>On time to time as per the need national body will form various committees under the leadership of various founding members and they will have the independence to operate them within the framework of the society by laws.</li>
+            </ul>
+        </div>
+    </div>
+
+</section>
+{% endblock %}
+{% block bootstrap_modal %}
+    {{super()}}
+{% endblock %}

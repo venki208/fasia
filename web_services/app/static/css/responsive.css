@@ -1,0 +1,233 @@
+@media screen and (max-width:991px) {
+    .event-box p{
+        margin-left: 20px;
+    }
+    .fasia-blog-section .blog-over-img {
+      height: 100%;
+    }
+    .fasia-blog-single-page .bloggroups{
+      height: 100%;
+    }
+    .news-letter .header h1,
+    .notice .header h1{
+        font-size: 32px;
+    }
+}
+@media (min-width:960px) {
+  .centered{
+    top: 40%;
+  }
+  .intro .carousel-indicators {
+        bottom: 5px;
+    }
+    h1.section-title{
+      font-size: 44px;
+    }
+  .section-para{
+    font-size: 30px;
+    font-family: 'Open Sans', sans-serif;
+    color: #4b4b4b;
+    line-height: 38px;
+  }
+  .what-we-do .centered{
+    top: 50%;
+  }
+  .what-we-do h2{
+    margin-bottom: 16px;
+  }
+  .what-we-do .orange-span-bg{
+    font-size: 36px;
+  }
+  .your-participation ul{
+    font-size: 20px;
+    padding-left: 0;
+    text-align: justify;
+  }
+  /*MOdal CSS*/
+}
+@media (min-width:768px) {
+  .hide-md{
+    display: none !important;
+  }
+  .intro .item  .hide-md{
+    display: none;
+  }
+  .intro .carousel-inner>.item>img {
+      height: 100vh;
+  }
+
+  .modal-dialog.fasia-dialog{
+    width: 500px;
+  }
+  .fasia-form{
+    margin: 40px 70px 0;
+  }
+  .loginbtn{
+    margin-top: 19px;
+    margin-right: 10px;
+  }
+  .getAdv-btn{
+    margin-top: 18px;
+  }
+  .what-we-do ul{
+    font-size: 16px;
+    padding-left:0 16px !important;
+    list-style: none;
+    text-align: justify;
+  }
+  .carousel-indicators{
+    bottom: 5px;
+  }
+}
+@media (max-width:767px){
+  .hide-sm{
+    display: none !important;
+  }
+  .intro .item .hide-sm{
+    display: none;
+  }
+  .loginbtn, .getAdv-btn{
+    margin: 5px;
+  }
+  .default-logo img{
+    width: 100px;
+  }
+  .default-menu.menu-4 .default-logo{
+    margin-top: 12px;
+  }
+  .fasiamodal-title {
+      margin-bottom: 24px;
+  }
+  .your-participation .knowmore-line{
+    text-align: center;
+  }
+.what-we-do ul{
+    font-size: 12px;
+    list-style: none;
+    text-align: justify;
+    padding: 10px !important;
+  }
+  a span.header-profile{
+    border: 1px solid #000;
+    padding: 11px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #000;
+  }
+  a img.header-profile{
+    border: 1px solid #000;
+    padding: 2px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #000;
+  }
+  .news-letter .header h1,
+  .notice .header h1{
+      top: 21px;
+      font-size: 26px;
+  }
+  .get-advice-heading{
+      font-size: 26px;
+  }
+  .fasia-blog-section .blog-over-img {
+    height: 100%;
+  }
+  .sticy-icon-bar a{
+      font-size: 12px;
+  }
+  .sticy-icon-bar {
+      position: fixed;
+      top: 204px;
+  }
+  .navbar-default .navbar-toggle.fasia-hover-btn.getAdv-btn{
+      border-radius: 18px !important;
+  }
+}
+@media(min-width:768px) and (max-width:991px){
+  .default-logo img{
+    width: 90px;
+  }
+  .default-menu.menu-4 .default-logo {
+      margin-top: 12px;
+    }
+  .default-menu.navbar-default .navbar-nav > li > a{
+    font-size: 11px;
+    padding:15px 5px;
+  }
+}
+@media(max-width: 560px){
+    .what-we-do .carousel-indicators{
+	    bottom: -8px;
+    }
+    .centered h2{
+        margin-bottom: 0px;
+    }
+    .news-letter .header h1,
+    .notice .header h1 {
+        font-size: 19px;
+        top: 26px;
+    }
+    .inner-content p{
+        font-size: 14px;
+    }
+    .get-advice-heading{
+        font-size: 21px;
+    }
+    .get-advice{
+        font-size: 15px;
+    }
+    .get-side-heading{
+        font-size: 18px;
+    }
+    .get-side-advice{
+        font-size: 14px;
+    }
+    .fasia-application .heading{
+      font-size: 24px;
+    }
+    .fasia-application .title{
+      font-size: 17px;
+    }
+    .main-blog-header h2{
+      font-size: 21px;
+    }
+    .fasia-blog-section .main-blog-header span{
+      margin-top: 0px;
+      margin-bottom: 5px;
+    }
+    .fasia-blog-section .blogs-links ul li{
+      width: 90%;
+      margin: 4px 0;
+    }
+    .fasiamodal:before {
+      display: initial;
+    }
+    .modal-dialog {
+      display: inherit;
+    }
+}
+@media(max-width: 360px){
+    .centered h2{
+    	margin-bottom: 0px;
+    }
+    .footer{
+    	font-size: 11px;
+    }
+    .main-blog-header h2 {
+        font-size: 18px;
+    }
+}
+@media(max-width:356px){
+    .fasiamodal:before{
+        display: initial;
+    }
+    .modal-dialog{
+        display: inherit;
+    }
+    .getAdv-btn{
+        margin: 0px;
+        margin-right: 5px;
+    }
+}

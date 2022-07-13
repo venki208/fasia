@@ -1,0 +1,122 @@
+.get-advice-heading,
+.get-advice-heading a {
+    color: #1c4888 !important;
+    font-weight: 600;
+}
+.get-side-heading,
+.get-side-heading a{
+    color: #1c4888 !important;
+    font-weight: 600;
+}
+.get-side-advice{
+    font-size: 15px;
+    font-weight: 600;
+    color: #1c4888;
+}
+.get-advice{
+    font-size: 16px;
+    color: #234588;
+    font-weight: 600;
+}
+.get-advice-button{
+    color: #fff !important;
+    background: #f4941e !important;
+    border-radius: 18px;
+    font-weight: 600;
+}
+.get-advice-desc{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+.border-div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #707070;
+}
+.side-search{
+    font-weight: 600;
+    font-size: 14px;
+}
+.read-more{
+    font-weight: 600;
+    color: #000 !important;
+    margin-left: 3px;
+}
+.advice-text{
+    background: rgba(130, 130, 132, 0.9);
+    border-radius: 0;
+    color: #fff;
+    border: none;
+}
+.section{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+@media(max-width:420px){
+    .get-advice-button{
+        width: 100%;
+        margin-bottom: 8px;
+    }
+}
+@media(max-width:450px){
+    .advice-text{
+        width: 100%;
+    }
+}
+.answer-div{
+    padding-top: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid #ccc;
+}
+#doc_list_div{
+    margin-bottom: 15px;
+}
+#doc_list_div .get-advice-desc{
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+#help_doc_text{
+    font-weight: 700;
+}
+.search-addon{
+    border: 1px solid #f4941e;
+    background-color: #f4941e;
+    color: #FFF;
+    border-left: 0px;
+    cursor: pointer;
+    box-shadow: 1px 0px 9px 0px #ccc;
+}
+.back-link{
+    color: #1c4888 !important;
+    text-decoration: underline !important;
+}
+.answer-hr{
+    margin: 0px;
+    margin-bottom: 20px;
+    border-color: #1c4888;
+}
+.answer-owner{
+    color: #1c4888;
+    font-size: 13px;
+}
+
+/* Breadcrumb css starts */
+.breadcrumb {
+    background-color: #FAFAFA;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    -o-border-radius: 0;
+}
+.breadcrumb a {
+    color: #ea9a40;
+    font-weight: 600;
+    text-decoration: underline;
+}
+.breadcrumb a:hover {
+    text-decoration: none;
+}
+.breadcrumb > .active {
+    color:#000;
+}

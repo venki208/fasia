@@ -1,0 +1,86 @@
+{% extends 'home/login.html' %}
+{% block custome_css %}
+    {{super()}}
+    <link href="{{ url_for('static', filename='css/execution_council_member.css')}}" rel="stylesheet">
+{% endblock %} 
+{% block sm_sticky %} 
+{% endblock %} 
+{% block main_content %}
+
+    <section class="execution_council_members">
+        <div class="container">
+            <h1 class="eligible">EXECUTIVE COUNCIL MEMBER</h1>
+            <div class="row eligile-fasia-div">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-4 col-xs-12 text-center execution_council_members-one">
+                        <img src="{{ url_for('static', filename='images/excutive-council-member/lakshmi.png')}}" />
+                        <h3>Lakshmi Narayanan</h3>
+                        <a href="https://www.linkedin.com/in/lakshmi-narayanan-140b505a/" target="_blank">
+                            <img src="{{ url_for('static', filename='images/excutive-council-member/linkedin.png')}}" />
+                        </a>
+                        </div>
+                    <div class="col-lg-3 col-sm-4 col-xs-12 text-center execution_council_members-one">
+                        <img src="{{ url_for('static', filename='images/excutive-council-member/hari.png')}}" />
+                        <h3>Hari Eppanapally</h3>
+                        <a href="https://www.linkedin.com/in/harieppanapally/" target="_blank">
+                            <img src="{{ url_for('static', filename='images/excutive-council-member/linkedin.png')}}" />
+                        </a>
+                        </div>
+                    <div class="col-lg-3 col-sm-4 col-xs-12 text-center execution_council_members-one">
+                        <img src="{{ url_for('static', filename='images/excutive-council-member/ashish.png')}}" />
+                        <h3>Ashish Patel</h3>
+                            <img src="{{ url_for('static', filename='images/excutive-council-member/linkedin.png')}}" />
+                        </div>
+                    <div class="col-lg-3 col-sm-4 col-xs-12 text-center execution_council_members-one">
+                        <img src="{{ url_for('static', filename='images/excutive-council-member/vijay.png')}}" />
+                        <h3>Vijay Nair</h3>
+                        <a href="https://www.linkedin.com/in/vijaynairatme/" target="_blank">
+                            <img src="{{ url_for('static', filename='images/excutive-council-member/linkedin.png')}}" />
+                        </a>
+                        </div>
+                    <div class="col-lg-3 col-sm-4 col-xs-12 text-center execution_council_members-one">
+                        <img src="{{ url_for('static', filename='images/excutive-council-member/chinni.png')}}" />
+                        <h3>Venkateswara R Chinni</h3>
+                        <a href="https://www.linkedin.com/in/vchinni/" target="_blank">
+                            <img src="{{ url_for('static', filename='images/excutive-council-member/linkedin.png')}}" />
+                        </a>
+                        </div>
+                    <div class="col-lg-3 col-sm-4 col-xs-12 text-center execution_council_members-one">
+                        <img src="{{ url_for('static', filename='images/excutive-council-member/srinivas.png')}}" />
+                        <h3>Srinivas Eyyunni</h3>
+                        <a href="https://www.linkedin.com/in/saisree72/" target="_blank">
+                            <img src="{{ url_for('static', filename='images/excutive-council-member/linkedin.png')}}" />
+                        </a>
+                        </div>
+                    <div class="col-lg-3 col-sm-4 col-xs-12 text-center execution_council_members-one">
+                        <img src="{{ url_for('static', filename='images/excutive-council-member/prasad.png')}}" />
+                        <h3>Prasad Kunisetty</h3>
+                        <a href="https://www.linkedin.com/in/kunisetty/" target="_blank">
+                            <img src="{{ url_for('static', filename='images/excutive-council-member/linkedin.png')}}" />
+                        </a>
+                        </div>
+                    <div class="col-lg-3 col-sm-4 col-xs-12 text-center execution_council_members-one">
+                        <img src="{{ url_for('static', filename='images/excutive-council-member/venkatesh.png')}}" />
+                        <h3>Murthy Kalkura</h3>
+                            <img src="{{ url_for('static', filename='images/excutive-council-member/linkedin.png')}}" />
+                        </div>
+                    <div class="col-lg-3 col-sm-4 col-xs-12 text-center execution_council_members-one">
+                        <img src="{{ url_for('static', filename='images/excutive-council-member/murthy.png')}}" />
+                        <h3>Venkatesh Sadagopan</h3>
+                        <a href="https://www.linkedin.com/in/venkatesh-sadagopan-b044772/" target="_blank">
+                            <img src="{{ url_for('static', filename='images/excutive-council-member/linkedin.png')}}" />
+                        </a>
+                        </div>
+                    <div class="col-lg-3 col-sm-4 col-xs-12 text-center execution_council_members-one">
+                        <img src="{{ url_for('static', filename='images/excutive-council-member/fasia-logo.png')}}" />
+                        <h3>Adding More..</h3>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+{% block bootstrap_modal %}
+    {{super()}}
+{% endblock %}

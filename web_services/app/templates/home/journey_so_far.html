@@ -1,0 +1,76 @@
+{% extends 'home/login.html' %}
+{% block custome_css %}
+    {{super()}}
+    <link href="{{url_for('static', filename='css/slide.css')}}" rel="stylesheet" > 
+    <link href="{{ url_for('static', filename='css/journey_so_far.css')}}" rel="stylesheet">
+{% endblock %}
+{% block sm_sticky %} 
+{% endblock %}
+{% block main_content %}
+<div class="container journey-container-div">
+    <div class="row text-center">
+        <h2>JOURNEY SO FAR</h2>
+        <div class="slider-content">
+            <p id="0" class="none">Executive council Members and invites of FASIA AMERICA (Left to Right: Mr. Venkateswara (VR) Chinni, Mr. Ashish Patel, Mr.
+            Vishal Petigara, Mr. Lakshmi Narayanan, Mr. Vipul Patel, & Mr. Srinivas Eyyunni ,PMP, MBA) at FASIA regional chapter Philadelphia
+            initiation meeting.</p>
+            <p id="1" class="none">Initiation for Inviting Founding Members at Dallas, Texas</p>
+            <p id="2" class="none">Executive council Members and invites of FASIA AMERICA (Left to Right: Mr. Venkateswara (VR) Chinni, Mr. Ashish Patel, Mr.
+            Vishal Petigara, Mr. Lakshmi Narayanan, Mr. Vipul Patel, & Mr. Srinivas Eyyunni ,PMP, MBA) at FASIA regional chapter Philadelphia
+            initiation meeting.</p>
+            <p id="3" class="none">Rendezvous of FASIA AMERICA Executive Council Members (Photo left to right Mr. Talpa Saibaba Talluri , Mr. Ashish Patel,
+            Mr. Lakshmi Narayanan, Mr. Vishwa Prasad & Mr. Venkateswara (VR) Chinni)</p>
+            <p id="4" class="none">Luanching "LEAD INDIA" project in US in memory of Honorable former President of India Mr.A. P. J. Abdul Kalam By Executive
+            Council Members of FASIA America (Photo left to right: Mr. Ashish Patel, Mr.Hari Eppanapally, Lakshmi Narayanan & Venkateswara R Chinni)</p>
+        </div>
+    </div>
+    
+    <div class="wrapper pointer">
+        <div id="journey" data-carousel-3d>
+            <img src="{{ url_for('static', filename='images/banners/journey_for/JSF1.jpg') }}" />
+            <!-- <div style="min-width: 320px; min-height: 213px; max-width: 320px; max-height: 213px">
+                <p style="background-color:black; color:white; margin:20px; padding:20px;">A simple html child</p>
+                <div style="background-color:gray; color:white;">Html contents also works ok!!!</div>
+                <div>The quick brown fox jumps over the lazy dog</div>
+                <p>
+                    Make the fox
+                    <button type="button" onclick="alert('Jump!!');">jump</button>
+                </p>
+            </div> -->
+            <img src="{{ url_for('static', filename='images/banners/journey_for/JSF2.jpg') }}" />
+            <img src="{{ url_for('static', filename='images/banners/journey_for/JSF3.jpg') }}" />
+            <img src="{{ url_for('static', filename='images/banners/journey_for/JSF4.jpg') }}" />         
+            <img src="{{ url_for('static', filename='images/banners/journey_for/JSF6.jpeg') }}" />
+        </div>
+    </div>
+
+    <div class="row text-center journey-container-div-phara">
+    </div>
+
+    </div>
+
+    
+{% endblock %}
+
+{% block bootstrap_modal %}
+    {{super()}} 
+{% endblock %}
+
+{% block scripts %}
+    {{super()}}
+<script src="{{ url_for('static', filename='js/jquery.resize.js')}}"></script>
+<script src="{{ url_for('static', filename='js/jquery.waitforimages.js')}}"></script>
+<script src="{{ url_for('static', filename='js/modernizr.js')}}"></script>
+<script src="{{ url_for('static', filename='js/jquery.carousel-3d.js')}}"></script>
+<script>
+    $('#journey').on('select', function (evt, index) {
+        $.each($(".slider-content").find('p'), function(e){
+            if (index == e){
+                $("#"+e).show("slide", { direction: "right" }, 1000);
+            }else{
+                $("#"+e).hide("slide", { direction: "left" }, 1000);                    
+            }
+        });
+    });
+</script>
+{% endblock %}

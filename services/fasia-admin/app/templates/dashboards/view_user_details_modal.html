@@ -1,0 +1,268 @@
+{#
+    --> 'list_type' defined in list_users.html
+#}
+<div class="modal fade fasiamodal" id="view_user_details" tabindex="-1" role="dialog" aria-labelledby="commonPoputModalLabel" aria-hidden="true">
+    <div class="modal-dialog fasia-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="fasiamodal-title">User Details</h3>
+                <div class="col-md-12">
+                    <div class="row">
+                        <img 
+                            src="{% if user_info.profile_image -%}
+                                {{ user_info.profile_image }}
+                                {%- else -%}
+                                {{ url_for('static', filename='images/contactimg.png')}}
+                                {%- endif %}" 
+                            alt="profile-img" 
+                            id="id_image_tag" 
+                            name="id_image_tag"
+                            class="img-responsive img-circle auto-margin"
+                        >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label" for="name">Name with title:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.title}}.{{user_info.get_full_name()}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label" for="name">email:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.email}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label" for="name">Gender:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.gender}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label" for="name">Birthdate:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.dob}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group admin-data">
+                            <label class="col-sm-5 control-label" for="name">Region:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.region}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Company Name:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.company_name}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Designation:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.designations}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Firm / Agency Name:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.firm_agency_name}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label" for="name">Primary Email:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.email}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Secondary Email:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.secondary_email}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Communication Email:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{% if user_info.communication_email == 'primary' %}{{user_info.email}}{% else %}{{user_info.secondary_email}}{% endif %}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Educational Qualification: <br />(Graduate / Post Graduate/ Additional Programs)</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.educational_qualification}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">License Information(Authority/ License Number):</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.license_number}}</p>
+                            </div>
+                        </div>
+                        <h4 class="text-center user-data"><b>Experience</b></h4>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Product:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.products}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Services:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.services}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Total Year of Practice:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.total_years_practice}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Total Client Base:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.total_client_base}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Awards and Rewards:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.awards_rewards}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Social Service:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.social_services}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Communication Address:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{% if user_info.communication_address == 'home' %}Home{% else %}Office{% endif %}</p>
+                            </div>
+                        </div>
+                        <h4 class="text-center user-data"><b>Home Information</b></h4>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Street Address1:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.home_street_address1}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Street Address2:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.home_street_address2}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Location:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.home_location}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Country:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.home_country}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label" for="name">State:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.home_state}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label" for="name">City:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.home_city}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Zipcode:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.home_zipcode}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Phone Number:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.home_phone}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label" for="name">Mobile Number:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.home_mobile}}</p>
+                            </div>
+                        </div>
+                        <h4 class="text-center user-data"><b>Business Information</b></h4>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Street Address1:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.business_street_address1}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Street Address2:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.business_street_address2}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Location:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.business_location}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Country:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.business_country}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">State:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.business_state}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">City:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.business_city}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Zipcode:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.business_zipcode}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Phone Number:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.business_phone}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group user-data">
+                            <label class="col-sm-5 control-label" for="name">Mobile Number:</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{user_info.business_mobile}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button type="button" class="btn sub-btn" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

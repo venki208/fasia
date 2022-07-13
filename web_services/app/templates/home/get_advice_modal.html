@@ -1,0 +1,132 @@
+<style type="text/css">
+    .upload-form{
+        margin-top: 0px;
+    }
+    .fileinput .sub-btn{
+        margin-bottom: 0px;
+    }
+    .download_link_color{
+        color: #e89924 !important;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+    .attach_classs{
+        display: inline-block;
+    }
+</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/get_advice_modal.css') }}">
+<div class="modal fade fasiamodal" id="getAdvisorModal" tabindex="-1" role="dialog" aria-labelledby="getAdvisorModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog fasia-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;</button>
+                <div class="row">
+                    <h3 class="fasiamodal-title" id="GetAdviseModalLabel">
+                    GET ADVICE
+                    </h3>
+                </div>
+                <div class="row get-advice-body">
+                    <div class="col-xs-12 form-box">
+                        <form id="get_advice_form" name="get_advice_form" onsubmit="return false;" class="get-advice-registration-form">
+                            <fieldset id="first_form">
+                                <div class="form-bottom">
+                                    <p class="text-center">Validate your email and Mobile number.This is purely a free service.</p>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Name *" id="advice_name" name="advice_name" min-length="3" is-text="true"
+                                            value="{{user.first_name}}" required>
+                                        <span class="help-block" id="help_advice_name"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Email *" id="advice_email" name="advice_email" is-email="true" value="{{user.email}}"
+                                            required>
+                                        <span class="help-block" id="help_advice_email"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Mobile Number *" id="advice_mobile" name="advice_mobile" required="true"
+                                            is-mobile="true">
+                                        <span class="help-block" id="help_advice_mobile"></span>
+                                    </div>
+                                    <button type="button" class="btn btn-right btn-next">
+                                        <img src="{{ url_for('static', filename='images/right-arrow.png')}}"/>
+                                    </button>
+                                </div>
+                            </fieldset>
+                            <fieldset id="second_form">
+                                <div class="form-bottom">
+                                    <p class="text-center">Check your mail box and Mobile number for One time Password(OTP)</p>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Enter Mobile OTP *" id="get_ad_mob_otp" name="get_ad_mob_otp" required="true">
+                                        <span class="help-block" id="help_get_ad_mob_otp"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" rows="5" id="get_ad_email_otp" name="get_ad_email_otp" placeholder="Enter Email OTP *" required>
+                                        <span class="help-block" id="help_get_ad_email_otp"></span>
+                                    </div>
+                                    <button type="button" class="btn btn-left btn-previous">
+                                        <img src="{{ url_for('static', filename='images/left-arrow.png')}}" />
+                                    </button>
+                                    <button type="button" class="btn btn-right btn-next">
+                                        <img src="{{ url_for('static', filename='images/right-arrow.png')}}" />
+                                    </button>
+                                </div>
+                                <input type="hidden" name="advice_doc_urls" value="">
+                            </fieldset>
+                            <fieldset id="third_form">
+                                <div class="form-bottom">
+                                    <p class="text-center">Help us to know more. We will share your request to multiple advisors.</p>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Insurance/Equity/Wealth advisory/Real estate *" id="question_title" name="question_title" required="true">
+                                        <span class="help-block" id="help_question_title"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="5" id="advice_message" name="advice_message" placeholder="Write few words about the advice that you are seeking for *" min-length="5"
+                                        required></textarea>
+                                        <span class="help-block" id="help_advice_message"></span>
+                                    </div>
+                                    <button type="button" class="btn btn-left btn-previous">
+                                        <img src="{{ url_for('static', filename='images/left-arrow.png')}}" />
+                                    </button>
+                                    <button type="button" class="btn btn-right btn-next">
+                                        <img src="{{ url_for('static', filename='images/right-arrow.png')}}" />
+                                    </button>
+                                </div>
+                                <input type="hidden" name="advice_doc_urls" value="">
+                            </fieldset>
+                        </form>
+                        <fieldset id="fourth_form" class="text-center">
+                            <form name="upload_doc" id="upload_doc" method="post" class="get-advice-registration-form upload-form contact-form" enctype="multipart/form-data">
+                                <div class="form-bottom">
+                                    <p>Attach any relevant document that can help the advisor to evaluate and provide you recommendation. This is optional.</p>
+                                    <div class="form-group text-center">
+                                        <label id="paper_clip0" class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span class="btn sub-btn clip-icon">
+                                                <i class="fa fa-paperclip" aria-hidden="true"></i>
+                                                <input type="file" id="advice_document" name='document' class="hide">
+                                            </span><br />
+                                            <span style="color:#e89924">Upload</span>
+                                        </label>
+                                    </div>
+                                    <button type="button" class="btn btn-left btn-previous">
+                                        <img src="{{ url_for('static', filename='images/left-arrow.png')}}" />
+                                    </button>
+                                </div>
+                            </form>
+                            <div class="fasia-form upload-form" id="uploaded_docs">
+                            </div>
+                            <button type="button" id="advice_button" name="advice_button" class="btn sub-btn">Submit</button>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var user_mobile = '{{user.home_mobile|default("", true)}}';
+    var user_first_name = '{{user.first_name|default("", true)}}';
+    var user_email = '{{user.email|default("", true)}}';
+</script>
+<script src="{{ url_for('static', filename='js/get_advice_form.js')}}"></script>
+<script src="{{ url_for('static', filename='js/get_advise.js')}}"></script>
+<script src="{{ url_for('static', filename='js/upload_document.js')}}"></script>

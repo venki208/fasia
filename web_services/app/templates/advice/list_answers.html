@@ -1,0 +1,38 @@
+<div class="modal fade fasiamodal" id="listAnswerModal" tabindex="-1" role="dialog" aria-labelledby="listAnswerModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;</button>
+                <h4 class="fasiamodal-title" id="listAnswerModalLabel">
+                    Answers
+                </h4>
+                <div class="row">
+                    {% if answers_obj %}
+                        {% for answer in answers_obj %}
+                            <div class="col-md-12">
+                                <div class="{% if not loop.index == 1 %}answer-div{% endif %}">
+                                    <p>{{answer.answer}}</p>
+                                    <div id="doc_list_div">
+                                        {% for url in answer.document_urls %}
+                                            {% if url %}
+                                                {% if loop.index == 1%}
+                                                <p class="get-advice-desc">Click to download related documents in below.</p>
+                                                {% endif %}
+                                                <a href="{{url}}" target="_blank" style="color:#1c4888">Document- {{loop.index}}</a><br />
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    <div class="col-md-12">
+                        <p>No answers found.</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+.admin-dashboard-title{
+    background: linear-gradient(to right, #f9ba02, #f27b07);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.admin-dashboard-title .headline{
+    margin: auto;
+    width: 86%;
+    color: #fff;
+    font-weight: 600;
+    font-size: 24px;
+    text-transform: UPPERCASE;
+}
+.parent-section{
+    background-color: #f6f7fd;
+}
+.admin-dashboard img{
+    margin: auto;
+    margin-bottom: 20px;
+    color: #000;
+}
+.vu1{
+    color:#f4931e !important;
+    text-decoration: underline;
+}
+.vu2{
+    color:#60d195 !important;
+    text-decoration: underline;
+}
+.vu3{
+    color:#67acf5 !important;
+    text-decoration: underline;
+}
+.crt-btn{
+    border-radius: 50px;
+    padding: 8px 24px;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    font-size: 16px;
+    background-color:#f4931e;
+}
+.bg-color{
+    background-color: #f6f7fc;
+}
+.user-action-btn{
+    border-radius: 50%;
+    padding: 0;
+    margin-right: 2px;
+    margin-left: 2px;
+    box-shadow: none;
+}
+.table-header-border{
+    border-style: solid;
+    border-color: #dcd8d8;
+    background-color: #eae7e7;
+    border-width: 3px;
+}
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #FFF;
+}
+.user_list .text{
+    padding-top: 13px;
+    font-size: 16px;
+}
+.table-container{
+    padding-top:10px;
+    margin-top: 85px;
+}
+/* chips  */
+.chip {
+    display: inline-block;
+    padding: 9px 13px;
+    height: 20px;
+    font-size: 11px;
+    line-height: 3px;
+    border-radius: 9px;
+    background-color: #80ccf9;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+.closebtn {
+    padding-left: 10px;
+    color: #888;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    color: #000;
+}
+
+.edit-form-chip-align {
+    margin-top: 15px;
+}

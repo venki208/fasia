@@ -1,0 +1,108 @@
+.origin{
+    color: #f5c74c;
+    font-weight: 700 !important;
+    text-align: center;
+    margin-top: 0px;
+}
+.read-more{
+    text-decoration: underline !important;
+    color: #494949 !important;
+    background-color: white !important;
+}
+.origin-fasia-div{
+    margin-top: 30px;
+}
+.origin-fasia-div p{
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.card {
+    height: 100%;
+}
+.card {
+    position: relative;
+    /* display: -ms-flexbox; */
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #17517f !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125) !important;
+    box-shadow: 0px 5px 25px 0px rgba(36, 79, 127, 0.82);
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+.card-title {
+    margin-bottom: .75rem;
+}
+.card-text:last-child {
+    margin-bottom: 0;
+}
+.card-text {
+    color: #fff;
+}
+.card-footer:last-child {
+    border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);
+}
+.card-footer {
+    padding: .75rem 1.25rem;
+    background-color: rgba(0,0,0,.03);
+    border-top: 1px solid rgba(0,0,0,.125);
+}
+.mb-4, .my-4 {
+    margin-bottom: 1.5rem!important;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+.image-background{
+    background: #bddfe6;
+}
+.image-content{
+    font-weight: 700 !important;
+    color: #000;
+    margin-top: 10px;
+}
+.margin-content{
+    margin-top: 15px;
+}
+.well-read{
+    background-color: #ffffff;
+    line-height: 0px;
+}
+.margin-content-maindiv{
+    display: flex;
+}
+.margin-content-maindiv .card-div .card-text {
+    padding: 40px 10px;
+    text-align: left;
+}
+@media screen and (max-width:700px){
+    .origin-image-background .center{
+        width: 90% !important;
+    }
+    .margin-content-maindiv{
+        display: table !important;
+    }
+    .margin-content-maindiv .card-div{
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+[aria-expanded="false"] > .expanded,
+[aria-expanded="true"] > .collapsed {
+  display: none;
+}
+.read-more{
+    color: #494949;
+    text-decoration-line: underline;
+}

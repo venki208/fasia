@@ -1,0 +1,8 @@
+*.pyc
+*.orig
+*.swp
+*.diff
+*.patch
+*.log
+*.vscode
+**/fasia_env/

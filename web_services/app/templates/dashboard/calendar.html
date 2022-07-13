@@ -1,0 +1,117 @@
+{% extends 'home/index.html' %}
+
+{% block custome_css %}
+    {{super()}}
+    <link rel="stylesheet" href="{{ url_for('static', filename='js/lib/calendar/fullcalendar.css') }}">
+    <style type="text/css">
+        .fasia-btn{
+            color: #fff !important;
+            background: #f4941e !important;
+            border-radius: 18px;
+            font-weight: 600;
+        }
+        .remove-end-date{
+            position: absolute;
+            right: 25px;
+        }
+        .remove-end-date i{
+            top: -24px;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+{% block sm_sticky %}
+{% endblock %}
+{% block main_content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <ul class="breadcrumb">
+                            <li><a href="/dashboard">Dashboard</a></li>
+                            <li class="active">Calendar</li>
+                        </ul>
+                <div class="col-md-12">
+                    <button class="btn fasia-btn" name='add_event' id='add_event'>Add Event</button>
+                </div>
+            </div>
+            <div id='calendar'></div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block bootstrap_modal %}
+    {{ super() }}
+    <div class="modal fade fasiamodal" id="add_event_modal" tabindex="-1" role="dialog" aria-labelledby="addEventModalLabel" aria-hidden="true">
+        <div class="modal-dialog fasia-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;</button>
+                    <h4 class="fasiamodal-title" id="addEventModalLabel">Add Event to Calendar</h4>
+                    <form name="event_form">
+                        <input type="hidden" name="event_id">
+                        <div class="form-group">
+                            <label for="event_name">Event Name *</label>
+                            <input type="text" class="form-control" name="event_name" id="event_name" value="">
+                            <span class="help-block" id="help_event_name"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="event_description">Description</label>
+                            <textarea type="text" class="form-control" name="event_description" id="event_description" rows=6></textarea>
+                            <span class="help-block" id="help_event_description"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for='start_date'>Start Date *</label>
+                            <input type="text" class="form-control" name="start_date" id="start_date">
+                            <span class="help-block" id="help_start_date"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for='end_date'>End Date</label>
+                            <input type="text" class="form-control" name="end_date" id="end_date" value="">
+                            <div class="remove-end-date hide">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="button" class="btn fasia-btn" name="submit_event">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- show the event information -->
+    <div class="modal fasiamodal" id="event_information" tabindex="-1" role="dialog" aria-labelledby="eventInformationModalLabel" aria-hidden="true">
+        <div class="modal-dialog fasia-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;</button>
+                    <h4 class="fasiamodal-title" id="eventInformationModalLabel"></h4>
+                    <div class="row">
+                        <div class="col-md-12 text-center" id="event_description_div">
+                            <!-- dynamic content loads here -->
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <button type="button" name="update_event_btn" class="btn fasia-btn"><i class="fa fa-edit"></i></button>
+                            <button type="button" name="delete_event_btn" class="btn fasia-btn"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block lib_scripts %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='js/lib/moment.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/lib/calendar/fullcalendar.js') }}"></script>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        // var adv_events = {{advisor_events}};
+    </script>
+    <script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+{% endblock %}

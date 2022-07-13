@@ -1,0 +1,94 @@
+{% extends 'home/login.html' %}
+{% block custome_css %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/blog.css')}}">
+{% endblock %}
+{% block sm_sticky %}
+{% endblock %}
+{% block main_content %}
+    <section class="fasia-blog-section">
+        <div class="container">
+            <div class="row">
+                {% if user.is_authenticated %}
+                    <div class="col-xs-12">
+                            <ul class="breadcrumb">
+                            <li><a href="/dashboard">Dashboard</a></li>
+                            <li class="active">Blogs</li>
+                            </ul>
+                    </div>
+                    <div class="col-xs-12 fasia-blog-header">
+                        <a href="/blog/add_post"><strong><font class="n-span-orange-color">CONTRIBUTE TO THE FASIA BLOG?</font></strong></a>
+                    </div>
+                {% endif %}
+                {% if datas %}
+                    {% for data in datas %}
+                        <div class="col-xs-12 blog-main">
+                            <div class="blog-over-img-wp">
+                                {% if data.better_featured_image.source_url %}
+                                <a href="/blog/{{data.id}}">
+                                    <img src="{{data.better_featured_image.source_url}}" alt="{{ data.slug }}" class="img-responsive">
+                                </a>
+                                {% else %}
+                                <a href="/blog/{{data.id}}">
+                                    <img src="{{ url_for('static', filename='images/blog/blog_header_img.png')}}" class="img-responsive" alt="">
+                                </a>
+                                {% endif %}
+                            </div>
+                            <div class="row main-blog-header">
+                                <div class="col-xs-12">
+                                    <h3 class="pull-left"><a href="/blog/{{data.id}}">{{data.title.rendered}}</a></h3>
+                                    <span class="pull-right"><i class="fa fa-clock-o"></i> Posted on:{{ data.date }}</span>
+                                </div>
+                            </div>
+                            <div class="row blogs-links">
+                                <div class="col-xs-12">
+                                    <ul>
+                                        <li>
+                                            <small><i class="fa fa-user" aria-hidden="true"></i></small>
+                                            <span>Author: {{data.author_name}}</span>
+                                        </li>
+                                        <li>
+                                            <small><i class="fa fa-commenting-o" aria-hidden="true"></i></small>
+                                            {% if data %}
+                                                <span>comments : {{data.comment_count}}</span>
+                                            {% else %}
+                                                No Comments
+                                            {% endif %}
+                                        </li>
+                                        <!-- future purpose -->
+                                        <!-- <li>
+                                            <span>Category :
+                                                {#
+                                                {% for cat  in data.terms.category %}
+                                                <a href="/blog/category_posts/?cat={{ cat.name }}">
+                                                    {{ cat.name }},
+                                                </a>
+                                                {% endfor %}
+                                                #}
+                                            </span>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 read-more-blog">
+                                    <a href="/blog/{{data.id}}" class="btn blog-btn">
+                                        Read More<i class="fa fa-angle-right"></i><i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    {% endfor %}
+                    <div class="col-xs-12">{{ pagination.links }}</div>
+                {% else %}
+                    <p>No posts.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block bootstrap_modal %}
+    {{ super() }}
+{% endblock %}
+{% block lib_scripts %}
+    {{super()}}
+{% endblock %}

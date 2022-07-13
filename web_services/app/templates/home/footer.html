@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+<footer class="footer">
+    <div class="container">
+        <div class="row fasia-letest-footer">
+            <div class="col-sm-2 col-xs-4 fasia-footer-400">
+                <h2>About US</h2>
+                <ul>
+                    <li><a class="content-color" href="/fasia_origin">Fasia Origin</a></li>
+                    <li><a class="content-color" href="/journey-so-far">Journey So Far</a></li>
+                    <li><a class="content-color" href="/organisation-structure">Organisation Structure</a></li>
+                    <li><a class="content-color" href="/goals">Goals</li></a>
+                    <li><a class="content-color" href="/presentation">Presentation</a></li>
+                    <li><a class="content-color" href="/brochure">Brochure</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-2 col-xs-4 fasia-footer-400">
+                <h2>Membership</h2>
+                <ul>
+                    <li><a class="content-color" href="/eligible">Eligibility</li></a>
+                    <li><a class="content-color" href="/benefits">Benefits</li></a>
+                    <li><a class="content-color" href="/how-to-become-member">How to Become Member</a></li>
+                    {% if not current_user.is_authenticated %}
+                    <li><a class="content-color" href="/login#goal">Member Search</li></a>
+                    {% else %}
+                    <li><a class="content-color" href="/home#goal">Member Search</li></a>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-sm-2 col-xs-4 fasia-footer-400">
+                <h2>Chapter</h2>
+                <ul>
+                    <li><a class="content-color" href="/chapter">How Chapter Works</a></li>
+                    <!-- we will use for future purpose -->
+                    <!-- <li>Initializing a chapter</li> -->
+                     {% if not current_user.is_authenticated %}
+                    <li><a class="content-color" href="/login#goal">Chapter Search</li></a>
+                    {% else %}
+                    <li><a class="content-color" href="/home#goal">Chapter Search</li></a>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-sm-2 col-xs-4 fasia-footer-400">
+                <h2>Leadership</h2>
+                <ul>
+                    <li><a class="content-color" href="/execution council members">Executive Council Members</li></a>
+                    <!-- commented due to content delay-->
+                    <!-- <li>National body</li> -->
+                    <!-- <li>Regional body</li> -->
+                    <!-- <li>Chapter leader</li> -->
+                </ul>
+            </div>
+            <div class="col-sm-2 col-xs-4 fasia-footer-400">
+                <h2>Knowledge Center</h2>
+                <ul>
+                    <li><a class="content-color" href="/press_releases">Newsletter</li>
+                    <li><a class="content-color" href="/downloads">Downloads</li></a>
+                    <li><a class="content-color" href="/blog">Blogs</a></li>
+                    <!-- commented due to content delay-->
+                    <!-- <li>Forum</li> -->
+                </ul>
+            </div>
+            <div class="col-sm-2 col-xs-4 fasia-footer-400">
+                <h2>Media</h2>
+                <ul>
+                    <li><a class="content-color" href="/press_releases">Press Releases</li></a>
+                    <li><a class="content-color" href="/gallery">Gallery</li></a>
+                    <!-- for future useing -->
+                    <!-- <h2>Get advice</h2>
+                    <li>How it works</li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-md-12 text-center">
+                © 2018 Trade name ownership is with <strong>fasiaamerica.org</strong> | FASIA is a non profitable organization registered under 501(c) (3)
+            </div>
+        </div>
+    </div>
+</footer>
+<a href="#" class="back-to-top"><i class="glyphicon glyphicon-chevron-up"></i></a>

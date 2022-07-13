@@ -1,0 +1,83 @@
+.form-top {
+    overflow: hidden;
+    padding: 0 25px 15px 25px;
+    background: #fff;
+    -moz-border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    text-align: left;
+}
+.form-top-left {
+    float: left;
+    width: 75%;
+    padding-top: 25px;
+}
+.form-top-left h3 {
+    margin-top: 0;
+}
+.form-top-right {
+    float: left;
+    width: 25%;
+    padding-top: 5px;
+    font-size: 66px;
+    color: #ddd;
+    line-height: 100px;
+    text-align: right;
+}
+.get-advice-registration-form .form-bottom textarea {
+    height: 100px;
+}
+.get-advice-registration-form .form-bottom button.btn.btn-left,
+.get-advice-registration-form .form-bottom button.btn.btn-right {
+    min-width: 105px;
+}
+.get-advice-registration-form .form-bottom .input-error {
+    border-color: #19b9e7;
+}
+.get-advice-body fieldset {
+    display: none;
+}
+/* form.registration-form {
+    position: relative;
+} */
+.get-advice-registration-form .form-bottom .btn-right {
+    position: absolute;
+    left: 94%;
+    top: 50%;
+    transform: translate(0%, -100%);
+    background: rgba(0, 0, 0, 0);
+    padding: 0px;
+    min-width: auto;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0);
+}
+.get-advice-registration-form .form-bottom .btn-left {
+    position: absolute;
+    left: 6%;
+    top: 50%;
+    transform: translate(-100%, -100%);
+    background: rgba(0, 0, 0, 0);
+    padding: 0px;
+    min-width: auto;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0);
+}
+.get-advice-body{
+    margin: 50px;
+    margin-top: 20px;
+}
+#getAdvisorModal .fasiamodal-title{
+    margin-top: 0px;
+}
+.clip-icon{
+    border-radius: 50% !important;
+    font-size: 30px;
+    padding: 10px 19px;
+}
+@media (max-width: 767px){
+    .get-advice-registration-form .form-bottom button.btn.btn-left,
+    .get-advice-registration-form .form-bottom button.btn.btn-right {
+        min-width: 40px;
+    }
+    .get-advice-body {
+        margin: 10px;
+    }
+}

@@ -1,0 +1,96 @@
+{% extends 'home/index.html' %}
+{% block custome_css %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/simple-sidebar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_dashboard.css')}}">
+    <style>
+        .pagination-page-info{
+            text-transform: capitalize;
+            padding-bottom: 5px;
+        }
+    </style>
+{% endblock %}
+{% block main_content %}
+    <div id="wrapper" class="toggled">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <h3 class="sidebar-brand">
+                {%- if req_role_type == 'region_admin' -%}
+                    Region List
+                {%- elif req_role_type == 'state_admin' -%}
+                    State List
+                {%- else -%}
+                    City List
+                {%- endif -%}
+            </h3>
+            <input type="text" class="form-control" name="search_li" id="serch_li" placeholder="Search here" onkeyup="search_sidebar();">
+            <ul class="sidebar-nav" id="myUL">
+                {% for list in side_list -%}
+                <li>
+                    <a data-content="{{list}}">{{list}}</a>
+                </li>
+                {%- endfor %}
+            </ul>
+        </div>
+        <!-- #sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div>
+            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+        </div>
+        <div id="page-content-wrapper">
+            <!-- Dynalic contetnt loads here -->
+        </div>
+        <!-- #page-content-wrapper -->
+    </div>
+    
+    
+{% endblock %}
+{% block bootstrap_modal %}
+    {{super()}}
+    <div id="list_user_modal_div"></div>
+    <div class="modal fade fasiamodal" id="confirm_disable_modal" tabindex="-1" role="dialog" aria-labelledby="commonPoputModalLabel" aria-hidden="true">
+        <div class="modal-dialog fasia-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="fasiamodal-title">
+                        <i class='glyphicon glyphicon-warning-sign warning'></i>
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-12 text-center" id="confirm_disable_div">
+                            <p id="question_title"></p>
+                            <div class="row text-center">
+                                <button type="button" class="btn sub-btn" id="accept_disable_btn"><i class="glyphicon glyphicon-ok"></i></button>
+                                <button type="button" class="btn btn-default default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i></button>
+                            </div>
+                        </div>
+                        <div class="col-md-12 none" id="reason_text_div">
+                            <label for="feedback">Reason for Disable the user:</label>
+                            <textarea class="form-control" name="disable_reason" id="disable_reason" cols="30" rows="10" required></textarea>
+                            <span class="help-block" id="help_disable_reason"></span>
+                            <br />
+                            <div class="row text-center">
+                                <button type="button" class="btn sub-btn" id="submit_disable_reason">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %} 
+    <script type="text/javascript">
+        // return type of details listing ('admins'/'users')
+        var list_type = "{{list_type}}";
+        var req_role_type = "{{req_role_type}}";
+    </script>
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/dashboards/list_user.js' ) }}"></script>
+{% endblock %}

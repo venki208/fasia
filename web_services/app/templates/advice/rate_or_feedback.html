@@ -1,0 +1,128 @@
+{% extends 'home/login.html' %}
+{% block custome_css %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='js/lib/jrateit/rateit.css')}}">
+    <style>
+        .rateit-range{
+            margin-bottom: -2px;
+        }
+        .footer{
+            bottom: 0;
+            position: fixed;
+            left: 0;
+            right: 0;
+        }
+        @media (min-width: 768px) {
+            .login-panel {
+                position: absolute;
+                width: 100%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, 50%);
+            }
+        }
+        .panel-heading {
+            background-color: #f4941e !important;
+        }
+        .panel-title { 
+            color:white;
+        }
+        .close{
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block sm_sticky %}
+{% endblock %}
+{% block main_content %}
+    <section>
+        <div class="container">
+            {% if not rate_fbk_status %}
+            <div class="row">
+                <div class="col-md-12">
+                    {% if answer_status == 'not answered' %}
+                        <div class="col-md-offset-4 col-md-4">
+                        {% if status == 'Accepted' %}
+                            <form action="." method="POST" class="form-group" id="rating_form">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                <div class="row text-center">
+                                    <label for="trust">Rate Answer </label><br />
+                                    <div class='rateit' id='trust' data-rateit-resetable="false"></div>
+                                    <span class="help-block" id="help_rating"></span>
+                                    <input type='hidden' id='rating' name='rating' value="" />
+                                </div>
+                                <div class="row text-center">
+                                    <button type="button" class="btn fasia-btn" id="submit_rate">Submit</button>
+                                </div>
+                            </form>
+                        {% else %}
+                            <form class="form-group" method="POST" action=".">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="feedback">Feedback</label>
+                                        <textarea name="feedback" id="feedback" cols="30" rows="5" class="form-control" placeholder="Please enter feedback" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="row text-center">
+                                    <button type="submit" class="btn fasia-btn">Submit</button>
+                                </div>
+                            </form>
+                        {% endif %}
+                        </div>
+                    {% else %}
+                        <p>Requested answer already Accepted/Rejected.</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}
+{% block scripts %}
+    {{super()}}
+    <script type="text/javascript" src="{{url_for('static', filename='js/lib/jrateit/jquery.rateit.min.js')}}"></script>
+    <script>
+    $('#trust').bind('rated', function(){
+        $('#rating').val($(this).rateit('value'))
+    });
+    $("#submit_rate").on('click', function(e){
+        if($('#rating').val() == ''){
+            $("#help_rating").html('Please select rating');
+        }else{
+            $("#rating_form").submit();
+        }
+    });
+    var is_result_submit = "{{rate_fbk_status|default('', true)}}";
+    var rating = "{{rating|default('', true)}}";
+    var feedback = "{{feedback|default('', true)}}";
+    var inner_html;
+    if(rating){
+        inner_html = 'Rating'
+    }else{
+        inner_html = 'Feedback'
+    }
+    if (is_result_submit == 'success'){
+        show_alert(
+            'success', 
+            '', 
+            '<p>Your '+inner_html+' has been submitted successfully !</p>',
+            'href: /'
+        );
+    }else if(is_result_submit == 'already updated'){
+        show_alert(
+            'warning', 
+            '', 
+            '<p>You already submitted</p>',
+            'href: /'
+        );
+    }else if(is_result_submit == 'failed'){
+        show_alert(
+            'error', 
+            '', 
+            '<p>Unable to process your request right now. Please try again after some time</p>',
+            'href: /'
+        );
+    }
+    </script>
+{% endblock %}

@@ -1,0 +1,49 @@
+.chapter{
+    color: #f5c74c;
+    font-weight: 700 !important;
+    text-align: center;
+    margin-top: 0px;
+}
+.chapter-head{
+    text-align: center;
+    font-weight: 700;
+    font-size: 21px;
+}
+.chap-heading{
+    font-weight:600     
+}
+.chapter-img img{   
+    margin: auto;
+    margin: 30px 0px;
+}
+.chapter-main-page p {
+    font-size: 12px;
+    margin-top: 15px;
+}
+.chapter-main-page h2 {
+    line-height: 80px;
+}
+.chapter-main-page ul li{
+    font-size: 12px;
+    line-height: 20px;
+    margin-bottom: 5px; 
+}
+.mobile-chapter-responsive {
+    margin-top:40px;
+}
+.mobile-chapter-responsive img{
+    width: 85%;
+}
+@media (max-width:760px){
+
+    .chapter-main-page .center{
+        margin: auto !important;
+        width: 90% !important;
+    }
+}
+    @media (max-width:1100px){
+        .chapter-img img{
+            width: 90% !important;
+            margin: auto;
+        }
+    }

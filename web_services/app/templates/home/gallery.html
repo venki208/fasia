@@ -1,0 +1,139 @@
+{% extends 'home/login.html' %}
+{% block custome_css %}
+    {{super()}}
+    <link href="{{ url_for('static', filename='css/gallery.css')}}" rel="stylesheet">
+{% endblock %}
+{% block sm_sticky %}
+{% endblock %}
+{% block main_content %}
+<section class="">
+    <div class="container">
+        <h1 class="gallery">GALLERY</h1>
+         <div class="row gallery-main">
+            <div class="column">
+                <div class="card-body-div">
+                    <img class="center" src="{{ url_for('static', filename='images/Gallery/MG1.jpg')}}" style="width:100%;"/>
+                    <p class="text-center">Lunching "LEAD INDIA" project in US in memory of Honorable former President of India Mr.A. P. J. Abdul Kalam By Executive
+                        Council Members of FASIA America (Photo left to right: Mr. Ashish Patel, Mr.Hari Eppanapally, Lakshmi Narayanan & Venkateswara
+                        R Chinni)</p>
+                </div>
+                <div class="card-body-div">
+                    <img class="center" src="{{ url_for('static', filename='images/Gallery/MG2.jpg')}}" style="width:100%;"/>
+                    <p class="text-center">Executive Council Members and invites of FASIA AMERICA (Left to Right: Mr.Srinivas Eyyunni, Mr. Lakshmi Narayanan, Ms.
+                        Sonali Shah (Senior entrepreneur in Real Estate Insurance Space US based out of NJ), Mr.Venkateswara R Chinni & Mr.
+                        Ashish Patel) on Thursday 1 Mar 2018 afternoon at Edison, NJ</p>
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG4.jpg')}}" />
+                    <p class="text-center">Presenting the certificate of membership of FASIA Executive Council to Mr. Hari Eppanapally by Mr.Lakshmi Narayanan (FASIA
+                        America Executive Council Member)</p>
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG5.jpg')}}" />
+                    <p class="text-center">Presenting the certificate of membership of FASIA Executive Council to Mr. Hari Eppanapally by Executive Council Members
+                        on 28th February 2018 (Right to left:- Mr.Ashish Patel, Mr.Srinivas Eyyunni, Mr.Lakshmi Narayanan, Mr. Hari Eppanapally
+                        (Receiving), Venkateswara R Chinni).</p>
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG6.jpg')}}" />
+                    <p class="text-center">February 28th 2018: Mr. Venkata (Prasad) Kunisetty receiving official letter of appointment from the core team of national
+                        executive council FASIA AMERICA . Mr. Venkata (Prasad) Kunisetty is Senior IT Consultant with strong Technical, Business
+                        and Solution Design skills. Founded couple of businesses in Media and IT in US and India.</p>
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width: 100%" src="{{ url_for('static', filename='images/Gallery/MG10.jpg')}}" />
+                    <p class="text-center">Executive council Members and invites of FASIA AMERICA (Left to Right: Mr. Venkateswara (VR) Chinni, Mr. Ashish Patel,
+                        Mr. Vishal Petigara, Mr. Lakshmi Narayanan, Mr. Vipul Patel, & Mr. Srinivas Eyyunni ,PMP, MBA) at FASIA regional
+                        chapter Philadelphia initiation meeting.</p>
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG11.jpg')}}" />
+                </div>
+                
+                
+            </div>
+            
+            <div class="column">
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG14.JPG')}}" />
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG15.JPG')}}" />
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG16.JPG')}}" />
+                    <p class="text-center" style="width:100%">Mr. Hari Eppanapally (FASIA Executive Council Member) addressing FASIA AMERICA regional chapter New Jersey on 13th February
+                        2018.
+                    </p>
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG17.JPG')}}" />
+                    <p class="text-center" style="width:100%">Mr. Hari Eppanapally (FASIA Executive Council Member) addressing FASIA AMERICA regional chapter New Jersey on 13th February
+                        2018.
+                    </p>
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG18.JPG')}}" />
+                    <p class="text-center" style="width:100%">Initiation for Inviting Founding Members at Dallas, Texas</p>
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG11.jpg')}}" />
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width: 100%" src="{{ url_for('static', filename='images/Gallery/MG12.jpg')}}" />
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG13.jpg')}}" />
+                </div>
+            </div>
+            <div class="column">
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG5.jpg')}}" />
+                    <p class="text-center">Presenting the certificate of membership of FASIA Executive Council to Mr. Hari Eppanapally by Executive Council Members
+                        on 28th February 2018 (Right to left:- Mr.Ashish Patel, Mr.Srinivas Eyyunni, Mr.Lakshmi Narayanan, Mr. Hari Eppanapally
+                        (Receiving), Venkateswara R Chinni).</p>
+                </div>
+                
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG6.jpg')}}" />
+                    <p class="text-center">February 28th 2018: Mr. Venkata (Prasad) Kunisetty receiving official letter of appointment from the core team of national
+                        executive council FASIA AMERICA . Mr. Venkata (Prasad) Kunisetty is Senior IT Consultant with strong Technical, Business
+                        and Solution Design skills. Founded couple of businesses in Media and IT in US and India.</p>
+                </div>
+                
+                <div class="card-body-div">
+                    <img class="center" style="width: 100%" src="{{ url_for('static', filename='images/Gallery/MG10.jpg')}}" />
+                    <p class="text-center">Executive council Members and invites of FASIA AMERICA (Left to Right: Mr. Venkateswara (VR) Chinni, Mr. Ashish Patel,
+                        Mr. Vishal Petigara, Mr. Lakshmi Narayanan, Mr. Vipul Patel, & Mr. Srinivas Eyyunni ,PMP, MBA) at FASIA regional
+                        chapter Philadelphia initiation meeting.</p>
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width: 100%" src="{{ url_for('static', filename='images/Gallery/MG1.jpg')}}" />
+                    <p class="text-center">Lunching "LEAD INDIA" project in US in memory of Honorable former President of India Mr.A. P. J. Abdul Kalam By Executive
+                        Council Members of FASIA America (Photo left to right: Mr. Ashish Patel, Mr.Hari Eppanapally, Lakshmi Narayanan &
+                        Venkateswara R Chinni)</p>
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width: 100%" src="{{ url_for('static', filename='images/Gallery/MG2.jpg')}}" />
+                    <p class="text-center">Executive Council Members and invites of FASIA AMERICA (Left to Right: Mr.Srinivas Eyyunni, Mr. Lakshmi Narayanan, Ms.
+                        Sonali Shah (Senior entrepreneur in Real Estate Insurance Space US based out of NJ), Mr.Venkateswara R Chinni & Mr.
+                        Ashish Patel) on Thursday 1 Mar 2018 afternoon at Edison, NJ</p>
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width:100%" src="{{ url_for('static', filename='images/Gallery/MG4.jpg')}}" />
+                    <p class="text-center">Presenting the certificate of membership of FASIA Executive Council to Mr. Hari Eppanapally by Mr.Lakshmi Narayanan (FASIA
+                        America Executive Council Member)</p>
+                </div>
+                <div class="card-body-div">
+                    <img class="center" style="width: 100%" src="{{ url_for('static', filename='images/Gallery/MG12.jpg')}}" />
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+{% endblock %}
+{% block bootstrap_modal %}
+    {{super()}}
+{% endblock %}

@@ -1,0 +1,202 @@
+{% extends 'home/login.html' %}
+{% block custome_css %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/blog.css')}}">
+{% endblock %}
+{% block sm_sticky %}
+{% endblock %}
+{% block main_content %}
+    <section class="fasia-blog-section">
+        <!-- Page Content -->
+        <div class="container">
+           <div class="row">
+               <div class="col-xs-12">
+                    <ul class="breadcrumb">
+                        <li><a href="/blog">Blog</a></li>
+                        <li class="active">Contribute Blog</li>
+                    </ul>
+                </div>
+               <div class="col-lg-12 col-md-12">
+                    <h2 class="blog-title">Write a BLOG</h2>
+               </div>
+                <div class="col-lg-12 col-md-12 blog-creation-form">
+                    <form
+                        action="/blog/add_post"
+                        method="post"
+                        accept-charset="utf-8"
+                        id="icore_add_post" role="form" name="icore_add_post" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <input type="hidden" name="featured_media" id="featured_media" />
+                      <fieldset class="form-group">
+                        <label>Blog Title <span >*</span></label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Enter Your Blog Title">
+                      </fieldset>
+                      <fieldset class="form-group">
+                        <label for="content_raw">Blog Description <span >*</span></label>
+                        <textarea type="text" autocomplete="off" name="content_raw" id="content_raw" class="form-control" placeholder="Enter your Text" tabindex="2" rows="5"></textarea>
+                      </fieldset>
+                      <fieldset class="form-group">
+                        <a id="media-modal" href="#" class="btn upwrdz-button" data-toggle="modal" data-target="#MediaModel" title="Login">Add Media</a>
+                      </fieldset>
+                      <fieldset class="form-group">
+                        <label>Tag ur Blog <span >*</span></label>
+                        <div class="control">
+                          <input type="text" autocomplete="off" name="add_tag" id="add_tag" class="form-control" placeholder="Ex:Insurance/Real estate/Equity">
+                        </div>
+                      </fieldset>
+                      <!-- we can use for future purpose -->
+                      <!-- <fieldset class="form-group">
+                        <label class="control-label">Blog Categories <span>*</span></label>
+                        <div class="total-category" style="cursor:text;">
+                            <div id="id_total_category" style="display:inline;">
+                            </div>
+                            <input type="text"
+                                class="search form-control form-control no-spin"
+                                id="category"
+                                name="category"
+                                style="display:inline-block;width:100%;box-shadow:none !important;"/>
+                        </div>
+                        <span class="help-block" id="help_text_category"></span>
+                        <input type="hidden"
+                            id="id_total_category_selected"
+                            name="id_total_category_selected"
+                            value=""/>
+                        <div class="search-dropdown transition" style="display:none;">
+                        </div>
+                      </fieldset> -->
+                      <button type="button" class="btn blog-btn" onclick="validate_submitPost();" style="margin-right:10px;">
+                        Submit
+                      </button>
+                      <a href="/blog" class="btn blog-btn" style="margin-right:10px;">
+                        Cancel
+                      </a>
+                    </form>
+               </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- Modal -->
+    <div class="modal fade fasiamodal" id="MediaModel" tabindex="-1" role="dialog" aria-labelledby="getAdvisorModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="fasiamodal-title" id="MediaModelLabel">Upload Image File</h4>
+                </div>
+                <div id="MediaModel-body" class="modal-body">
+                    <form action="#"
+                        method="post"
+                        accept-charset="utf-8"
+                        id="add_media_post_form"
+                        role="form"
+                        name="add_media_post_form"
+                        enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-3 col-md-3">
+                              <div class="form-group control-group">
+                                <div class="control">
+                                  <label for="username">Upload Image</label>
+                                </div>
+                                <span class="help-block"></span>
+                              </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                              <div class="form-group control-group">
+                                <div class="control">
+                                  <input type="file" name="up" id="up" class="form-control input" accept="image/gif, image/jpeg,image/png">
+                                </div>
+                                <span class="help-block"></span>
+                              </div>
+                            </div>
+                        </div><!-- Row 1 Ended-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn blog-btn" tabindex="3" id="upload_image" onclick="upload_image_ajax()">Upload</button>
+                            <button type="button" class="btn blog-btn" data-dismiss="modal">Cancel</button>
+                            <input type="hidden" id="binary_document" name="binary_document" value="">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal Ended -->
+{% endblock %}
+{% block lib_scripts %}
+    {{super()}}
+<script src="{{ url_for('static', filename='js/lib/tinymce/js/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/lib/tinymce/js/tinymce/jquery.tinymce.min.js') }}"></script>
+{% endblock %}
+{% block scripts %}
+    {{super()}}
+    <script type="text/javascript">
+        var text_category = "";
+        tinymce.init({
+        selector: '#content_raw',
+        height: 500,
+        menubar: false,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor textcolor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table contextmenu paste code help wordcount'
+        ],
+        toolbar: 'link | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+        });
+    </script>
+    <script type="text/javascript">
+        function validate_submitPost(){
+            if($("#title").val()==""){
+                alert("Please enter the title")
+                return false;
+            }
+            var post = tinyMCE.get('content_raw').getContent();
+            if(post ==''){
+                alert("Write on the Description box")
+                return false;
+            }
+            if($("#add_tag").val() == ""){
+                alert("Please tag your blog")
+                return false;
+            }
+            show_alert("warning",
+                '',
+                '<p>Are you sure you want to publish this post now ?</p>',
+                'click:submitPost()'
+            )
+        }
+        function submitPost(){
+            $("#icore_add_post").submit();
+        }
+    </script>
+    <script type="text/javascript">
+        function upload_image_ajax(){
+            var form_data = new FormData($('#add_media_post_form')[0]);
+            $.ajax({
+                    url: "/blog/add_media",
+                    method: "POST",
+                    data:form_data,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                success: function(response){
+                    document.getElementById('featured_media').value=response.id;
+                    $('#MediaModel').modal('hide');
+                },
+                error: function(response){
+                    show_alert(
+                        'error',
+                        'MediaModel',
+                        '<p>Unable to upload <br /> Please try again after some time.',
+                        ''
+                    );
+                }
+            });
+        }
+    </script>
+{% endblock %}

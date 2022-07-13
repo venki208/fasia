@@ -1,0 +1,47 @@
+    .journey-container-div h2 {
+        font-size: 35px;
+        font-weight: 700;
+        line-height: 40px;
+        margin-top: 50px;
+        color: #fdcb41;
+    }
+
+    .journey-container-div p {
+        font-size: 18px;
+        margin-top: 30px;
+    }
+
+    @media screen and (min-width:700px) {
+        .how-to-become-member-div img {
+            width: 70% !important;
+        }
+    }
+
+    @media screen and (min-width:500px) {
+        .how-to-become-member-div img {
+            margin: auto;
+            width: 90%;
+        }
+        .how-to-become-mobile-img {
+            display: none;
+        }
+        .how-to-become-member-img {
+            margin-top: 50px !important;
+            margin-bottom: 50px !important;
+        }
+    }
+
+    @media screen and (max-width:500px) {
+        .how-to-become-member-img {
+            display: none;
+        }
+        .how-to-become-mobile {
+            width: 70% !important;
+            margin-top: 80px;
+        }
+        .how-to-become-mobile-img {
+            width: 85%;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+    }

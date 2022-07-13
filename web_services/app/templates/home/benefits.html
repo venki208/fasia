@@ -1,0 +1,101 @@
+{% extends 'home/login.html' %}
+{% block custome_css %}
+    {{super()}}
+    <link href="{{ url_for('static', filename='css/benefits.css')}}" rel="stylesheet">
+{% endblock %}
+{% block sm_sticky %}
+{% endblock %}
+{% block main_content %}
+<section class="">
+    <div class="container">
+        <h1 class="benefits">MEMBERSHIP BENEFITS</h1>
+        <div class="row benefits-fasia-div">
+            <div class="col-md-12 benefits-fasia-benifites">
+                <img class="center" src="{{ url_for('static', filename='images/infographic2.png')}}" />
+            </div>
+        </div>
+        <div class="row benefits-fasia-div benefits-fasia-flex">
+            <div class="col-sm-4 col-xs-12 benefits-fasia-one text-left">
+                <div class="">
+                    <h4>1. Income - The Leading I</h4>
+                    <div class="">
+                       <ul>
+                           <li>Co – Earning</li>
+                           <li>Collaborative Earning</li>
+                           <li>Perpetuity Earning than Onetime Earning</li>
+                       </ul>
+                    </div>
+                </div>
+                <p>Achieve this through the community engagement and Embracing change.</p>
+            </div>
+            <div class="col-sm-4 col-xs-12 benefits-fasia-two text-left">
+                <div class="">
+                    <h4>2. Identity - The Supporting I</h4>
+                    <div class="">
+                        <ul>
+                            <li>Social and Community Identity with Professional Identity</li>
+                            <li>Reaching beyond Geography</li>
+                            <li>Local presence and Local service with Global Recognition</li>
+                        </ul>
+                    </div>
+                </div>
+                <p>Achieve this through the networking and ethical commitment.</p>
+            </div>
+            <div class="col-sm-4 col-xs-12 benefits-fasia-three text-left">
+                <div class="">
+                    <h4>3. Intelligence - The Enabling I</h4>
+                    <div class="">
+                        <ul>
+                            <li>Enabling Experiential Learning</li>
+                            <li>Facilitating Co-Learning, Co-Sharing</li>
+                            <li>Participating in Personalized Learning</li>
+                        </ul>
+                    </div>
+                    <p>Achieve this through co-learning and co-sharing education.</p>
+                </div>
+            </div>
+        </div>
+  
+        <div class="row benefits-fasia-div">
+            <div class="col-md-12">
+                <h3>The 3I will create Ripple effect in every advisory life cycle, leading to:</h3>
+                <img class="center" src="{{ url_for('static', filename='images/infographic1.png')}}" />
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="advisor-cycle-div-color">
+                    <h4>1. Inter-dependent entrepreneur </h4>
+                    <div class="">
+                        <ul>
+                            <li>Transforming the journey of an Intrapreneur to Entrepreneur</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="advisor-cycle-div-color">
+                    <h4>2. Inspiration </h4>
+                    <div class="">
+                        <ul>
+                            <li>Inspiring the future generation to be the Future Advisors </li>
+                            <li>Inspiring the fraternity to co- learn and co- share </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="advisor-cycle-div-color">
+                    <h4>3. Influencer</h4>
+                    <div class="">
+                        <ul>
+                            <li>Influencing policies and product designs than just the consumers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block bootstrap_modal %}
+    {{super()}}
+{% endblock %}

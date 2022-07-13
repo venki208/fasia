@@ -1,0 +1,213 @@
+{% extends 'home/index.html' %}
+{% block custome_css %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/give_advice.css')}}">
+{% endblock %}
+{% block sm_sticky %}
+{% endblock %}
+{% block main_content %}
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                {% block left_content %}
+                <div class="col-sm-9">
+                    {% if advice_data or advice_question_id %}
+                    <a class="back-link" href="/advice/get-all-advices" title="Click to go back to Advices">< Back</a>
+                    {% endif %}
+                    {% if advice_data and not advice_question_id %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>search results found containing <b>{{advice_data}}</b></h4>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="row">
+                        <ul class="breadcrumb">
+                            <li><a href="/dashboard">Dashboard</a></li>
+                            <li class="active">Give Advice</li>
+                        </ul>
+                        {% if advice %}
+                            {% for advice in advice %}
+                            <div class="col-md-12">
+                                <h2 class="get-advice-heading"><a href="/advice/get-search-advice?search_question_id={{advice._id|format_id()}}">{{advice.title}}</a></h2>
+                                <p class="get-advice">By: {{advice.name}} | {{advice.created_date|format_date('%d %B %Y')}} | {{advice.created_date|format_date('%H:%M')}} </p>
+                                <p class="get-advice-desc">{{advice.description|truncate(250)}}</p>
+                                <div id="doc_list_div">
+                                    {% for url in advice.document_urls %}
+                                        {% if url %}
+                                            {% if loop.index == 1%}
+                                            <p class="get-advice-desc">Click to download related documents in below.</p>
+                                            {% endif %}
+                                            <a href="{{url}}" target="_blank" style="color:#1c4888">Document- {{loop.index}}</a>
+                                            <br />
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button"
+                                            class="btn get-advice-button"
+                                            {% if not advice.email == user.email %}
+                                                g_adv_id="{{advice._id|format_id()}}"
+                                                name="give_advice"
+                                            {% else %}
+                                                disabled
+                                            {% endif %}
+                                        >
+                                            Give Advice
+                                        </button>
+                                        {#
+                                        <button type="button" g_adv_id="{{advice._id|format_id()}}" name="view_advice_answer_btn" class="btn get-advice-button">View Answers</button> #}
+                                    </div>
+                                </div>
+                                <hr class="border-div">
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="col-md-12">
+                                <h3>No advices found.</h3>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="row text-center">
+                        {% if pages %}
+                            <ul class="pagination">
+                            {% if has_prev %}
+                                {% if not is_search_result %}
+                                    <li><a id="{{prev_num}}"> &laquo; </a></li>
+                                {% else %}
+                                    <li><a href="/advice/get-search-advice?search_answers={{advice_data}}&page={{prev_num}}"> &laquo; </a></li>
+                                {% endif %}
+                            {% endif %}
+                            {% for page in pages|iter_pages() %}
+                                {% if page %}
+                                    {% if page != current_page %}
+                                        {% if not is_search_result %}
+                                            <li><a id="{{page}}">{{page}}</a></li>
+                                        {% else %}
+                                            <li><a href="/advice/get-search-advice?search_answers={{advice_data}}&page={{page}}">{{page}}</a></li>
+                                        {% endif %}
+                                    {% else %}
+                                        <li class="disabled"><a disabled="disabled">{{page}}</a></li>
+                                    {% endif %}
+                                {% else %}
+                                    <li class="disabled"><a disabled="disabled">. . .</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if has_next %}
+                                {% if not is_search_result %}
+                                    <li><a id="{{next_num}}"> &raquo; </a></li>
+                                {% else %}
+                                    <li><a href="/advice/get-search-advice?search_answers={{advice_data}}&page={{next_num}}"> &raquo; </a></li>
+                                {% endif %}
+                            {% endif %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endblock %}
+                {% block side_bar_content %}
+                <div class="col-sm-3">
+                    <div class="widget" id="search_div">
+                        <div>
+                            <form action="/advice/get-search-advice" method="GET" name="search_form">
+                                <h6 class="side-search">Search</h6>
+                                <div class="input-group">
+                                    <input type="text" id="search_answers" name="search_answers" class="form-control" autocomplete="off" aria-label="">
+                                    <span class="btn input-group-addon search-addon" id="search_btn"><i class="glyphicon glyphicon-search"></i></span>
+                                </div>
+                                <input type="hidden" name="search_question_id">
+                            </form>
+                        </div>
+                        <span class="help-block" id="help_text_search_div"></span>
+                        <div id="list_ad"></div>
+                        <hr class="border-div">
+                        <div>
+                            {% if rated_advices %}
+                            {% for ad in rated_advices %}
+                                <h4 class="get-side-heading"><a href="/advice/get-search-advice?search_question_id={{ad._id|format_id()}}">{{ad.title|truncate(24)}}</a></h4>
+                                <p class="get-side-advice">By: {{ad.name}} | {{ad.created_date|format_date('%d %B %Y')}} | {{ad.modified_date|format_date('%H:%M')}}</p>
+                                <p>{{ad.description|truncate(34)}}
+                                <a class="read-more" href="/advice/get-search-advice?search_question_id={{ad._id|format_id()}}">Read More</a></p>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <div class="hidden">
+        <form class="hidden" action="/advice/get-all-advices" method="POST" id="hidden_page_form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <input type="hidden" name="page_num">
+        </form>
+    </div>
+{% endblock %}
+{% block bootstrap_modal %}
+    {{ super() }}
+    <div class="modal fade fasiamodal" id="giveAdvisorModal" tabindex="-1" role="dialog" aria-labelledby="getAdvisorModalLabel" aria-hidden="true">
+        <div class="modal-dialog fasia-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;</button>
+                    <h4 class="fasiamodal-title" id="GiveAdviseModalLabel">
+                        GIVE ADVICE
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="fasia-form" id="give_advice_form" name="give_advice_form" onsubmit="return false;">
+                                <p>Your advice may change some body's life. Help people with your expertise.</p>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="5" id="give_advice_answer" name="give_advice_answer" placeholder="Answer" min-length="5" required></textarea>
+                                    <span class="help-block" id="help_advice_message"></span>
+                                </div>
+                                <input type="hidden" name="advice_id" value="">
+                                <input type="hidden" name="give_advice_doc_urls" value="">
+                                <input type="reset" value="reset" class="hide" name="reset_btn">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form name="give_advice_doc" id="give_advice_doc" method="post" class="fasia-form upload-form contact-form" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label id="paper_clip1" class="fileinput fileinput-new" data-provides="fileinput">Upload
+                                        <span class="btn sub-btn">
+                                            <i class="fa fa-paperclip" aria-hidden="true"></i>
+                                            <input type="file" id="give_advice_document" name='document' class="hide">
+                                        </span>
+                                    </label>
+                                </div>
+                            </form>
+                            <div class="fasia-form upload-form" id="give_advice_uploaded_docs">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="button" id="advice_button" name="advice_button" class="btn sub-btn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="advice_list_common_modal_div"></div>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+        $('.pagination a').on('click', function(e){
+            var clicked_id = this.id;
+            $("#hidden_page_form").find('[name="page_num"]').val(clicked_id);
+            $("#hidden_page_form").submit();
+        });
+
+        $("[name='give_advice']").click(function(e){
+            var question_id = this.g_adv_id;
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/give_advice.js') }}"></script>
+{% endblock %}

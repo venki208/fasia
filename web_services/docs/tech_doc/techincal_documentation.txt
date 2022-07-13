@@ -1,0 +1,112 @@
+* FASIA is Implemented using Flask framework v0.12.2*
+-----------------------------------------------------
+-> front end we used bootstrap framework and jquery
+-> backend we used python
+-> database --> Mongo db (we used MongoEngine as database layer which used to connect from
+ 	flask to mongodb)
+-> for Login Mechanisam we used Flask-Login, flask-mongoengine packages used 
+
+
+******************************************************************************************
+										BASIC
+******************************************************************************************
+
+Endpoint : 
+---------
+	-> when user hits url, It will reach the respective function. the final reaching 
+		function called 
+	ex: http://localhost/dashboard
+		from above the requesting url is * /dashboard *
+		application will check the * /dashboard * url it will execute the function
+		
+		@app.route('/dashboard', methods=['GET', 'POST'])
+		def dashboard_view():
+			return 'END POINT'
+		
+		from above example */dashboard* is requested url and endpoint is *dashboard_view()*
+
+Before Request :
+---------------
+	--> if u mention above decorator at any one of above the function in app, That 
+		function will call first 
+	--> for every request before reaching to main end point[check endpoint meaning basic] 
+		function 
+	ex: @app.before_request
+		def call_first():
+			return 'this function called'
+
+==========================================================================================
+
+-----------------
+Login Middleware:
+-----------------
+	filename: web_services/app/views/login_middleware.py
+
+	Use: This will check every request is authenticated or not
+
+	How it works: 
+		--> In Flask we are having before request decorator( @before_request --> check in 
+		basic block for brief description. )
+		--> we used that decorator above the check_login_session() function.
+		--> this function will call for each request before reaching to endpoint
+		--> Flask Login will handel the current user authentication
+		--> so we are importing the current_user from flask_login
+		--> current_user.is_authenticated will give the True/Flase result
+		--> using that result we are return the login manager *unauthorized()* function
+		--> login manager un authorized function will call the *login_view* which we 
+			defined in app/__init__.py
+		--> here login_view contains the login function
+		--> so finally it will navigate to the login url
+	
+	=> Generally in application we don't want to check authentication to all URL's
+		--> in this case we mention Exempt_urls, Exempt_regex_urls variable contains 
+			array of URL's
+		--> Those urls will be exempt to check authentication
+
+		" Reference url: http://flask.pocoo.org/docs/1.0/patterns/deferredcallbacks/ "
+
+
+-------
+Login
+-------
+    filename: web_services/app/views/users.py
+    --> login page loads with '/login' url
+    --> login() function will call using above url
+ 
+    Use:
+        Get:
+			parameteres passing:
+				page_title --> holds the page title data
+				facebook_api_key, google_api_key, linkedin_api_key --> holds the secrete 
+					keys of social media application. using this keys we are authenticating
+					to social media and getting information.
+			
+			End user view:
+				redirecting to login page
+
+		Post:
+			--> required to post data
+				1. username
+				2. password
+			--> Using *authenticate(username, password)* function Validating the credetials 
+				and getting the user(User table obj) object. If credetials are wrong 
+				function return None
+			--> using user object checking user is disabled or not. 
+			-->	user must is_disabled=Flase and should be registered   
+			--> after satisifying the above all conditions using login_user() function 
+				making user login
+			--> login_user(user object, remember=True/Flase) expects user object
+			--> by default remember = False
+			--> remember = True -> A cookie will be saved on the user’s computer, and then
+				Flask-Login will automatically restore the user ID from that cookie if it 
+				is not in the session. The amount of time before the cookie expires can be
+				set with the REMEMBER_COOKIE_DURATION configuration or it can be passed to
+				login_user.
+			--> login_user is imported from flask_login pkg
+
+			End user view:
+				--> if credetials are wrong user cant move from login page
+				--> if credetials are right user will navigate to dashboard page
+
+
+

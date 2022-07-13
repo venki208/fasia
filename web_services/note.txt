@@ -1,0 +1,169 @@
+flask study
+-------------
+http://slides.skien.cc/flask-hacks-and-best-practices/#18
+
+
+
+referals:
+https://scotch.io/tutorials/build-a-crud-web-app-with-python-and-flask-part-one
+https://flask-pymongo.readthedocs.io/en/latest/
+http://pythonhosted.org/Flask-MongoAlchemy/
+https://realpython.com/blog/python/using-flask-login-for-user-management-with-flask/
+https://flask-login.readthedocs.io/en/latest/#installation
+https://flask-mongoengine.readthedocs.io/en/latest/
+US zip code
+-----------
+https://pypi.python.org/pypi/uszipcode/0.1.3
+
+googlemaps
+https://github.com/rochacbruno/Flask-GoogleMaps
+
+file uploads
+http://flask.pocoo.org/docs/0.12/patterns/fileuploads/
+
+
+
+**********************************
+MONGO db
+-----------------------------------
+  mandatory checks:
+  1. bind ip should not be 0.0.0.0
+  2. mongo should have authentication
+
+  -->Generally when you type mongo in console it will open the mongo shell and allow you 
+    to do all operations.
+  --> if we follow same in servers, hackers can easily delete or drop the data
+  --> so to avoid those we need to add Access control to mongo db
+
+  steps to follow:
+    1. we need to Enable the auth
+      a. go inside the shell using "mongo" command
+      b. execute the following code
+        use admin
+        db.createUser(
+          {
+            user: "<username>",
+            pwd: "<pwd>",
+            roles: [ {
+                "role" : "readWrite",
+                "db" : "admin"
+              },
+              {
+                "role" : "userAdminAnyDatabase",
+                "db" : "admin"
+              }
+            ]
+          }
+        )
+      c. after creating user restart the mongo server
+      d. mongo --port 27017 -u "<username>" -p "<pwd>" --authenticationDatabase "<db name>"
+        use admin
+        db.auth('<username>', '<pwd>') --> has to give same username & pwd while creating 
+        account
+        --port is optional when u use local mongo
+      e. open /etc/mongo.conf
+      f. uncomment the security and add authorization: "enabled"
+        --> it should be like this
+            security:
+                authorization: "enabled"
+      g. restart the mongo server
+      h. you can see the authentication is success or not by listing the collections
+        --> for listing collections type following command
+          show collections
+          listed tables:
+            system.users
+            system.version
+
+            you can see the all users list by typing 
+              --> db.system.users.find({})
+      i. once all operations done you have successfully created admin
+      j. now we will create fasiadb
+      k. login into admin account using username and pwd
+      l. execute following commands to create database
+        use fasiadb
+        db.createUser({
+          user: "fasiaadmin",
+          pwd: "fasiaadmin@123#",
+          roles:[
+                  {
+                    "role" : "readWrite",
+                    "db" : "fasiadb"
+                  },
+            ]
+        })
+      m. exit the shell
+      n. come again inside mongo shell by using username and password
+        mongo --port 27017 -u "fasiaadmin" -p "fasiaadmin@123#" --authenticationDatabase "fasiadb"
+        use fasiadb
+        db.auth('fasiaadmin', 'fasiaadmin@123#')
+
+    2. we can grant the access to other databases while login into mongo using admin
+      ex: db.grantRolesToUser("admin", ["readWrite", {role:"read", db:"fasiadb"}])
+       --> in above condition admin has read access to fasiadb
+
+    3. followed links 
+      a. https://medium.com/mongoaudit/how-to-enable-authentication-on-mongodb-b9e8a924efac
+      b. https://docs.mongodb.com/manual/tutorial/enable-authentication/
+    
+    update data
+    =============
+    db.users.update(
+        { "username" : "admin@mobisir.net" },
+        {
+          $set: { "home_zipcode": "", "home_city":"" },
+        }
+    )
+
+    delete field
+    ===================
+    db.users.update({}, {$unset: {lastModified:1}}, false, true);
+
+
+email field error -->http://docs.mongoengine.org/apireference.html#mongoengine.fields.EmailField
+
+
+uwsgi setup:
+-----------
+
+https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-14-04
+
+configurations
+https://stackoverflow.com/questions/25745390/how-to-serve-different-config-settings-in-flask-app-to-uwsgi-using-create-app
+
+Mongo Signals:
+http://docs.mongoengine.org/guide/signals.html
+Northeast -1
+Midwest -2
+South -3
+West -4
+
+
+FROM debian:8
+MAINTAINER Mobisir "admin@mobsir.net"
+RUN apt-get update -y
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository -y ppa:nginx/stable
+RUN apt-get install -y build-essential vim nginx python python-dev python-setuptools python-software-properties supervisor wget python-pip
+
+COPY . /app
+WORKDIR /app
+
+RUN pip install -r requirement.txt
+RUN rm /etc/nginx/sites-enabled/default
+RUN ln -s /app/nginx/nginx-http.conf /etc/nginx/sites-enabled/
+RUN cp -r /app/nginx/snippets /etc/nginx/
+RUN cp -r /app/nginx/ssl /etc/
+CMD ["uwsgi", "--ini", "fasiamain-uwsgi.ini"]
+
+
+db.createUser(
+  {
+    user: "admin",
+    pwd: "nf@vol",
+    roles: [ {
+        "role" : "userAdminAnyDatabase",
+        "db" : "admin"
+      }
+    ]
+  }
+)

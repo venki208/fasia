@@ -1,0 +1,44 @@
+.fasia-letest-footer {
+    padding: 30px 0px;
+}
+
+.fasia-letest-footer h2 {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.fasia-letest-footer ul {
+    padding-left: 0px;
+}
+
+.fasia-letest-footer ul li {
+    list-style: none;
+    font-size: 11px;
+    line-height: 25px;
+    color: #717171;
+}
+
+.content-color {
+    color: #717171 !important;
+}
+
+@media (max-width:767px) and (min-width:550px) {
+    .fasia-letest-footer ul {
+        min-height: 150px;
+    }
+}
+
+@media (max-width:550px) and (min-width:380px) {
+    .fasia-letest-footer ul {
+        min-height: 150px;
+    }
+    .fasia-footer-400 {
+        width: 50%;
+    }
+}
+
+@media (max-width:380px) {
+    .fasia-footer-400 {
+        width: 100%;
+    }
+}

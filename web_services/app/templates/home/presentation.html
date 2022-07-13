@@ -1,0 +1,28 @@
+{% extends 'home/login.html' %}
+{% block custome_css %}
+    {{super()}}
+    <link href="{{ url_for('static', filename='css/presentation.css')}}" rel="stylesheet">
+{% endblock %}
+{% block sm_sticky %}
+{% endblock %}
+{% block main_content %}
+<section class="">
+    <div class="container">
+        <h1 class="presentation">PRESENTATION</h1>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2 col-sm-6 col-xs-6">
+                <p class="presen">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                    <a class="content-color" href="/static/docs/why_to_be_a_FASIA_member.pdf" target="_blank">Why to be a fasia member?</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block bootstrap_modal %}
+    {{super()}}
+{% endblock %}
+{% block scripts %}
+    {{super()}}
+{% endblock %}

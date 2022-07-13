@@ -1,0 +1,27 @@
+<div class="table-responsive list_calender_table">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Update/Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in admin_events %}
+            <tr>
+                <td>{{event.event_name}}</td>
+                <td>{{event.description|default('', true)}}</td>
+                <td>{{event.start_date|default('', true)|format_date('%d-%m-%Y')}}</td>
+                <td>{{event.end_date|format_date('%d-%m-%Y') if event.end_date }}</td>
+                <td>
+                    <button type="button" name="update_event_btn" class="btn fasia-btn" id="{{event.id}}"><i class="far fa-edit"></i></button>
+                    <button type="button" name="delete_event_btn" class="btn fasia-btn" id="{{event.id}}"><i class="fas fa-trash-alt"></i></button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

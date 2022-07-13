@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{page_title+' | ' if page_title else ''}}FASIA</title>
+
+        <!-- Favicons -->
+        <link href="{{ url_for('static', filename='images/favicon.png') }}" rel="icon">
+        <link href="{{ url_for('static', filename='images/favicon.png') }}" rel="apple-touch-icon">
+
+        <!--======== All Stylesheet =========-->
+        <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,900,700,600,300,200' rel='stylesheet' type='text/css'>
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/jquery-ui.min.css') }}" rel="stylesheet">
+
+
+        <script src="{{ url_for('static', filename='js/jquery-2.1.1.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/lib/jquery-ui.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <link href="{{ url_for('static', filename='css/font-awesome.min.css')}}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/linearicons.css')}}" rel="stylesheet">
+
+        <!--=== end plugins ===-->
+        <link href="{{ url_for('static', filename='css/fasia.css')}}" rel="stylesheet">
+        {% block custome_css %}
+        <link href="{{ url_for('static', filename='css/customAnimation.css')}}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='js/lib/intl-tel-input-js/css/intlTelInput.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/home_page.css') }}">
+        <style type="text/css">
+            .help-contact{
+                color: #FFF;
+            }
+            body{
+                padding-right: 0px !important;
+            }
+        </style>
+        {% endblock %}
+        <link href="{{ url_for('static', filename='css/responsive.css')}}" rel="stylesheet">
+        {% block lib_scripts %}
+        <script src="{{ url_for('static', filename='js/lib/intl-tel-input-js/js/intlTelInput.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/lib/intl-tel-input-js/js/utils.js') }}"></script>
+        {% endblock %}
+        <script src="{{ url_for('static', filename='js/common.js')}}"></script>
+    </head>
+    <body data-spy="scroll" data-target=".nav-top">
+        {% block sm_sticky %}
+            <div class="icon-bar sticy-icon-bar">
+                <a href="https://www.facebook.com/FASIA4U/" data-toggle="tooltip" title="Facebook" class="facebook" target="_blank">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a href="https://plus.google.com/104005516112531410090" class="google" target="_blank" data-toggle="tooltip" title="Google+">
+                    <i class="fa fa-google"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/fasia-america-347836159/" class="linkedin" target="_blank" data-toggle="tooltip" title="Linkedin">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+                <div id="sm-more" style="display:none;">
+                    <a href="https://twitter.com/Fasiaamerica" class="twitter" target="_blank" data-toggle="tooltip" title="Twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCayfVuFc18dw1nOHrJlgGnA?view_as=subscriber" class="youtube" target="_blank" data-toggle="tooltip" title="Youtube">
+                        <i class="fa fa-youtube"></i>
+                    </a>
+                    <a href="https://www.instagram.com/fasiausa/" class="instagram" target="_blank" data-toggle="tooltip" title="Instagram">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="https://www.reddit.com/user/fasiaamerica" class="reddit" target="_blank" data-toggle="tooltip" title="Reddit">
+                        <i class="fa fa-reddit"></i>
+                    </a>
+                </div>
+                <a id="show_more" class="more" target="_blank" onclick="show_more_sm()" data-toggle="tooltip" title="More...">
+                    <i class="fa fa-sort-desc"></i>
+                </a>
+            </div>
+        {% endblock %}
+        <!-- header -->
+        {% include 'home/header.html' ignore missing with context %}
+        <!-- end header -->
+        <div class="parent-section">
+            <!-- Loading effect -->
+            <div class='loader'>
+                <div class="loader-div">
+                    <img src="{{ url_for('static', filename='images/loader/loading.gif') }}">
+                </div>
+            </div>
+            <!-- end loader -->
+        {% block main_content %}
+        <!-- intro carousel -->
+        <section class="intro">
+            <div id="myCarousel" class="carousel slide fasia-intro-slider" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                    <li data-target="#myCarousel" data-slide-to="4"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" style="height:90vh;" role="listbox">
+                    <div class="item active" style="height:90vh;">
+                        <img class="img-responsive hide-sm" src="{{ url_for('static', filename='images/banners/1.jpg')}}"/>
+                        <img class="img-responsive hide-md" src="{{ url_for('static', filename='images/banners/mobile/1.png')}}"/>
+                        <div class="centered">
+                            <h2>First and largest Indo American advisors community</h2>
+                            <p><span>Lets grow together</span></p>
+                        </div>
+                    </div>
+
+                    <div class="item" style="height:90vh;">
+                        <img class="img-responsive hide-sm" src="{{ url_for('static', filename='images/banners/2.jpg')}}"/>
+                        <img class="img-responsive hide-md" src="{{ url_for('static', filename='images/banners/mobile/2.png')}}"/>
+                        <div class="centered">
+                            <h2>A society for Advisors by Advisors</h2>
+                            <p><span>Inviting all wealth creators to join hands</span></p>
+                        </div>
+                    </div>
+
+                    <div class="item" style="height:90vh;">
+                        <img class="img-responsive hide-sm" src="{{ url_for('static', filename='images/banners/3.jpg')}}"/>
+                        <img class="img-responsive hide-md" src="{{ url_for('static', filename='images/banners/mobile/3.png')}}"/>
+                        <div class="centered">
+                            <h2>Financial advisor society for Indo Americans</h2>
+                            <p><span><a data-toggle="modal" data-target="#loginModal">Join now</a></span></p>
+                        </div>
+                    </div>
+
+                    <div class="item" style="height:90vh;">
+                        <img class="img-responsive hide-sm" src="{{ url_for('static', filename='images/banners/4.jpg')}}">
+                        <img class="img-responsive hide-md" src="{{ url_for('static', filename='images/banners/mobile/4.png')}}">
+                        <div class="centered">
+                            <h2>Investment advisor society for Indo Americans</h2>
+                            <p><span><a data-toggle="modal" data-target="#loginModal">Join now</a></span></p>
+                        </div>
+                    </div>
+
+                    <div class="item" style="height:90vh;">
+                        <img class="img-responsive hide-sm" src="{{ url_for('static', filename='images/banners/5.jpg')}}">
+                        <img class="img-responsive hide-md" src="{{ url_for('static', filename='images/banners/mobile/5.png')}}">
+                        <div class="centered">
+                            <h2>Real estate advisor society for Indo Americans</h2>
+                            <p><span><a data-toggle="modal" data-target="#loginModal">Join now</a></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--======== end intro Carousel =========-->
+
+        <!--======== Who we are Sec =========-->
+        <section id="whoweare" class="who-we-are bg-blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 text-center col-sm-12 col-xs-12">
+                        <div class="section-header">
+                            <h3 class="text-white animation-element slide-up">Who we are ?</h3>
+                        </div>
+                        <p class="section-para text-white animation-element slide-up">
+                          A society for Indo-American advisors, by advisors committed to protect and grow their lifetime assets of earnings,
+                          education, employment, equality and stand as a guard to help everyone in wealth creation and protection.
+                         </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--======== end Our who-we-are =========-->
+
+        <!--======== What we do Sec =========-->
+        <section id="whatwedo" class="what-we-do">
+           <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <div class="section-header">
+                            <h3 class="section-title">What We Do ?</h3>
+                        </div>
+                        <!-- <h1 class="section-title">What We Do ?</h1> -->
+                    </div>
+                </div>
+            <div class='row'>
+                <div class='col-md-12'>
+                    <div class="carousel slide what-we-do-carousel" data-ride="carousel" id="quote-carousel">
+                        <!-- Bottom Carousel Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#quote-carousel" data-slide-to="1"></li>
+                            <li data-target="#quote-carousel" data-slide-to="2"></li>
+                        </ol>
+                        <!-- Carousel Slides / Quotes -->
+                        <div class="carousel-inner">
+                        <!-- Quote 1 -->
+                            <div class="item active">
+                                <div class="row">
+                                    <div class="col-md-12  slider-block img-banner1">
+                                        <div class="centered">
+                                            <h2 class="text-center">
+                                                <span class="orange-span-bg">OUR VISION</span>
+                                            </h2>
+                                            <h3 class="text-center">To be the best and the most preferred advisor community to everyone</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Quote 2 -->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-md-12 slider-block img-banner2">
+                                        <div class="centered">
+                                            <h2 class="text-center"><span class="orange-span-bg">OUR MISSION</span></h2>
+                                            <ul>
+                                                <li><strong>Bringing together</strong> - To bring together all Indo American Financial Advisors and allied professionals as a community and enable them to be a global advisor</li>
+                                                <li><strong>Make stronger</strong> - Increase the strength of the Indo American advisory community by 100% in next 3 years purely by a community support system</li>
+                                                <li><strong>Grow their business</strong> - Create accessibility to cross border financial products and the knowledge through a legitimate and trustworthy channel and regulatory bodies</li>
+                                                <li><strong>Enrich Culture</strong> - Provide a forum for FASIA members to enrich their cultural, social, and educational value</li>
+                                                <li><strong>Enable Education</strong> - Help the members through Continuing Advisory Education (CAE) to maintain their high level of Advisory knowledge in specific Fields.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Quote 3 -->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-md-12 slider-block img-banner3">
+                                        <div class="centered">
+                                            <h2 class="text-center"><span class="orange-span-bg">COMMITMENT</span></h2>
+                                            <ul>
+                                                <li>Foster the professional relationships among Indo American and other minority professionals working in the financial services industry.</li>
+                                                <li>Committed to strive continuously to expose its members to cutting edge trends and opportunities which will assist them in advancing their businesses and careers.
+                                                </li>
+                                                <li>Committed to take the leadership and advocacy in connecting those who provide, support and benefit from professional financial planning.</li>
+                                                <li>We will demonstrate and support a professional commitment to eradicating financial illiteracy via educational initiatives and a client-centered financial planning process.</li>
+                                                <li>Committed to help aspiring Indo American to be an entrepreneur in financial domain as an advisor.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+        <!-- End of what we do Sec  -->
+
+        <!--======== Your Participation Sec =========-->
+        <section id="yourpart" class="your-participation bg-skyblue">
+            <div class="container">
+                <div class="row">
+                    <div class="section-header">
+                        <h3 class="section-title">Your participation</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 portfolio-item filter-app wow fadeInUp">
+                        <div id="lottie"></div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="animation-side-content">
+                            <ul>
+                                <li><strong>FASIA</strong> is a non-profit organization.</li>
+                                <li>First 2000 membership is free, only a registration fee of 25 USD per person.</li>
+                                <li>Inviting founding members at city level to open chapters.</li>
+                                <li>Institutions and Academics are Invited to apply for founding membership.</li>
+                            </ul>
+                            <p class="knowmore-line">To know more contact us.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--======== end Your Participation Sec =========-->
+
+        <!--=========  Search Member section =========-->
+        <section id="goal">
+            <div class="container goal-container">
+                <div class="section-header">
+                    <h3>Search Member/ Chapter</h3>
+                </div>
+                <div class="col-xs-12 search-member-global">
+                    <div class="row">
+                        <!--Radio group-->
+                        <form class="text-center form-inline" onsubmit="return false;">
+                            <div class="search-member-chapter">
+                                <div class="form-check">
+                                    <label>
+                                        <input type="radio" name="radio" id="radio_member" onclick="show_search(id);" checked=true>
+                                        <span class="label-text">Member</span>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label>
+                                        <input type="radio" name="radio"  id="radio_chapter" onclick="show_search(id);">
+                                        <span class="label-text">Chapter</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-offset-2" name="find_member" id="find_chapter">
+                                <div id="imaginary_container"> 
+                                    <div class="input-group stylish-input-group">
+                                        <input type="text" id="search_text" class="form-control"  placeholder="Search by Email or Mobile">
+                                        <span class="input-group-addon">
+                                            <button type="button" onclick="get_data();">
+                                                <span class="glyphicon glyphicon-search">
+                                                </span>
+                                            </button>  
+                                        </span>
+                                    </div>
+                                </div>
+                            </div> 
+                        </form>
+                        <!--Radio group-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ==== end search member section ===== -->
+
+        <!--=========  Fasia members Section =========-->
+        <section id="goal" class="member-section">
+            <div id="testimonial4" class="fasia-testmonial carousel slide testimonial4_indicators testimonial4_control_button thumb_scroll_x swipe_x" data-ride="carousel" data-pause="hover" data-interval="5000" data-duration="2000">
+                <div class="container">
+                    <div class="row carousel-inner-row-main">
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active row">
+                                <div class="col-xs-12 col-sm-6 carousel-inner-row">
+                                    <p><i class="fa fa-quote-left" aria-hidden="true"></i> Executive council Members of FASIA AMERICA at FASIA regional chapter Philadelphia initiation meeting <i class="fa fa-quote-right" aria-hidden="true"></i></p>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <img src="static/images/home-img/fasia-pic1.png" class="img-responsive" />
+                                </div>
+                            </div>
+                            <div class="item row">
+                                <div class="col-xs-12 col-sm-6 carousel-inner-row">
+                                    <p><i class="fa fa-quote-left" aria-hidden="true"></i> Welcoming Mr.Talpa Saibaba Talluri V S to FASIA family as Regional ECM by Executive Council Members of FASIA AMERICA <i class="fa fa-quote-right" aria-hidden="true"></i></p>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <img src="static/images/home-img/fasia-pic2.png" class="img-responsive" />
+                                </div>
+                            </div>
+                            <div class="item row">
+                                <div class="col-xs-12 col-sm-6  carousel-inner-row">
+                                    <p><i class="fa fa-quote-left" aria-hidden="true"></i> Welcoming Mr.Venkatesh Sadagopan to FASIA family by Executive Council Members of FASIA AMERICA <i class="fa fa-quote-right" aria-hidden="true"></i></p>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <img src="static/images/home-img/fasia-pic3.png" class="img-responsive" />
+                                </div>
+                            </div>
+                            <div class="item row">
+                                <div class="col-xs-12 col-sm-6  carousel-inner-row">
+                                    <p><i class="fa fa-quote-left" aria-hidden="true"></i> Launching "LEAD INDIA" project in US in memory of honorable former President of India Mr.A.P.J.Abdul Kalam by Executive Council Members of FASIA AMERICA <i class="fa fa-quote-right" aria-hidden="true"></i></p>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <img src="static/images/home-img/fasia-pic4.png" class="img-responsive" />
+                                </div>
+                            </div>
+                            <div class="item row">
+                                <div class="col-xs-12 col-sm-6  carousel-inner-row">
+                                    <p>
+                                        <i class="fa fa-quote-left" aria-hidden="true"></i> 
+                                        Rendezvous of FASIA AMERICA Executive Council Members
+                                        <i class="fa fa-quote-right" aria-hidden="true"></i>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <img src="static/images/home-img/fasia-pic5.png" class="img-responsive" />
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left carousel-control" href="#testimonial4" role="button" data-slide="prev">
+                            <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        </a>
+                        <a class="right carousel-control" href="#testimonial4" role="button" data-slide="next">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section><!-- #team -->
+        <!-- === end Fasia member section ======== -->
+
+        <!--======== Become member section =======-->
+        <section id="whoweare" class="who-we-are fasia-inviting-licensed bg-blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 text-center col-sm-12 col-xs-12">
+                        <p class="section-para text-white animation-element slide-up">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            FASIA inviting licensed Professionals to become members
+                            <i class="fa fa-quote-right" aria-hidden="true"></i>
+                        </p>
+                        <button type="button" class="btn fasia-contact-btn">
+                            KNOW MORE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--======== end Become member section =======-->
+
+        <!--======== founding-sponsors Sec =========-->
+        <section  class="founding-sponsors">
+            <div class="container">
+                <div class="row">
+                    <div class="section-header wow fadeInUp">
+                    <h3>Founding sponsors</h3>
+                    </div>
+                </div>
+                <div class="row animation-element slide-left">
+                    <div class="col-xs-6">
+                        <a href="http://upwrdz.com" target="_blank">
+                            <img src="{{ url_for('static', filename='images/upwrdz-logo.png')}}" class="img-responsive pull-right" alt="sponsors-logo">
+                    </a>
+                    </div>
+                    <div class="col-xs-6" left>
+                        <a href="https://uplyf.com" target="_blank">
+                            <img src="{{ url_for('static', filename='images/uplyf-logo.png') }}" alt="uplyf logo" class="img-responsive img-center">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--======== End founding-sponsors Sec =========-->
+
+        <!--======== contact =========-->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 col-sm-7 col-xs-12 text-center">
+                        <h1 class="text-white getin get-in-touch">Get in Touch</h1>
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-xs-12">
+                        <div class="form">
+                            <div id="sendmessage">Your message has been sent. Thank you!</div>
+                            <div id="errormessage"></div>
+                            <form method="post" role="form" class="contactForm" name="contact_us_form">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required="true" min-length="3" max-length="35" is-text='true'/>
+                                    <span class="help-block help-contact" id="help_name"></span>
+                                </div>
+                                <div class="form-group">
+                                <input type="email" class="form-control" name="email" id="contact_email" placeholder="Your Email" required="true" is-email='true'/>
+                                    <span class="help-block help-contact" id="help_email"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="mobile" required="true" is-mobile="true"/>
+                                    <span class="help-block help-contact" id="help_mobile"></span>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Message/Purpose" required="true" min-length="5" max-length="250"></textarea>
+                                    <span class="help-block help-contact" id="help_message"></span>
+                                </div>
+                                <div class="pull-right">
+                                    <button type="button" class="btn fasia-contact-btn" id="contact_us_form_btn">Send</button>
+                                    <input type="reset" name="reset_form" value="reset" class="reset-btn">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--======== end contact =========-->
+        {% endblock %}
+        </div>
+        {% block bootstrap_modal %}
+            {% if current_user.is_authenticated %}
+                <!--======== getAdvice Modal =========-->
+                {% include 'home/get_advice_modal.html' ignore missing with context %}
+            {% endif %}
+            <!-- ====== Common Modal ========= -->
+            <div class="modal fade fasiamodal" id="common_modal" tabindex="-1" role="dialog" aria-labelledby="getAdvisorModalLabel" aria-hidden="true">
+                <div class="modal-dialog fasia-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-body modal-content-align">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;</button>
+                            <div class="text-center" id="msg_type"></div>
+                            <div class="sub-div"></div>
+                            <a class="btn common-model-btn" id="common_btn">OK</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block footer %}
+        <!-- footer -->
+            {% include 'home/footer.html' ignore missing with context %}
+        <!-- end footer -->
+        {% endblock %}
+        <script src="{{ url_for('static', filename='validate.js') }}"></script>
+        <script>
+            var csrf_token = "{{csrf_token()}}";
+        </script>
+        {% if not  current_user.is_authenticated %}
+            <script>
+                var hash = localStorage.getItem("hash");
+                localStorage.setItem("hash", '');
+            </script>
+        {% endif %}
+        {% block scripts %}
+            <script src="{{ url_for('static', filename='js/gif.js')}}"></script>
+            <script src="{{ url_for('static', filename='js/animation.js')}}"></script>
+            <script src="{{ url_for('static', filename='js/custom.js')}}"></script>
+            <script src="{{ url_for('static', filename='email.js')}}"></script>
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,16 @@
+usregion.py 
+----------
+it having script code to insert data into USRegion(u_s_region) table
+
+Activate the environment and go to the scripts folder inside "fasia" directory and type
+following command to run the script
+
+(fasiaenv)fasia/scripts$ python usregion.py <filename>
+
+Above cmd will take the filename and load the data into the USRegion table.
+
+Need to check:
+--------------
+Pre installation packages in environment:
+    1. pymongo
+    2. pandas

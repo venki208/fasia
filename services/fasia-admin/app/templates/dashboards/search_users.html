@@ -1,0 +1,50 @@
+{% extends 'home/index.html' %}
+{% block custome_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='js/lib/select2/select2.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='js/lib/select2/select2-bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/view_user_details.css')}}">
+    <style>
+        .search_icon img{
+            width: 40px;
+            border-radius: 50%;
+        }
+        .select2-selection__choice img{
+            width: 40px;
+            border-radius: 50%;
+        }
+        .fasia-application .heading{
+            color: #f8cf47;
+        }
+        .form-group .select2-container--below{
+            z-index: 9999;
+        }
+    </style>
+{% endblock %}
+{% block main_content %}
+    <section class="fasia-application">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h1 class="heading">Search Member</h1>
+                </div>
+            </div>
+            <div class="col-md-offset-2 col-md-8">
+                <div class="form-group">
+                    <select class="form-control js-example-basic-multiple" name="states[]" multiple="multiple"></select>
+                </div>
+            </div>
+            <div class="row" id="user_details_view">
+                <!-- user details display here -->
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/lib/select2/select2.min.js') }}"></script>
+    <script>
+        var default_icon = '{{url_for("static", filename="images/contactimg.png")}}';
+        var requested_role = '{{requested_role}}';
+        selected_user_role = '{{session["selected_role"]|default("", None)}}';
+    </script>
+    <script src="{{url_for('static', filename='js/dashboards/search_user.js')}}"></script>
+{% endblock %}

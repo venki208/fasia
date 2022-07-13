@@ -1,0 +1,15 @@
+.brochure{
+    color: #f5c74c;
+    font-weight: 700 !important;
+    text-align: center;
+    margin-top: 0px;
+    font-size: 26px;
+    margin-bottom: 60px;
+}
+.brochure-content {
+    font-size: 18px;
+    font-weight: 600;
+    color: #474747 !important;
+    line-height:22px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,440 @@
+{% extends 'home/index.html' %}
+{% block custome_css %}
+    <style type="text/css">
+        .help-block{
+            color: red;
+            text-transform: capitalize;
+        }
+        section{
+            padding-top: 0px;
+        }
+        .form-control{
+            border: 1px solid #49494e;
+        }
+        .radio-buttons{
+            margin-top: 10px;
+        }
+    </style>
+    <link href="{{ url_for('static', filename='js/lib/intl-tel-input-js/css/intlTelInput.css') }}" rel="stylesheet">
+{% endblock %}
+{% block sm_sticky %}
+{% endblock %}
+{% block main_content %}
+    <section class="fasia-application">
+        <div class="container bg-skyblue">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h1 class="heading">Member Registration Form</h1>
+                </div>
+            </div>
+            <form method="POST" onsubmit="return false;" id="reg_form">
+                <div class="row ">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="title">Profile Picture:</h3>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="display:-webkit-inline-box;">
+                                <div class="profile-pic">
+                                    {% if user.profile_image %}
+                                        <img src="{{ user.profile_image }}" alt="profile-img" id="id_image_tag" name="id_image_tag">
+                                    {% else %}
+                                        <img src="{{ url_for('static', filename='images/contactimg.png')}}" alt="profile-img" id="id_image_tag" name="id_image_tag">
+                                    {% endif %}
+                                </div>
+                                <div class="upload-btn-div">
+                                    <button type="button" class="btn img-upload-btn" data-toggle="modal" data-target="#imageModal">
+                                        Upload
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="row" name="mem_type_div" id="mem_type_div">
+                            <div class="col-md-12">
+                                <h3 class="title">Membership Type <sup>*</sup>:</h3>
+                            </div>
+                            <div class="form-group inline-before">
+                                <div class="radio-inline">
+                                    <label><input type="radio" name="mem_type" id="regular" value="Regular"> Regular</label>
+                                </div>
+                                <div class="radio-inline">
+                                    <label><input type="radio" name="mem_type" id="student" value="Student"> Student</label>
+                                </div>
+                            </div>
+                            <div class="form-group inline-before">
+                                <div class="radio-inline">
+                                    <label><input type="radio" name="mem_type" id="affiliate" value="Affiliate"> Affiliate</label>
+                                </div>
+                                 <div class="radio-inline">
+                                    <label><input type="radio" name="mem_type" id="institutional" value="Institutional"> Institutional</label>
+                                </div>
+                            </div>
+                            <div class="form-group inline-before">
+                                <div class="radio-inline">
+                                    <label><input type="radio" name="mem_type" id="international" value="International Affiliate"> International Affiliate</label>
+                                </div>
+                            </div>
+                            <span class="help-block" id="help_mem_type"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- User Basic Information -->
+                <div class="row title-row">
+                    <div class="col-lg-1 co1-md-1 col-sm-4 col-xs-12 form-group">
+                        <label for="title">Title *</label>
+                        <select class="form-control title-form-control" name="title" id="title" required="true" is-select="true">
+                            <option value="">Select</option>
+                            <option value="mr">Mr</option>
+                            <option value="mrs">Mrs</option>
+                            <option value="ms">Ms</option>
+                            <option value="dr">Dr</option>
+                        </select>
+                        <span class="help-block" id="help_title" style="position: absolute;"></span>
+                    </div>
+                    <div class="form-group col-lg-4 co1-md-4 col-sm-4 col-xs-12">
+                        <label for="first_name">First Name *</label>
+                        <input type="text" class="form-control" placeholder="First Name" name="first_name" id="first_name" required='true' min-length="2" max-length="24" is-text="true" value="{{user.first_name|default('', true)}}"/>
+                        <span class="help-block" id="help_first_name" style="position: absolute;"></span>
+                    </div>
+                    <div class="form-group col-lg-3 co1-md-3 col-sm-4 col-xs-12">
+                        <label for="middle_name">Middle Name</label>
+                        <input type="text" class="form-control" id="middle_name" is-text="true" placeholder="Middle Name" value="{{user.middle_name|default('', true)}}">
+                        <span class="help-block" id="help_middle_name"></span>
+                    </div>
+                    <div class="form-group col-lg-4 co1-md-4 col-sm-4 col-xs-12">
+                        <label for="last_name">Last Name *</label>
+                        <input type="text" class="form-control" placeholder="Last Name" name="last_name" id="last_name" required="true" min-length="1" max-length="24" is-text="true" value="{{user.last_name|default('', true)}}" />
+                        <span class="help-block" id="help_last_name"></span>
+                    </div>
+                    <div class="form-group col-lg-2 co1-md-2 col-sm-4 col-xs-12">
+                        <label for="gender">Gender *</label>
+                        <select class="form-control" name="gender" id="gender" required="true" is-select="true">
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        <span class="help-block" id="help_gender"></span>
+                    </div>
+                    <div class="form-group col-lg-3 co1-md-3 col-sm-4 col-xs-12">
+                        <label for="dob">Date Of Birth * </label>
+                        <input type="text" name='dob' required="true" class="form-control dob-field" id="dob" value="{{user.dob|default('', true)}}">
+                        <span class="help-block" id="help_dob"></span>
+                    </div>
+                </div>
+
+                <!-- Detailed information of user -->
+                <div class="row">
+                    <div class="form-group co1-md-4 col-sm-4 col-xs-12">
+                        <label for="company">Company *</label>
+                        <input type="text" class="form-control" id="company" required="true" placeholder="Company" value="{{user.company_name|default('', true)}}">
+                        <span class="help-block" id="help_company"></span>
+                    </div>
+
+                    <div class="orm-group co1-md-4 col-sm-4 col-xs-12">
+                        <label for="designations">Designation *</label>
+                        <input type="text" class="form-control" placeholder="Designation" name="designations" id="designations" required="true" value="{{user.designations|default('', true)}}" />
+                        <span class="help-block" id="help_designations"></span>
+                    </div>
+                    <div class="orm-group co1-md-4 col-sm-4 col-xs-12">
+                        <label for="firm_agency_name">Firm / Agency Name *</label>
+                        <input type="text" class="form-control" placeholder="" name="firm_agency_name" id="firm_agency_name" required="true" value="{{user.firm_agency_name|default('', true)}}" />
+                        <span class="help-block" id="help_firm_agency_name"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                        <label for="secondary_email">Primary Email</label>
+                        <input type="text" class="form-control" class="form-control" placeholder="Primary Email" name="primary_email" id="primary_email" value="{{user.email}}" disabled/>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="secondary_email">Secondary Email</label>
+                        <input type="text" class="form-control" class="form-control" placeholder="Secondary Email" name="secondary_email" id="secondary_email" is-email="true" value="{{user.secondary_email|default('', true)}}" />
+                        <span class="help-block" id="help_secondary_email"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <h5>Do you want to consider Secondary Email ID as Primary?</h5>
+                            </div>
+                            <div class="form-group inline-before">
+                                <div class="radio-inline">
+                                    <label class="radio-buttons"><input type="radio" name="communication_email" id="yes_secondary" value="secondary"> Yes</label>
+                                </div>
+                                <div class="radio-inline">
+                                    <label class="radio-buttons"><input type="radio" name="communication_email" id="no_secondary" value="primary" checked> No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="help-block" id="help_address_type"></span>
+                    </div>
+                </div>
+
+                <!-- Graduate / Post Graduate/ Aditional Programs -->
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                        <label for="educational_qualification">Educational Qualification <br />(Graduate / Post Graduate/ Additional Programs)*</label>
+                        <textarea type="text" class="form-control" name="educational_qualification" required="true" id="educational_qualification" rows="5">{{user.educational_qualification|default('', true)}}</textarea>
+                        <span class="help-block" id="help_educational_qualification"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                        <label for="license_number" style="padding-top: 21px;">License Information(Authority/ License Number) *</label>
+                        <textarea type="text" class="form-control" name="license_number" id="license_number" rows="5" required="true">{{user.license_number|default('', true)}}</textarea>
+                        <span class="help-block" id="help_license_number"></span>
+                    </div>
+                </div>
+
+                <!--  Experince  -->
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h3 class="title">Experience</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                        <label for="product">Product * </label>
+                        <input type="text" class="form-control" placeholder="" name="product" id="product" required="true" value="{{user.products|default('', true)}}" />
+                        <span class="help-block" id="help_product"></span>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                        <label for="services">Services * </label>
+                        <input type="text" class="form-control" placeholder="" name="services" id="services" required="true" value="{{user.services|default('', true)}}" />
+                        <span class="help-block" id="help_services"></span>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                        <label for="total_year">Total Year of Practice *</label>
+                        <input type="text" class="form-control" placeholder="" name="total_year" id="total_year" required="true" is-num="true" value="{{user.total_years_practice|default('', true)}}" max-length="2"/>
+                        <span class="help-block" id="help_total_year"></span>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                        <label for="total_client">Total Client Base *</label>
+                        <input type="text" class="form-control" placeholder="" name="total_client" id="total_client" required="true" is-num="true" value="{{user.total_client_base|default('', true)}}" />
+                        <span class="help-block" id="help_total_client"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label for="award_reward">Awards and Rewards</label>
+                        <textarea type="text" class="form-control" name="award_reward" id="award_reward" rows="5">{{user.awards_rewards|default('', true)}}</textarea>
+                        <span class="help-block" id="help_award_reward"></span>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label for="socialservice">Social / Community  Service</label>
+                        <textarea type="text" class="form-control" name="socialservice" id="socialservice" rows="5">{{user.social_services|default('', true)}}</textarea>
+                        <span class="help-block" id="help_socialservice"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <h5>Please send all communication to my</h5>
+                            </div>
+                            <div class="form-group inline-before">
+                                <div class="radio-inline">
+                                    <label class="radio-buttons"><input type="radio" name="address_type" id="id_home_address" value="home" checked> Home Address</label>
+                                </div>
+                                <div class="radio-inline">
+                                    <label class="radio-buttons"><input type="radio" name="address_type" id="id_business_address" value="business"> Business Address</label>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="help-block" id="help_address_type"></span>
+                    </div>
+                </div>
+                <!--  home address -->
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h3 class="title">Home Information</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="home_street_address1">Street Address1 *</label>
+                        <input type="text" class="form-control" placeholder="" name="home_street_address1" id="home_street_address1" required="true" value="{{user.home_street_address1|default('', true)}}" />
+                        <span class="help-block" id="help_home_street_address1"></span>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="home_street_address2">Street Address2 *</label>
+                        <input type="text" class="form-control" placeholder="" name="home_street_address2" id="home_street_address2" required="true" value="{{user.home_street_address2|default('', true)}}" />
+                        <span class="help-block" id="help_home_street_address2"></span>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="home_location">Location *</label>
+                        <input type="text" class="form-control" placeholder="" name="home_location" id="home_location" required="true" value="{{user.home_location|default('', true)}}" />
+                        <span class="help-block" id="help_home_location"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="home_country">Country *</label>
+                        <input type="text" class="form-control" placeholder="" name="home_country" id="home_country" required="true" value="{{user.home_country|default('United States', true)}}" readonly/>
+                        <span class="help-block" id="help_home_country"></span>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="home_state">State *</label>
+                        <input type="text" class="form-control" placeholder="" name="home_state" id="home_state" required="true" value="{{user.home_state|default('', true)}}" />
+                        <span class="help-block" id="help_home_state"></span>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="home_city">City *</label>
+                        <input type="text" class="form-control" placeholder="" name="home_city" id="home_city" required="true" value="{{user.home_city|default('', true)}}"/>
+                        <span class="help-block" id="help_home_city"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                        <label for="home_zipcode">Zipcode *</label>
+                        <input type="text"
+                            class="form-control"
+                            placeholder=""
+                            name="home_zipcode"
+                            id="home_zipcode"
+                            value="{{user.home_zipcode|default('', true)}}"
+                            required="true"
+                            is-num="true"
+                            onchange="user_city(id, 'home_city', 'home_state', 'home_zipcode');"/>
+                        <span class="help-block" id="help_home_zipcode" ></span>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                        <label for="home_phone">Phone Number</label>
+                        <input type="text" class="form-control" placeholder="" name="home_phone" id="home_phone" value="{{user.home_phone|default('', true)}}" is-num="true" min-length="10" max-length="20"/>
+                        <span class="help-block" id="help_home_phone"></span>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                        <label for="home_mobile">Mobile Number *</label>
+                        <input type="text" class="form-control" placeholder="" name="home_mobile" id="home_mobile" required="true" is-mobile="true" value="{{user.home_mobile|default('', true)}}"/>
+                        <span class="help-block" id="help_home_mobile"></span>
+                    </div>
+                </div>
+
+                <!-- Business Information of user -->
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h3 class="title">Business Information</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" id="business_information_div">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                <label for="business_street_address1">Street Address1</label>
+                                <input type="text" class="form-control" placeholder="" name="business_street_address1" id="business_street_address1" value="{{user.business_street_address1|default('', true)}}" />
+                                <span class="help-block" id="help_business_street_address1"></span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                <label for="business_street_address2">Street Address2</label>
+                                <input type="text" class="form-control" placeholder="" name="business_street_address2" id="business_street_address2" value="{{user.business_street_address2|default('', true)}}" />
+                                <span class="help-block" id="help_business_street_address2"></span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                <label for="business_location">Location</label>
+                                <input type="text" class="form-control" placeholder="" name="business_location" id="business_location" value="{{user.business_location|default('', true)}}" />
+                                <span class="help-block" id="help_business_location"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                <label for="business_country">Country</label>
+                                <input type="text" class="form-control" placeholder="" name="business_country" id="business_country" value="{{user.business_country|default('United States', true)}}" readonly/>
+                                <span class="help-block" id="help_business_country"></span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                <label for="business_state">State</label>
+                                <input type="text" class="form-control" placeholder="" name="business_state" id="business_state" value="{{user.business_state|default('', true)}}" />
+                                <span class="help-block" id="help_business_state"></span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                <label for="business_city">City</label>
+                                <input type="text" class="form-control" placeholder="" name="business_city" id="business_city" value="{{user.business_city|default('', true)}}" />
+                                <span class="help-block" id="help_business_city"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                                <label for="business_zipcode">Zipcode</label>
+                                <input type="text"
+                                    class="form-control"
+                                    placeholder=""
+                                    name="business_zipcode"
+                                    id="business_zipcode"
+                                    value="{{user.business_zipcode|default('', true)}}"
+                                    onchange="user_city(id, 'business_city', 'business_state', 'business_zipcode');"/>
+                                <span class="help-block" id="help_business_zipcode"></span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                                <label for="business_phone">Phone Number</label>
+                                <input type="text" class="form-control" placeholder="" name="business_phone" id="business_phone" value="{{user.business_phone|default('', true)}}" is-num="true" min-length="10" max-length="20">
+                                <span class="help-block" id="help_business_phone"></span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                                <label for="business_mobile">Mobile Number</label>
+                                <input type="text" class="form-control" placeholder="" name="business_mobile" id="business_mobile" is-mobile="true" value="{{user.business_mobile|default('', true)}}" />
+                                <span class="help-block" id="help_business_mobile"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center">On submitting this form you will get OTP to your email and mobile number to validate your authentication.</p>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button type="button" class="btn sub-btn" id="reg_submit_btn">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!--======== end contact =========-->
+    {% endblock %}
+    {% block bootstrap_modal %}
+        {{ super() }}
+      <div class="modal fade fasiamodal" id="zipcodeModal" tabindex="-1" role="dialog" aria-labelledby="zipcodeModalLabel" aria-hidden="true">
+            <div class="modal-dialog fasia-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h4 class="fasiamodal-title" id="loginModalLabel">
+                            ENTER YOUR ZIPCODE
+                        </h4>
+                        <form class="fasia-form" id="city_form" name="city_form" onsubmit="return false;">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Zip Code" name="auto_zipcode" id="auto_zipcode" required='true'>
+                                <span class="help-block" id="help_zipcode"></span>
+                            </div>
+                            <div class="text-center">
+                                <button type="button" id="city_update_button" class="btn sub-btn" onclick="user_city('auto_zipcode', 'home_city', 'home_state', 'home_zipcode');">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div> <!-- /.modal-dialog -->
+        </div>
+        {% include 'home/image_modal.html' ignore missing with context %}
+        <div id="registration_dynamic_modal_div"></div>
+    {% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/lib/inputmask/jquery.inputmask.bundle.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/lib/inputmask/inputmask.date.extensions.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/photo_crop.js')}}"></script>
+    <script type="text/javascript">
+        var is_home_mobile_verified = "{{ 'true' if user.is_home_mobile_verified else 'false' }}";
+        var is_email_verified = "{{ 'true' if user.is_email_verified else 'false' }}";
+        var is_secondary_email_verified = "{{ 'true' if user.is_secondary_email_verified else 'false'}}";
+        var is_office_mobile_verified = "{{ 'true' if user.is_office_mobile_verified else 'false' }}";
+        var username = "{{user.email}}";
+        var is_city = "{{user.home_city if user.home_city else ''}}";
+        var title = "{{user.title|default('', true)}}";
+        var gender = "{{user.gender|default('', true)}}";
+        var communication_email = "{{user.communication_email|default('', true)}}";
+        var communication_address = "{{user.communication_address|default('', true)}}";
+        var home_mobile = "{{user.home_mobile|default('', true)}}";
+        var bussiness_mobile = "{{user.business_mobile|default('', true)}}";
+        var membership_type = "{{user.membership|default('', true)}}";
+        var is_registered = '{{user.is_registered}}';
+    </script>
+    <script src="{{ url_for('static', filename='js/registration.js')}}"></script>
+{% endblock %}

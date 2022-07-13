@@ -1,0 +1,105 @@
+body{
+    word-break: break-word;
+}
+.fasia-dashboard h4{
+    color: #fff;
+    font-weight: 600;
+    font-size: 19px;
+}
+.user-information{
+    display: inline-flex;
+}
+.user-information .title{
+    color: #f4941e;
+}
+.mg-t20{
+    margin-top: 20px;
+}
+.dashboard-list{
+    margin-top: 20px;
+}
+.dashboard-list img{
+    margin:auto;
+}
+.blog,.advice, .notice, .event, .news-letter{
+    color: #fff;
+    text-align: center;
+    padding: 29px;
+    margin-bottom: 15px;
+    margin-left: -6px;
+    margin-right: -6px;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+                0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+                0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+.blog:hover,.advice:hover, .event:hover{
+    box-shadow: none;
+}
+.blog-bg{ background-color:#f4931e;}
+.advice-bg{ background-color:#5bd195; }
+.notice-bg{ background-color:#f06e54;}
+.event-bg{ background-color:#6aacf8; }
+.news-letter-bg{ background-color:#ffcb39; }
+.profile-pic{
+    width: 100px;
+    border-radius: 50%;
+    height: 100px;
+    margin-right: 15px;
+}
+.profile-pic img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.vticker ul{
+    margin: 0px;
+    position: absolute;
+    list-style: none;
+    padding: 0px;
+}
+.vticker ul li{
+    border-bottom: 1px solid #fff;
+    margin-top: 3px !important;
+    margin-bottom: 3px !important;
+}
+.carousel-control{
+    background: transparent;
+    width: 0%;
+}
+.news-letter .header, .notice .header{
+    display: inline-flex;
+    text-align: center;
+}
+.news-letter .header img, .notice > .header img{
+  width: 80px;
+  display: inline;
+}
+.news-letter .header h1, .notice .header h1{
+  position: relative;
+  top: 12px;
+  left: 10px;
+  color: #FFF;
+  font-weight: 600;
+}
+.inner-content p{
+    font-size: 18px;
+    margin: 2px 15px;
+    text-align: left;
+}
+.left-arrow, .right-arrow{
+    top: -12px;
+}
+section{
+    padding-top: 15px;
+    padding-bottom: 0px;
+}
+.newsletter-headline{
+    font-weight: 600;
+}
+
+/* Css for dashboard title block */
+.title .fasia_des {
+    font-size: 14px;
+    color: #4b4b4b;
+    font-weight: 400;
+}

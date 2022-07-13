@@ -1,0 +1,227 @@
+{% extends 'home/index.html' %}
+{% block custome_css %}
+    <style type="text/css">
+        .help-block{
+            color: red;
+        }
+        section{
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .form-control{
+            border: 1px solid #49494e;
+        }
+        .radio-buttons{
+            margin-top: 10px;
+        }
+    </style>
+    <link href="{{ url_for('static', filename='js/lib/intl-tel-input-js/css/intlTelInput.css') }}" rel="stylesheet">
+{% endblock %}
+{% block main_content %}
+    <section class="fasia-application">
+        <div class="container bg-skyblue">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h1 class="heading">Create Admin Form</h1>
+                </div>
+            </div>
+            <form method="POST" onsubmit="return false;" id="reg_form">
+                 <div class="row ">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="title">Profile Picture:</h3>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="display:-webkit-inline-box;">
+                                <div class="profile-pic">
+                                    <img src="{{ url_for('static', filename='images/contactimg.png')}}" alt="profile-img" id="id_image_tag" name="id_image_tag" crop-src=''>
+                                </div>
+                                <div class="upload-btn-div">
+                                    <button type="button" class="btn img-upload-btn" data-toggle="modal" data-target="#imageModal">
+                                        Upload
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <!-- User Basic Information -->
+                <div class="row title-row">
+                    <div class="col-lg-12 co1-md-12 col-sm-12 col-xs-12">
+                        <h2>Basic Information</h2>
+                    </div>
+                </div>
+                <div class="row title-row">
+                    <div class="col-lg-1 co1-md-1 col-sm-4 col-xs-12 form-group">
+                        <label for="title">Title *</label>
+                        <select class="form-control title-form-control" name="title" id="title" required="true" is-select="true">
+                            <option value="">Select</option>
+                            <option value="mr">Mr</option>
+                            <option value="mrs">Mrs</option>
+                            <option value="ms">Ms</option>
+                            <option value="dr">Dr</option>
+                        </select>
+                        <span class="help-block" id="help_title"></span>
+                    </div>
+                    <div class="form-group col-lg-4 co1-md-4 col-sm-4 col-xs-12">
+                        <label for="first_name">First Name *</label>
+                        <input type="text" class="form-control" placeholder="Jhon" name="first_name" id="first_name" required='true' min-length="2" max-length="24" is-text="true"/>
+                        <span class="help-block" id="help_first_name"></span>
+                    </div>
+                    <div class="form-group col-lg-3 co1-md-3 col-sm-4 col-xs-12">
+                        <label for="middle_name">Middle Name</label>
+                        <input type="text" class="form-control" id="middle_name" is-text="true" placeholder="Abraham">
+                        <span class="help-block" id="help_middle_name"></span>
+                    </div>
+                    <div class="form-group col-lg-4 co1-md-4 col-sm-4 col-xs-12">
+                        <label for="last_name">Last Name *</label>
+                        <input type="text" class="form-control" placeholder="Linkan" name="last_name" id="last_name" required="true" min-length="1" max-length="24" is-text="true"/>
+                        <span class="help-block" id="help_last_name"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-2 co1-md-2 col-sm-4 col-xs-12">
+                        <label for="gender">Gender *</label>
+                        <select class="form-control" name="gender" id="gender" required="true" is-select="true">
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        <span class="help-block" id="help_gender"></span>
+                    </div>
+                    <div class="form-group col-lg-3 co1-md-3 col-sm-4 col-xs-12">
+                        <label for="dob">Date Of Birth * </label>
+                        <input type="text" name='dob' placeholder="Birthdate" required="true" class="form-control dob-field" id="dob" readonly>
+                        <span class="help-block" id="help_dob"></span>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="primary_email">Primary Email *</label>
+                        <input type="text" class="form-control" class="form-control" placeholder="xxx@xxx.com" name="primary_email" id="primary_email" is-email="true" required/>
+                        <span class="help-block" id="help_primary_email"></span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-3 form-group">
+                        <label for="home_mobile">Mobile Number *</label>
+                        <input type="text" class="form-control" placeholder="" name="home_mobile" id="home_mobile" required="true" is-mobile="true"/>
+                        <span class="help-block" id="help_home_mobile"></span>
+                    </div>
+                </div>
+                <!-- Admin Managing Area -->
+                <div class="row title-row">
+                    <div class="col-lg-12 co1-md-12 col-sm-12 col-xs-12">
+                        <h2>Admin Managing Area</h2>
+                    </div>
+                </div>
+                <div class="row title-row">
+                    {% if user.user_role != 'state_admin' %}
+                        <div class="form-group col-lg-3 co1-md-3 col-sm-3 col-xs-12">
+                            <label for="region">Region</label>
+                            {% if create_user_role == 'region_admin' %}
+                                <select class="form-control" name="region" id="region" required="true" is-select="true" multiple="multiple">
+                            {% else %}
+                                <select class="form-control" name="region" id="region" required="true" is-select="true" multiple="multiple" onchange="get_state(this);">
+                            {% endif %}
+                                {% for nm in region_list %}
+                                    <option value="{{nm}}">{{nm}}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="help-block" id="help_region"></span>
+                        </div>
+                        <div id="div_state" class="form-group col-lg-3 co1-md-3 col-sm-3 col-xs-12" style="display:none;">
+                            <label for="state">State</label>
+                            {% if create_user_role == 'state_admin' %}
+                                <select class="form-control" name="state" id="state" required="true" is-select="true" multiple="multiple" >        
+                            {% elif create_user_role == 'chapter_admin' %}
+                                <select class="form-control" name="state" id="state" required="true" is-select="true" multiple="multiple" onchange="get_city();" >
+                            {% endif %}
+                            </select>
+                            <span class="help-block" id="help_state"></span>
+                        </div>
+                    {% elif user.user_role == 'state_admin' %}
+                        <div id="div_state" class="form-group col-lg-3 co1-md-3 col-sm-3 col-xs-12">
+                            <label for="state">State</label>
+                            <select class="form-control" name="state" id="state" required="true" is-select="true" multiple="multiple" onchange="get_city();" >
+                                {% for st in user.manage_state_list %}
+                                    <option value="{{st}}">{{st}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% endif %}
+                    <div id="div_city" class="form-group col-lg-3 co1-md-3 col-sm-3 col-xs-12" style="display:none;">
+                        <label for="city">City</label>
+                        <select class="form-control" name="city" id="city" required="true" is-select="true" multiple="multiple">
+                        </select>
+                        <span class="help-block" id="help_city"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <input type="hidden" class="form-control" name="hidden_user_role" id="hidden_user_role" value="{{create_user_role}}">
+                    <div class="col-md-12 text-center">
+                        <button type="button" class="btn sub-btn" id="reg_submit_btn">Submit</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </section>
+    <!--======== end contact =========-->
+    {% endblock %}
+    {% block bootstrap_modal %}
+        {{ super() }}
+        <div class="modal fade fasiamodal" id="zipcodeModal" tabindex="-1" role="dialog" aria-labelledby="zipcodeModalLabel" aria-hidden="true">
+            <div class="modal-dialog fasia-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h4 class="fasiamodal-title" id="loginModalLabel">
+                            ENTER YOUR ZIPCODE
+                        </h4>
+                        <form class="fasia-form" id="city_form" name="city_form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Zip Code" name="auto_zipcode" id="auto_zipcode" onchange="get_details_by_zip(id);" required='true'>
+                                <span class="help-block" id="help_zipcode"></span>
+                            </div>
+                            <input type="hidden" class="form-control" placeholder="State" name="hidden_city" id="hidden_city">
+                            <input type="hidden" class="form-control" placeholder="State" name="hidden_state" id="hidden_state">
+                            <div class="text-center">
+                                <button type="button" id="city_update_button" class="btn sub-btn" onclick="user_city();">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div> <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade fasiamodal" id="sms_otp_modal" tabindex="-1" role="dialog" aria-labelledby="otpModalLabel" aria-hidden="true">
+            <div class="modal-dialog fasia-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h4 class="fasiamodal-title" id="otpModalLabel">
+                            Enter OTP
+                        </h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Mobile OTP" name="mobile_otp" id="mobile_otp" required='true'>
+                                    <span class="help-block" id="help_mobile_otp"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Email OTP" name="email_otp" id="email_otp" required='true'>
+                                    <span class="help-block" id="help_email_otp"></span>
+                                </div>
+                                <div class="text-center">
+                                    <button type="button" id="sms_validate_btn" class="btn sub-btn">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div> <!-- /.modal-dialog -->
+        </div>
+        {% include 'home/image_modal.html' ignore missing with context %}
+    {% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+        var current_user_role = "{{user.user_role}}";
+    </script>
+    <script src="{{ url_for('static', filename='js/photo_crop.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/dashboards/add_user.js')}}"></script>
+{% endblock %}

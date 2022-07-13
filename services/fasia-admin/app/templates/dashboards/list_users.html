@@ -1,0 +1,55 @@
+<section class="admin-dashboard-title">
+    <div class="headline">
+        {{ place_name |upper }} {{'Members' if list_type == 'users' else 'Admins'|upper}} LIST
+        <div>
+</section>
+<section style="padding-top:10px;">
+    <div class="bg-color user_list">
+        {{ pagination.info }} {{ pagination.links }} {% if datas %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tr class="table-header-border">
+                    <th>NAME</th>
+                    <th>EMAIL ID</th>
+                    <th>REGISTER DATE</th>
+                    <th>ACTION</th>
+                </tr>
+                {% for data in datas %}
+                <tr>
+                    <td class="text">{{ data.first_name }}</td>
+                    <td class="text">{{ data.username }}</td>
+                    <td class="text">{{ data.created_date }}</td>
+                    <td>
+                        <div class="col-md-12">
+                            <div class="row">
+                                {% if not data.is_disabled %}
+                                <button type="button" name="view_user" id="view_{{ data.id }}" class="btn user-action-btn view-user-btn" data-id="{{data.id}}"
+                                    title="View Details">
+                                    <img src="{{ url_for('static', filename='images/superAdminAssets/fasia_view_button.png') }}" alt="">
+                                </button>
+                                <button type="button" name="edit_user" id="edit_{{ data.id }}" data-id="{{data.id}}" class="btn user-action-btn edit-user-btn"
+                                    title="Edit Details">
+                                    <img src="{{ url_for('static', filename='images/superAdminAssets/fasia_edit_button.png') }}" alt="">
+                                </button>
+                                {% endif %}
+                                <button type="button" name="disable_user" id="disable_{{ data.id }}" data-id="{{data.id}}" class="btn user-action-btn disable-user-btn"
+                                    title="{% if not data.is_disabled %}Disable User{% else %}Enable User{% endif %}">
+                                    {% if data.is_disabled %}
+                                    <img src="{{ url_for('static', filename='images/superAdminAssets/fasia_enable_button.png') }}" alt=""> {% else %}
+                                    <img src="{{ url_for('static', filename='images/superAdminAssets/fasia_disable_button.png') }}" alt=""> {% endif %}
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+        <p>No posts.</p>
+        {% endif %} {{ pagination.links }}
+    </div>
+</section>
+<script>
+    var requested_role = "{{req_role_type}}";
+</script>

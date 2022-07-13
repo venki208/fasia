@@ -1,0 +1,139 @@
+<header id="home" data-spy="scroll" data-target="#top-nav">
+    <!-- menu 4 -->
+    <div class="navbar navbar-default navbar-fixed-top default-menu menu-4" role="navigation">
+        <div class="container tab-container">
+            <div class="navbar-header">
+                {% if not current_user.is_authenticated %}
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-4" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <button type="button" class="btn fasia-hover-btn getAdv-btn hide-md navbar-toggle" data-toggle="modal" data-target="#loginModal" title="You can get free wealth advice" name="get_advice_login_button">Get Advice</button>
+                {% else %}
+                    <a href="#" class="navbar-toggle collapsed mob-profile-menu" data-toggle="collapse" data-target="#menu-4" aria-expanded="false" id="mob_prof_pic">
+                        {% if user.profile_image -%}
+                            <img src="{{ user.profile_image }}" class="img-responsive n-user-img header-profile" alt="Profile pic">
+                        {%- else -%}
+                            <span class="glyphicon glyphicon-user header-profile"></span>
+                        {%- endif %}
+                    </a>
+                    <button type="button" class="btn getAdv-btn hide-md navbar-toggle" data-toggle="modal" data-target="#getAdvisorModal" title="You can get free wealth advice">Get Advice</button>
+                {% endif %}
+                <a class="navbar-brand default-logo scroll" href="/">
+                    <img src="{{ url_for('static', filename='images/Fasia-logo.png')}}" alt="logo"/>
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse top-nav" id="menu-4">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if not page_title == 'Reset Password' %}
+                        {% if not current_user.is_authenticated %}
+                            {% if header %}
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-animations="fadeInDown" href="#">About Us</a>
+                                <ul class="dropdown-menu membership-dropdown-menu">
+                                    <li><a href="/fasia_origin">Fasia Origin</a></li>
+                                    <li><a href="/journey-so-far">Journey So Far</a></li>
+                                    <li><a href="/organisation-structure">Organisation Structure</a></li>
+                                    <li><a href="/goals">Goals</a></li>
+                                    <li><a href="/presentation">Presentation</a></li>
+                                    <li><a href="/brochure">Brochure</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown"       data-hover="dropdown" data-animations="fadeInDown" href="#">Membership</a>
+                                <ul class="dropdown-menu membership-dropdown-menu">
+                                    <li><a href="/eligible">Eligibility</a></li>
+                                    <li><a href="/benefits">Benefits</a></li>
+                                    <li><a class="content-color" href="/how-to-become-member">How to Become Member</a></li>
+                                    <li><a href="/login#goal">Member Search</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-animations="fadeInDown" href="#">Chapter</a>
+                                <ul class="dropdown-menu membership-dropdown-menu">
+                                    <li>
+                                        <a class="content-color" href="/chapter">How Chapter Works</a>
+                                    </li>
+                                    <!-- we will use for future purpose -->
+                                    <!-- <li>Initializing a chapter</li> -->
+                                    {% if not current_user.is_authenticated %}
+                                    <li>
+                                        <a class="content-color" href="/login#goal">Chapter Search</li>
+                                    </a>
+                                    {% else %}
+                                    <li>
+                                        <a class="content-color" href="/home#goal">Members search</li>
+                                    </a>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            {% endif %}
+                            <li>
+                                <button type="button" class="btn loginbtn" data-toggle="modal" data-target="#loginModal" id="get_modal_login_button" title="Login Here">Login</button>
+                            </li>
+                            <li><button type="button" class="btn getAdv-btn hide-sm" data-toggle="modal" data-target="#loginModal" title="You can get free wealth advice" name="get_advice_login_button">Get Advice
+                            </button>
+                            </li>
+                        {% else %}
+                            <li><a href="/home">Home</a></li>
+                            {% if not user.is_registered -%}
+                                <li><a href="/register">Register</a></li>
+                            {%- else -%}
+                                <li><a href="/dashboard">Dashboard</a></li>
+                            {%- endif %}
+                            <!-- shown in mobile -->
+                            {% if user.is_registered %}
+                            <li class="hide-md"><a href="{{ url_for('register') }}">Edit Profile</a></li>
+                            <li class="hide-md"><a href="{{ url_for('change_password') }}">Change Password</a></li>
+                            {% endif %}
+                            <li class="hide-md">
+                                <a class="logoutbtn" href="{{ url_for('logout') }}" >Logout</a>
+                            </li>
+                            <!-- end mobile -->
+                            <!-- show in desktop -->
+                            <li><button type="button" class="btn getAdv-btn hide-sm" data-toggle="modal" data-target="#getAdvisorModal" title="You can get free wealth advice">Get Advice
+                            </button>
+                            <!-- end mobile -->
+                            </li>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                        <li class="dropdown hide-sm">
+                            <a href="#" class="dropdown-toggle header-profile-pic profile-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="desk_prof_pic">
+                                {% if user.profile_image %}<img src="{{ user.profile_image }}" class="img-responsive header-profile" alt="Profile pic">{% else %}<span class="glyphicon glyphicon-user header-profile"></span>{% endif %}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-header-menu">
+                                {% if user.is_registered %}
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-caret-left"></span>Settings</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ url_for('register') }}">Edit Profile</a></li>
+                                        <li><a href="{{ url_for('change_password') }}">Change Password</a></li>
+                                    </ul>
+                                </li>
+                                {% endif %}
+                                <li><a class="logoutbtn" href="{{ url_for('logout') }}" >Logout</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div><!-- end menu -->
+</header>
+<script>
+    // Temporarly Commented this few line of code
+	//For Auto Hide of Menu Toggle in Mobile Screen
+	// $(document).on('click',function(){
+    //     $('.collapse').collapse('hide');
+    // })
+    $('.dropdown-submenu a.dropdown-toggle').on("click", function(e){
+        $(this).next('ul').toggle();
+        e.stopPropagation();
+        e.preventDefault();
+    });
+</script>
+<!--======== end header =========-->

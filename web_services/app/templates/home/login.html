@@ -1,0 +1,190 @@
+{% extends 'home/index.html' %}
+{% block custome_css %}
+    {{super()}}
+    <style>
+        .recaptcha1{
+            transform:scale(0.70);
+            -webkit-transform:scale(0.70);
+            transform-origin:0 0;
+            -webkit-transform-origin:0 0;
+            height: 58px;
+        }
+        .pwd-add-on{
+            border-bottom-right-radius: 12px !important;
+            border-top-right-radius: 12px !important;
+            background: inherit;
+            border-left: transparent;
+            border-color: #4c4c4c;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+{% block lib_scripts %}
+    {% if not current_user.is_authenticated %}
+    <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" async defer></script>
+    <script>
+        var login_captcha, forgot_pwd_captcha
+        var loginCaptchaCallback = function (response) {
+            validate_recptcha(login_captcha, 'help_login_recpatcha');
+        };
+        var forgotCaptchaCallback = function(response){
+            validate_recptcha(forgot_pwd_captcha, 'help_forgot_recpatcha')
+        };
+
+        var CaptchaCallback = function () {
+            recapkey = "{{recaptcha_key}}";
+            login_captcha = grecaptcha.render('Recaptcha_login_button', {
+                'sitekey': recapkey,
+                'callback': loginCaptchaCallback
+            });
+            grecaptcha.reset(login_captcha);
+
+            forgot_pwd_captcha = grecaptcha.render('Recaptcha_forgot_password_button', {
+                'sitekey': recapkey,
+                'callback': forgotCaptchaCallback
+            });
+            grecaptcha.reset(forgot_pwd_captcha);
+        };
+    </script>
+    {% endif %}
+    {{ super() }}
+{% endblock %}
+{% block bootstrap_modal %}
+    {{ super() }}
+    <!--======== Login Modal =========-->
+        <div class="modal fade fasiamodal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog fasia-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="fasiamodal-title" id="loginModalLabel">Registered user, login here</h4>
+                        <div class="row fasia-form" id="login_form_div">
+                            <!-- login form -->
+                            <div class="col-xs-12">
+                                <form class="" id="login_form" name="login_form">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="User Email ID" name="username" id="username" required="true">
+                                        <span class="help-block" id="help_username"></span>
+                                    </div>
+                                    <div class="form-group input-group">
+                                        <input type="password" class="form-control login-password" placeholder="Password" name="password" id="password" required="true">
+                                        <div class="input-group-addon pwd-add-on"><i class="fa fa-eye"></i></div>
+                                        <span class="help-block" id="help_password"></span>
+                                    </div>
+                                    <span class="help-block" id="help_login_validation"></span>
+                                    <div id="Recaptcha_login_button" class="recaptcha1 form-group"></div>
+                                    <span id="help_login_recpatcha" class="help-block"></span>
+                                    <div class="text-center">
+                                        <button type="button" id="login_button" class="btn sub-btn">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- forget pwd form-->
+                            <div class="col-xs-12">
+                                <div class="text-center">
+                                    <p>Forgot Password ?<a id="forget_pwd_link"> Click Here</a> </p>
+                                </div>
+                                <form class="form-group hide" id="forget_form">
+                                    <input type="text" name="forget_email" id="forget_email" class="form-control" required="true" is-email="true">
+                                    <span class="help-block" id="help_forget_email"></span>
+                                    <div id="Recaptcha_forgot_password_button" class="recaptcha1 form-group"></div>
+                                    <span id="help_forgot_recpatcha" class="help-block"></span>
+                                    <div class="text-center">
+                                        <button type="button" class="btn sub-btn" id="submit_forget_pwd">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- social media div -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="text-center">
+                                    <div class="tit"></div>
+                                    <button type="button" class="btn social-btn" id="fb_btn" title="Facebook">
+                                        <!-- disabled title="Coming soon" -->
+                                        <i class="fa fa-facebook"></i>
+                                    </button>
+                                    <button type="button" class="btn social-btn" id="google_btn" title="Google">
+                                        <i class="fa fa-google-plus"></i>
+                                    </button>
+                                    <button type="button" class="btn social-btn" id="linkedin_btn" title="Linkedin">
+                                        <i class="fa fa-linkedin"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div> <!-- /.modal-dialog -->
+        </div>
+
+        <!-- Ask permission modal -->
+         <div class="modal fade fasiamodal" id="permissionModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog fasia-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="fasiamodal-title" id="loginModalLabel">
+                            Permission Please :)
+                        </h4>
+                        <p>For Entering into Fasiaamerica Your email id is mandatory.<br />
+                            Using Your social Email Id we are treating You as a trusted member.<br />
+                            Further we will use to send some important emails once you enter into Fasiaamerica.
+                        </p>
+                        <div class="row text-center">
+                            <button type="button" class="btn">Cancel</button>
+                            <button type="button" class="btn sub-btn" id="permission_btn">Ok</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div> <!-- /.modal-dialog -->
+        </div>
+        <!-- end permission modal -->
+{% endblock %}
+{% block scripts %}
+    {% if page_title == 'Login' %}
+        {{super()}}
+    {% endif %}
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <!-- facebook integration part -->
+    <script type="text/javascript">
+        var facebook_single_url = "{{FACEBOOK_SINGLE_URL}}"
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : "{{ facebook_api_key }}",
+                xfbml      : true,
+                version    : 'v2.5'
+            });
+        };
+    </script>
+    <script type="text/javascript" src="{{ url_for ('static', filename='js/facebook.js') }}"></script>
+    <!-- Linkedin Integration part -->
+    <script type="text/javascript" src="https://platform.linkedin.com/in.js">
+        api_key: {{ linkedin_api_key }}
+        authorize: true
+        //onLoad: onLinkedInLoad
+        scope: r_basicprofile,r_emailaddress,w_share
+    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/linkedin.js') }}"></script>
+    <!-- GOOGLE integration part -->
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script type="text/javascript">
+        var OAUTHURL = 'https://accounts.google.com/o/oauth2/auth?';
+        var VALIDURL = 'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=';
+        var SCOPE = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me';
+        var CLIENTID = '{{google_api_key}}'
+        var REDIRECT = "{{DEFAULT_DOMAIN_URL}}";
+        var TYPE = 'token';
+        var _url = OAUTHURL + 'scope=' + SCOPE + '&client_id=' + CLIENTID + '&redirect_uri=' + REDIRECT + '&response_type=' + TYPE;
+        var googleUserData = {};
+        var GOOGLE_CLIENT_ID = CLIENTID;
+    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/google.js') }}"></script>
+    <script>
+        var next_url = "{{ next_url|default('/', true) }}";
+    </script>
+{% endblock %}

@@ -1,0 +1,36 @@
+.event_form{
+    margin-left: 30px;
+}
+.fc-center h2{
+    color: #6aacf7;
+    font-weight: 700;
+}
+.event-modal{
+    display: table;
+    padding: 5px 0;
+}
+.side-container{
+    margin-top: 42px;
+}
+.fasiamodal-title h3 {
+    color: #18486a;
+}
+.colon {
+    width: 21%;
+}
+.fasia-btn{
+    color: #fff !important;
+    background: #6aacf7 !important;
+    border-radius: 18px;
+    font-weight: 500;
+    padding: 7px 20px;
+    margin-right: 5px;
+}
+.fasia-default{
+    border-radius: 18px;
+    font-weight: 500;
+    padding: 7px 20px;
+}
+.event_form label{
+    padding-top: 5px; 
+}

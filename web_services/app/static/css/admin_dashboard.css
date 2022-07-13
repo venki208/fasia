@@ -1,0 +1,40 @@
+.admin-dashboard-title{
+    background: linear-gradient(to right, #f9ba02, #f27b07);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.admin-dashboard-title .headline{
+    margin: auto;
+    width: 86%;
+    color: #fff;
+    font-weight: 600;
+    font-size: 24px;
+}
+.admin-dashboard{
+    background-color: #f6f7fd;
+}
+.admin-dashboard img{
+    margin: auto;
+    margin-bottom: 20px;
+    color: #000;
+}
+.vu1 a{
+    color:#f4931e;
+    text-decoration: underline;
+}
+.vu2 a{
+    color:#60d195;
+    text-decoration: underline;
+}
+.vu3 a{
+    color:#67acf5;
+    text-decoration: underline;
+}
+.crt-btn{
+    border-radius: 50px;
+    padding: 8px 24px;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    font-size: 16px;
+}

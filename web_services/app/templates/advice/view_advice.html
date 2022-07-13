@@ -1,0 +1,74 @@
+{% extends 'advice/advice_list.html' %}
+    {% block left_content %}
+    <div class="col-sm-9">
+        <div class="row">
+            <ul class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li class="active"><a href="/advice/get-all-advices">Give Advice</a>
+                <li><span>{{question.title}}</span></li>
+            </ul>
+        </div>
+        <div class="row">
+            {% if question %}
+            <div class="col-xs-12">
+                <h2 class="get-advice-heading">{{question.title}}</h2>
+                <p class="get-advice">By: {{question.name}} | {{question.created_date|format_date('%d %B %Y')}} | {{question.created_date|format_date('%H:%M')}} </p>
+                <p class="get-advice-desc">{{question.description}}</p>
+                <div id="doc_list_div">
+                    {% for url in question.document_urls -%}
+                        {%- if url -%}
+                            {%- if loop.index == 1 -%}
+                                <p class="get-advice-desc">Click to download related documents in below.</p>
+                            {%- endif -%}
+                            <a href="{{url}}" target="_blank" style="color:#1c4888">Document- {{loop.index}}</a>
+                            <br />
+                        {%- endif -%}
+                    {%- endfor %}
+                </div>
+                <p>
+                    <button type="button" class="btn get-advice-button"
+                        {% if not question.email==user.email %}
+                            g_adv_id="{{question._id|format_id()}}"
+                            name="give_advice"
+                        {% else %}
+                            disabled
+                        {% endif %}>
+                        Give Advice
+                    </button>
+                </p>
+            </div>
+            {% else %}
+                <p>Not found</p>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+            <h4>Answers</h4>
+            <hr class="answer-hr">
+            {% if answers %}
+                {% for answer in answers %}
+                    <div class="col-md-12">
+                        <p>{{answer.answer}}</p>
+                        <div id="doc_list_div">
+                            {% for url in answer.document_urls -%}
+                                {%- if url -%}
+                                    {%- if loop.index == 1 -%}
+                                        <p class="get-advice-desc">Click to download related documents in below.</p>
+                                    {%- endif -%}
+                                    <a href="{{url}}" target="_blank" style="color:#1c4888">Document- {{loop.index}}</a>
+                                    <br />
+                                {%- endif -%}
+                            {%- endfor %}
+                        </div>
+                        <p class="answer-owner">By: {{answer.name}} | {{answer.modified_date|format_date('%d %B %Y')}} | {{answer.modified_date|format_date('%H:%M')}}
+                            </p>
+                        <hr>
+                    </div>
+                {% endfor %}
+            {% else %}
+            <p>Be the first person to give answer.</p>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends 'home/index.html' %}
+{% block custome_css %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_dashboard.css')}}">
+    <style>
+        .region_create_admin_btn, .state_admin_create_btn, 
+        .city_admin_create_btn, .create_user_btn_div, .calender_evnt_div{
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block main_content %}
+    <section class="admin-dashboard-title">
+        <div class="headline">
+            DASHBOARD {% if user.admin_id %}
+            | {{ user.admin_id }} {% endif %}
+        <div>
+    </section>
+    <section class="admin-dashboard">
+        <div class="container">
+            <div class="row">
+                {% if user_roles|any_array_value(['fasia_admin']) %}
+                    <div class="col-lg-4 col col-md-4 col-sm-4 col-xs-12 text-center">
+                        <h3 class="text-center">REGION</h3>
+                        <img src="{{ url_for('static', filename='images/superAdminAssets/region.png')}}" alt="region-icon" class="img-responsive">
+                        <p class="text-center region_create_admin_btn">
+                            <a href="/auth/create_admin/region_admin">
+                                <button type="button" class="btn crt-btn">
+                                CREATE</button>
+                            </a>
+                        </p>
+                        <div class="btn-group">
+                            <a class="dropdown-toggle vu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                VIEW USERS
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/auth/list-users/region_admin?type=admins">Admins</a>
+                                </li>
+                                <li>
+                                    <a href="/auth/list-users/region_admin?type=users">Members</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if user_roles|any_array_value(['fasia_admin', 'region_admin']) %}
+                    <div class="col-lg-4 col col-md-4 col-sm-4 col-xs-12 text-center">
+                        <h3 class="text-center">STATE</h3>
+                        <img src="{{ url_for('static', filename='images/superAdminAssets/state.png')}}" alt="region-icon" class="img-responsive">
+                        <p class="text-center state_admin_create_btn">
+                            <a href="/auth/create_admin/state_admin">
+                                <button type="button" class="btn crt-btn">
+                                CREATE</button>
+                            </a>
+                        </p>
+                        <div class="btn-group">
+                            <a class="dropdown-toggle vu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                VIEW USERS
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/auth/list-users/state_admin?type=admins">Admins</a>
+                                </li>
+                                <li>
+                                    <a href="/auth/list-users/state_admin?type=users">Members</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if user_roles|any_array_value(['fasia_admin', 'region_admin', 'state_admin', 'chapter_admin']) %}
+                    <div class="col-lg-4 col col-md-4 col-sm-4 col-xs-12 text-center">
+                        <h3 class="text-center">CHAPTER</h3>
+                        <img src="{{ url_for('static', filename='images/superAdminAssets/city.png')}}" alt="region-icon" class="img-responsive">
+                        <p class="text-center city_admin_create_btn">
+                            <a href="/auth/create_admin/chapter_admin">
+                                <button type="button" class="btn crt-btn">
+                                CREATE</button>
+                            </a>
+                        </p>
+                        <p class="text-center create_user_btn_div">
+                            <a href="/auth/admin-dashboard/add_user">
+                                <button type="button" class="btn crt-btn" id="create_user_btn">
+                                CREATE MEMBER</button>
+                            </a>
+                        </p>
+                        <div class="btn-group">
+                            <a class="dropdown-toggle vu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                VIEW USERS
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="city_admin_create_btn">
+                                    <a href="/auth/list-users/chapter_admin?type=admins" >Admins</a>
+                                </li>
+                                <li>
+                                    <a href="/auth/list-users/chapter_admin?type=users">Members</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            {% if user_roles|any_array_value(['fasia_admin']) %}
+            <div class="col-lg-4 col col-md-4 col-sm-4 col-xs-12 calender_evnt_div">
+                <h3 class="text-center">EVENTS</h3>
+                <img src="{{ url_for('static', filename='images/superAdminAssets/region.png')}}" alt="region-icon" class="img-responsive">
+                <p class="text-center">
+                    <a href="/auth/admin-dashboard/admin_calendar/view">
+                        <button type="button" class="btn crt-btn">
+                        VIEW CALENDER</button>
+                    </a>
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}
+{% block bootstrap_modal %}
+    {{super()}}
+    <div class="modal fade fasiamodal" id="ask_role_modal" tabindex="-1" role="dialog" aria-labelledby="askRoleModal" aria-hidden="true">
+        <div class="modal-dialog fasia-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <a class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;</a>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>You are having {{user_roles|length}} roles.</p>
+                            <p>Which Role you want to go?</p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {% for role in user_roles %}
+                                        <button type="button" class="btn sub-btn" id="{{role}}" name="user_role_selection_btn">{{role|replace('_', ' ')|capitalize}}</button>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        var user_role_count = '{{user_roles|length}}';
+        var selected_user_role;
+        selected_user_role = '{{session["selected_role"]|default("", true)}}';
+        var fasia_admin_role = "{{selected_role|replace('_', ' ')|capitalize}}";
+    </script>
+    <script src="{{url_for('static', filename='js/dashboards/super_admin_dashboard.js')}}"></script>
+{% endblock %}

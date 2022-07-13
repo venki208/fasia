@@ -1,0 +1,79 @@
+.eligible{
+    color: #f5c74c;
+    font-weight: 700 !important;
+    text-align: center;
+    margin-top: 0px;
+}
+.eligile-fasia-div{
+    margin-top: 30px;
+}
+.eligile-fasia-div .card {
+    height: 100%;
+}
+.eligile-fasia-div .card {
+    position: relative;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #17517f !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125) !important;
+}
+.eligile-fasia-div .card-title {
+    margin-bottom: .75rem;
+}
+.eligile-fasia-div .card-text:last-child {
+    margin-bottom: 0;
+}
+.eligile-fasia-div .card-text {
+    color: #fff;
+}
+.eligile-fasia-div .card-footer:last-child {
+    border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);
+}
+.eligile-fasia-div .card-footer {
+    padding: .75rem 1.25rem;
+    background-color: rgba(0,0,0,.03);
+    border-top: 1px solid rgba(0,0,0,.125);
+}
+.eligible h2{
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 40px;
+    margin-top: 0px;
+}
+.eligile-fasia-div h3{
+    margin: 0px;
+    padding: 30px 0px;
+    font-weight: 600;
+}
+.eligi-fasia-div h5{
+    font-size: 14px;
+    font-weight: 600;
+}
+.eligile-fasia-div .card-body {
+    padding: 50px 30px;
+}
+.eligile-fasia-div .eligible-card{
+    display: inline-flex;
+}
+.eligile-fasia-div .center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+ @media screen and (max-width:700px) {
+     .eligile-fasia-div .eligile-fasia-div-img img {
+         width: 90%;
+     }
+     .eligile-fasia-div .one {
+         width: 100% !important;
+         margin-bottom: 10px;
+     }
+     .eligile-fasia-div {
+         display: table !important;
+     }
+ }

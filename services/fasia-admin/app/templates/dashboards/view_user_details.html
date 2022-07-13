@@ -1,0 +1,446 @@
+<div class="col-md-12">
+    <div class="col-md-12">
+        <div class="row">
+            <img src="{% if user_info.profile_image -%}
+                {{ user_info.profile_image }}
+                {%- else -%}
+                {{ url_for('static', filename='images/contactimg.png')}}
+                {%- endif %}" alt="profile-img" id="id_image_tag" name="id_image_tag" class="img-responsive img-circle auto-margin">
+        </div>
+        <h4 class="view-title text-center">{{user_info.title}}.{{user_info.get_full_name()}}</h4>
+    </div>
+    <form method="POST" onsubmit="return false;" id="reg_form">
+        <div class="col-md-12 user-detailes-information">
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4" for="name">Email:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{user_info.email}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4" for="name">Gender:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{user_info.gender}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4" for="name">Birthdate:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{user_info.dob}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group admin-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4" for="name">Region:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{user_info.region}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4" for="name">Company Name:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{user_info.company_name}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4" for="name">Designation:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{user_info.designations}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4" for="name">Firm / Agency Name:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{user_info.firm_agency_name}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4" for="name">Primary Email:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{user_info.email}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4" for="name">Secondary Email:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{user_info.secondary_email}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4" for="name">Communication Email:</label>
+                        <div class="col-sm-8">
+
+                            <p class="form-control-static">
+                                {% if user_info.communication_email == 'primary' %}
+                                    {{user_info.email}}
+                                {% else %}
+                                    {{user_info.secondary_email}}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4" for="name">Educational Qualification:
+                            <br />(Graduate1/ Post Graduate/ Additional Programs)</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{user_info.educational_qualification}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-4" for="name">License Information (Authority/ License Number):</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{user_info.license_number}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12" >
+                    <h3 class="user-data"><b>Experience</b></h3>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Product:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.products}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Services:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.services}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Total Year of Practice:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.total_years_practice}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Total Client Base:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.total_client_base}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Awards and Rewards:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.awards_rewards}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Social Service:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.social_services}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Communication Address:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{% if user_info.communication_address == 'home' %}Home{% else %}Office{% endif %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12" >
+                    <h3 class="user-data"><b>Home Information</b></h3>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Street Address1:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.home_street_address1}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Street Address2:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.home_street_address2}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Location:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.home_location}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Country:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.home_country}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">State:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.home_state}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">City:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.home_city}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Zipcode:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.home_zipcode}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data  col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Phone Number:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.home_phone}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Mobile Number:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.home_mobile}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12" >
+                    <h3 class="user-data"><b>Business Information</b></h3>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Street Address1:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.business_street_address1}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Street Address2:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.business_street_address2}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Location:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.business_location}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Country:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.business_country}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">State:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.business_state}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">City:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.business_city}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Zipcode:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.business_zipcode}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Phone Number:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.business_phone}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group user-data col-sm-4">
+                    <div class="row">
+                        <label class="col-sm-7 control-label" for="name">Mobile Number:</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">{{user_info.business_mobile}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12">
+                    <h3><b>Manage Area:</b></h3>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <div class="row"    >
+                        <!--   REGION LIST   -->
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <label class="col-sm-5" for="region">Region *: </label>
+                                {% if requested_role == 'region_admin' %}
+                                <select class="form-control col-sm-4" name="region" id="region" required="true" is-select="true" multiple="multiple">
+                                {% for nm in region_list %}
+                                    <option value="{{nm}}">{{nm}}</option>
+                                {% endfor %}
+                                </select>
+                                {% else %}
+                                <select class="form-control col-sm-4" name="region" id="region" required="true" is-select="true" multiple="multiple" onchange="get_state(this);">
+                                {% for nm in region_list %}
+                                    <option value="{{nm}}">{{nm}}</option>
+                                {% endfor %}
+                                </select>
+                                {% endif %}
+                            </div>
+                            <span class="help-block" id="help_region"></span>
+                            <span class="help-block" id="help_area"></span>
+                        </div>
+                        <!--   REGION LIST END  -->
+                        <!--   STATE LIST   -->
+                        <div id="div_state" class="col-sm-4" style="display:none;">
+                            <div class="row">
+                                <label class="col-sm-5" for="state">State *:</label>
+                                {% if requested_role == 'state_admin' %}
+                                <select class="form-control col-sm-4" name="state" id="state" required="true" is-select="true" multiple="multiple">
+                                    {% for st in user.manage_state_list %}
+                                        <option value="{{st}}">{{st}}</option>
+                                    {% endfor %}
+                                </select>
+                                {% else %}
+                                <select class="form-control col-sm-4" name="state" id="state" required="true" is-select="true" multiple="multiple" onchange="get_city();" >
+                                    {% for st in user.manage_state_list %}
+                                        <option value="{{st}}">{{st}}</option>
+                                    {% endfor %}
+                                </select>
+                               {% endif %}
+                            </div>
+                            <span class="help-block" id="help_state"></span>
+                        </div>
+                        <!--   STATE LIST END  -->
+                        {% if requested_role == 'chapter_admin' %}
+                        <div id="div_city" class="col-sm-4" style="display:none;">
+                            <div class="row">
+                                <label class="col-sm-5" for="city">City *:</label>
+                                <select class="form-control col-sm-4" name="city" id="city" required="true" is-select="true" multiple="multiple" >
+                                </select>
+                            </div>
+                            <span class="help-block" id="help_city"></span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12">
+                    <label>Founding Member
+                        <input type="checkbox" name="found_mem" id="found_mem">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="row text-center">
+                <button type="button" class="btn sub-btn" id="reg_submit_btn">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+<script>
+    var user_id = '{{user_id}}';
+</script>
+<script src="{{ url_for('static', filename='js/dashboards/view_user_details.js')}}"></script>

@@ -1,0 +1,230 @@
+.pagination-page-info {
+    padding: .6em;
+    padding-left: 0;
+    width: 40em;
+    margin: .5em;
+    margin-left: 0;
+    font-size: 12px;
+}
+.pagination-page-info b {
+    color: black;
+    background: #6aa6ed;
+    padding-left: 2px;
+    padding: .1em .25em;
+    font-size: 150%;
+}
+
+.bloggroups .blog-over-img{
+    width: 100%;
+    min-height: 300px;
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.blogs-links ul a {
+    color: #e40b7d;
+}
+
+h3 a{
+    color:#f4941e !important;
+}
+
+/* Fasia Blog Css  */
+
+.fasia-blog-section h2{
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+.fasia-blog-section .blog-main{
+    margin-top: 10px;
+}
+.fasia-blog-section .blog-over-img{
+    width: 100%;
+    overflow: hidden;
+}
+.fasia-blog-section .blog-over-img-wp{
+    width: 300px;
+    overflow: hidden;
+}
+.fasia-blog-section .blog-over-img-wp img{
+    width: 100%;
+}
+.fasia-blog-section .main-blog-header{
+    border-bottom: 1px #cccccc70 solid;
+}
+.fasia-blog-section .blog-over-img .main-blog-header h3{
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+.fasia-blog-section .main-blog-header span, .fasia-blog-section .blog-content{
+    margin-top: 20px;
+}
+.fasia-blog-section .blogs-links ul{
+    list-style: none;
+    padding-left: 0px;
+    margin-bottom: 20px;
+    min-height: 30px;
+}
+.fasia-blog-section .blogs-links ul li{
+    float: left;
+    padding: 5px 15px;
+    margin-right: 10px;
+    border: 1px rgba(0, 0, 0, 0.4) solid;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.fasia-blog-section .btn{
+    color: #fff !important;
+    border: none;
+    background-color: #f4941e;
+    border-radius: 0px;
+    margin-bottom: 0px;
+}
+.fasia-blog-section .read-more-blog{
+    padding-top: 10px;
+}
+
+.fasia-blog-single-page .single-page-blog h2{
+    margin-top: 0px;
+    font-size: 25px;
+    line-height: 25px;
+    border-bottom: 0;
+
+}
+.fasia-blog-single-page .single-page-blog h2 a{
+    color: #000;
+}
+.fasia-blog-single-page .bloggroups{
+    height: 180px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.fasia-blog-single-page .blogs-links ul{
+    list-style: none;
+    padding-left: 0px;
+}
+.fasia-blog-single-page .blogs-links ul li{
+    float: left;
+    margin-right: 10px;
+}
+.fasia-blog-single-page .blogs-links{
+    min-height: 45px;
+}
+.fasia-blog-single-page .category-color{
+    margin-bottom: 20px;
+}
+.fasia-blog-single-page .category-color a{
+    color: #000;
+}
+.fasia-blog-single-page .single-page-back-btn p{
+    margin: 0px;
+}
+.fasia-blog-single-page .single-page-back-btn p a{
+    color: #000;
+}
+
+/* Breadcrumb css starts */
+.single-page-back-btn .breadcrumb {
+    background-color: #FAFAFA;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    -o-border-radius: 0;
+    padding-left: 0px;
+    margin-bottom: 10px !important;
+}
+.single-page-back-btn .breadcrumb a {
+    color: #ea9a40;
+    font-weight: 600;
+    text-decoration: underline;
+}
+.single-page-back-btn .breadcrumb a:hover {
+    text-decoration: none;
+}
+.single-page-back-btn .breadcrumb > .active {
+    color:#000;
+}
+.n-span-orange-color {
+    color: #f4941e !important;
+    text-decoration: underline;
+}
+
+.blog-creation-form .form-group .item{
+   border-top: 1px solid #FAFAFA;
+   padding: .78571429rem 1.14285714rem!important;
+   white-space: normal;
+   word-wrap: normal;
+   position: relative;
+   cursor: pointer;
+   display: block;
+   border: none;
+   height: auto;
+   text-align: left;
+   border-top: none;
+   line-height: 1em;
+   color: rgba(0,0,0,.87);
+   padding: .78571429rem 1.14285714rem!important;
+   text-transform: none;
+   font-weight: 400;
+   box-shadow: none;
+   -webkit-touch-callout: none;
+   font-size: 14px;
+}
+.blog-creation-form .form-group .search-output{
+   display: none;
+}
+.blog-creation-form .item:hover{
+   background-color: blue;
+   color: #FFF;
+}
+.blog-creation-form .transition{
+   height: 150px;
+   overflow-y: scroll;
+}
+.fasia-blog-single-page, .fasia-blog-section{
+    padding-top: 15px;
+}
+.fasia-blog-header{
+    margin-bottom: 15px;
+}
+.breadcrumb a{
+    color: #ea9a40;
+    text-decoration: underline !important;
+}
+.post-content{
+    padding-bottom: 20px;
+}
+@media (max-width:430px) {
+    .single-page-blog h2{
+        font-size: 20px !important;
+        padding-right: 15px;
+        margin-bottom: 0px;
+    }
+    .fasia-blog-single-page .blogs-links ul li{
+        margin-right: 3px !important;
+    }
+}
+@media (max-width: 560px){
+    .fasia-blog-section .main-blog-header span {
+        margin-top: 15px !important;
+        margin-bottom: 5px;
+    }
+}
+
+.blog-btn{
+    color: #fff !important;
+    border: none;
+    background-color: #f4941e;
+    border-radius: 0px;
+    margin-bottom: 0px;
+}
+.img-blog{
+    width: 300px;
+}
+.blog-content a{
+    color: #0a4e80;
+}
